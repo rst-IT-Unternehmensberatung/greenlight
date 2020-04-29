@@ -52,7 +52,7 @@ de_DE:
       privpolicy:
         change: URL ändern
         info: Die URL für den Link zur Datenschutzerklärung am Seitenende ändern
-        placeholder: Datenschutzerklärungs-URL...
+        placeholder: URL der Datenschutzerklärung…
         title: Datenschutzerklärung
         invalid: Ungültige URL
       cache:
