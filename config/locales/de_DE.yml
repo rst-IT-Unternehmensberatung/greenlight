@@ -46,7 +46,7 @@ de_DE:
       legal:
         change: URL ändern
         info: Die URL für den Link zum Impressum am Seitenende ändern
-        placeholder: Impressums-URL...
+        placeholder: URL des Impressums...
         title: Impressum
         invalid: Ungültige URL
       privpolicy:
