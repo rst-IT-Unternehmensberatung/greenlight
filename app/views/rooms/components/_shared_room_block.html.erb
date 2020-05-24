@@ -28,9 +28,12 @@
           </div>
           <div class="small text-muted text-break">
             <%= t("room.shared_by", email: room.owner.name) %>
-            <% if room_running %>
-            <span>Test</span>
-            <% end %>
+              <% running = room_is_running(room.bbb_id) %>
+              <% if running %>
+                <%= t("administrator.rooms.running") %>
+              <% else %>
+                <%= t("administrator.rooms.not_running") %>
+              <% end %>
           </div>
         </td>
         <% if current_user.role.get_permission("can_create_rooms") %>
