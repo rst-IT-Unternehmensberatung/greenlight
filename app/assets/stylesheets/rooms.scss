@@ -44,11 +44,11 @@
   width: 70% !important;
 }
 
-.edit_hover_class a{
+#room-title a{
   visibility: hidden;
 }
 
-.edit_hover_class:hover a {
+#room-title:hover a {
   visibility: visible;
 }
 
