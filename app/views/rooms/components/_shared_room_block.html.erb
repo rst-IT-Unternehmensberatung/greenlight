@@ -28,7 +28,7 @@
           </div>
           <div class="small text-muted text-break">
             <%= t("room.shared_by", email: room.owner.name) %>
-            <% if room.running %>
+            <% if room_running %>
             <span>Test</span>
             <% end %>
           </div>
