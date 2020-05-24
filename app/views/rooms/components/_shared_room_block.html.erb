@@ -18,6 +18,8 @@
     <table class="table table-hover table-vcenter text-wrap table-no-border">
       <tbody class="no-border-top">
         <td>
+           <% running = room_is_running(room.bbb_id) %>
+              
           <span class="stamp stamp-md bg-primary">
             <i class="fas fa-share-alt"></i>
           </span>
@@ -28,6 +30,18 @@
           </div>
           <div class="small text-muted text-break">
             <%= t("room.shared_by", email: room.owner.name) %>
+            <% if @room_running %>
+              <span>Rennt</span>
+            <% else %>
+              <span>rennt nicht</span>
+            <% end %>
+            <% if running %>
+                 <%= t("administrator.rooms.table.started", session: friendly_time(room.last_session)) %>
+              <% elsif room.last_session.present? %>
+                <%= t("administrator.rooms.table.ended", session: friendly_time(room.last_session)) %>
+              <% else %>
+                <%= [t("administrator.users.table.created"), ": ", friendly_time(room.created_at)].join %>
+              <% end %>
           </div>
         </td>
         <% if current_user.role.get_permission("can_create_rooms") %>
