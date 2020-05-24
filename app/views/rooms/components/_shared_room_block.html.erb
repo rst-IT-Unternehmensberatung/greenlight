@@ -27,12 +27,8 @@
             <h4 contenteditable="false" class="m-0 force-text-normal" ><%= room.name %></h4>
           </div>
           <div class="small text-muted text-break">
-
-            <% if @room_running %>
-            <span>Lauft</span>
-            <% else %>
-    <%= t("room.shared_by", email: room.owner.name) %>
-            <% end %>
+            <%= running ? t("room.shared_by", email: room.owner.name) : t("room.start") %>
+            
           </div>
         </td>
         <% if current_user.role.get_permission("can_create_rooms") %>
