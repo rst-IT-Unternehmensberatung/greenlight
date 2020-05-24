@@ -30,11 +30,7 @@
           </div>
           <div class="small text-muted text-break">
             <%= t("room.shared_by", email: room.owner.name) %>
-            <% if @room_running %>
-              <span>Rennt</span>
-            <% else %>
-              <span>rennt nicht</span>
-            <% end %>
+      
             <% if running %>
                  <%= t("administrator.rooms.table.started", session: friendly_time(room.last_session)) %>
               <% elsif room.last_session.present? %>
