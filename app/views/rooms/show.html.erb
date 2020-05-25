@@ -50,7 +50,7 @@
                     <span class="sr-only">Toggle Dropdown</span>
                   </button>
                   <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(476px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
-                    <a class="dropdown-item" href="mailto:<%= current_user.email %>?subject=TItel;body=Text%0D%0A%0D%0geht%20hier%20lang">Per E-Mail senden</a>
+                    <a class="dropdown-item" href="mailto:<%= current_user.email %>?bcc=&subject=TItel&body=Text%0D%0A%0D%0geht%20hier%20lang">Per E-Mail senden</a>
                     <a class="dropdown-item" href="#">Teilen</a>
                     <a class="dropdown-item" href="#">Termin planen</a>
                     <div role="separator" class="dropdown-divider"></div>
@@ -66,6 +66,8 @@
                       <%= t("add_to_google_calendar") %>
                     </a>
                   <% end %>
+                  <ul id="user-list">
+                    </ul>  
             </div>
           </div>
         <% end %>
