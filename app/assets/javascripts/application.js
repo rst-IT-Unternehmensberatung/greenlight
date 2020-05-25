@@ -36,6 +36,8 @@
 //= require pickr.min.js
 //= require bootstrap-select.min.js
 //= require_tree .
+window.onload = function(){
+
 $('.nav-link').click(function(){
 		$(".nav-link.active").removeClass("active");
 		$(this).addClass("active");
@@ -67,3 +69,4 @@ document.getElementById("3").onclick = function() {
         p[i].style.display = "block";
     }
 }
+};
