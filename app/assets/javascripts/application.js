@@ -42,3 +42,28 @@ $('.nav-link').click(function(){
 		$($(this).data('col2')).hide();
 		$($(this).data('col')).show();
 });
+
+var m = document.getElementsByClassName("m");
+var p = document.getElementsByClassName("p");
+var z = document.getElementsByClassName("z");
+document.getElementById("1").onclick = function() {
+    p.style.display = "none";
+    z.style.display = "none";
+    for(var i = 0; i < m.length; i++) {
+        m[i].style.display = "block";
+    }
+}
+document.getElementById("2").onclick = function() {
+    p.style.display = "none";
+    m.style.display = "none";
+    for(var i = 0; i < z.length; i++) {
+        z[i].style.display = "block";
+    }
+}
+document.getElementById("3").onclick = function() {
+    m.style.display = "none";
+    z.style.display = "none";
+    for(var i = 0; i < p.length; i++) {
+        p[i].style.display = "block";
+    }
+}
