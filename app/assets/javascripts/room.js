@@ -81,6 +81,11 @@ $(document).on('turbolinks:load', function(){
       displaySharedUsers($(this).data("users-path"))
     })
 
+    $(".share-link").click(function() {
+      // Get list of users shared with and display them
+      displaySharedUsersEMails($(this).data("users-path"))
+    })
+    
     $("#shareRoomModal").on("show.bs.modal", function() {
       $(".selectpicker").selectpicker('val','')
     })
@@ -253,10 +258,7 @@ function displaySharedUsers(path) {
   });
 }
 
-$(".share-link").click(function() {
-  // Get list of users shared with and display them
-  displaySharedUsersEMails($(this).data("users-path"))
-})
+
 function displaySharedUsersEMails(path) {
   $.get(path, function(users) {
     // Create list element and add to user list
