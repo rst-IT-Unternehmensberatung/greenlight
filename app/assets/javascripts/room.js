@@ -198,7 +198,7 @@ function showDeleteRoom(target) {
 function updateCurrentSettings(settings_path){
   // Get current room settings and set checkbox
   $.get(settings_path, function(room_settings) {
-    var settings = JSON.parse(room_settings) 
+    var settings = JSON.parse(room_settings)
     $("#room_mute_on_join").prop("checked", $("#room_mute_on_join").data("default") || settings.muteOnStart)
     $("#room_require_moderator_approval").prop("checked", $("#room_require_moderator_approval").data("default") || settings.requireModeratorApproval)
     $("#room_anyone_can_start").prop("checked", $("#room_anyone_can_start").data("default") || settings.anyoneCanStart)
@@ -237,14 +237,14 @@ function displaySharedUsers(path) {
     var user_list_html = ""
 
     users.forEach(function(user) {
-      user_list_html += "<li class='list-group-item text-left' data-uid='" + user.uid + "'>"
+      user_list_html += "<li class='list-group-item text-left' data-uid='" + user.email + "'>"
 
       if (user.image) {
         user_list_html += "<img id='user-image' class='avatar float-left mr-2' src='" + user.image + "'></img>"
       } else {
         user_list_html += "<span class='avatar float-left mr-2'>" + user.name.charAt(0) + "</span>"
       }
-      user_list_html += "<span class='shared-user'>" + user.name + "<span class='text-muted ml-1'>" + user.uid + "</span></span>"
+      user_list_html += "<span class='shared-user'>" + user.name + "<span class='text-muted ml-1'>" + user.email + "</span></span>"
       user_list_html += "<span class='text-primary float-right shared-user cursor-pointer' onclick='removeSharedUser(this)'><i class='fas fa-times'></i></span>"
       user_list_html += "</li>"
     })
