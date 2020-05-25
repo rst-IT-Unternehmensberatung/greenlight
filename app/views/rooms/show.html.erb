@@ -33,7 +33,7 @@
         </div>
       </div>
       <div class="col-lg-8 col-sm-12">
-        <h4 class="text-left mb-0"><%= @room.sessions %> <%= t("room.sessions") %> | <%= @recordings.length %> <%= t("room.recordings") %> | <%= @participants_count[room.bbb_id].presence || "-" %></h4>
+        <h4 class="text-left mb-0"><%= @room.sessions %> <%= t("room.sessions") %> | <%= @recordings.length %> <%= t("room.recordings") %></h4>
         <% unless exceeds_limit %>
         <% if current_user.role.get_permission("can_create_rooms") %>
           <label class="form-label mt-6"><%= t("room.invite_participants") %></label>
@@ -50,7 +50,7 @@
                     <span class="sr-only">Toggle Dropdown</span>
                   </button>
                   <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(476px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
-                    <a class="dropdown-item" href="#">Per E-Mail senden</a>
+                    <a class="dropdown-item" href="mailto:<%= user.email %>?subject=TItel;body=Text%0D%0A%0D%0geht%20hier%20lang">Per E-Mail senden</a>
                     <a class="dropdown-item" href="#">Teilen</a>
                     <a class="dropdown-item" href="#">Termin planen</a>
                     <div role="separator" class="dropdown-divider"></div>
