@@ -87,6 +87,7 @@ en:
         title: Maintenance Window
         display: Display
         clear: Clear
+        time: e.g. Friday, August 18 at 6-10pm EST
       registration:
         info: Change the way that users register to the website
         title: Registration Method

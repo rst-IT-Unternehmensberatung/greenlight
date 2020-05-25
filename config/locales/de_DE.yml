@@ -75,6 +75,7 @@ de_DE:
         title: Wartungsmodus
         display: Anzeigen
         clear: Löschen
+        time: z.B. Freitag 13.05. um 13 Uhr
       registration:
         info: "Methode ändern, wie sich Benutzer auf der Website registrieren"
         title: Registrierungsmethode
