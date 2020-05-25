@@ -39,7 +39,7 @@ function getLocalizedString(key) {
 
 
   // If key is not found, search the fallback language for the key
-  if (translated === null || translated === undefined) { 
+  if (translated === null || translated === undefined) {
     translated = I18nFallback
 
     keyArr.forEach(function(k) {
@@ -49,3 +49,10 @@ function getLocalizedString(key) {
 
   return translated
 }
+
+$('.nav-link').click(function(){
+		$(".nav-link.active").removeClass("active");
+		$(this).addClass("active");
+		$($(this).data('col2')).hide();
+		$($(this).data('col')).show();
+});
