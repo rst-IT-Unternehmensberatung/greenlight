@@ -521,7 +521,7 @@ describe UsersController, type: :controller do
     end
   end
 
-  describe "GET | POST #manual" do
+  describe "GET #manual" do
 
   end
 
