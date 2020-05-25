@@ -33,7 +33,7 @@
         </div>
       </div>
       <div class="col-lg-8 col-sm-12">
-        <h4 class="text-left mb-0"><%= @room.sessions %> <%= t("room.sessions") %> | <%= @recordings.length %> <%= t("room.recordings") %> | <%= friendly_time(@room.last_session) %></h4>
+        <h4 class="text-left mb-0"><%= @room.sessions %> <%= t("room.sessions") %> | <%= @recordings.length %> <%= t("room.recordings") %> | <%= t("administrator.rooms.table.started", session: friendly_time(@room.last_session)) %></h4>
         <% unless exceeds_limit %>
         <% if current_user.role.get_permission("can_create_rooms") %>
           <label class="form-label mt-6"><%= t("room.invite_participants") %></label>
