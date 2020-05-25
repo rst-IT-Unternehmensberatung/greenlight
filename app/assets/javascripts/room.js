@@ -237,19 +237,38 @@ function displaySharedUsers(path) {
     var user_list_html = ""
 
     users.forEach(function(user) {
-      user_list_html += "<li class='list-group-item text-left' data-uid='" + user.email + "'>"
+      user_list_html += "<li class='list-group-item text-left' data-uid='" + user.uid + "'>"
 
       if (user.image) {
         user_list_html += "<img id='user-image' class='avatar float-left mr-2' src='" + user.image + "'></img>"
       } else {
         user_list_html += "<span class='avatar float-left mr-2'>" + user.name.charAt(0) + "</span>"
       }
-      user_list_html += "<span class='shared-user'>" + user.name + "<span class='text-muted ml-1'>" + user.email + "</span></span>"
+      user_list_html += "<span class='shared-user'>" + user.name + "<span class='text-muted ml-1'>" + user.uid + "</span></span>"
       user_list_html += "<span class='text-primary float-right shared-user cursor-pointer' onclick='removeSharedUser(this)'><i class='fas fa-times'></i></span>"
       user_list_html += "</li>"
     })
 
     $("#user-list").html(user_list_html)
+  });
+}
+
+$(".share-link").click(function() {
+  // Get list of users shared with and display them
+  displaySharedUsersEMails($(this).data("users-path"))
+})
+function displaySharedUsersEMails(path) {
+  $.get(path, function(users) {
+    // Create list element and add to user list
+    var user_email_list_html = ""
+
+    users.forEach(function(user) {
+      if (user.email) {
+        user_email_list_html += user.email + ","
+      }
+    })
+
+    $("#user-email-list").html(user_email_list_html)
   });
 }
 

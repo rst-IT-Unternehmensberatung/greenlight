@@ -39,8 +39,7 @@
 .home-indicator {
   font-size: 22px !important;
   &.fa-home {
-    position: relative;
-    top: -20px;  
+    align-self: start;
   }
 }
 
@@ -48,12 +47,19 @@
   width: 70% !important;
 }
 
-#room-title a{
-  visibility: hidden;
-}
-
-#room-title:hover a {
-  visibility: visible;
+#room-title {
+  a {
+    visibility: hidden;
+  }
+  h1 {
+    max-width: calc(100% - 3rem);
+  }
+  &:hover a {
+    visibility: visible;
+  }
+  &:last-child {
+    align-self: start;
+  }
 }
 
 #room-settings-dropdown-label {
