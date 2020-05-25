@@ -49,10 +49,3 @@ function getLocalizedString(key) {
 
   return translated
 }
-
-$('.nav-link').click(function(){
-		$(".nav-link.active").removeClass("active");
-		$(this).addClass("active");
-		$($(this).data('col2')).hide();
-		$($(this).data('col')).show();
-});

@@ -36,3 +36,9 @@
 //= require pickr.min.js
 //= require bootstrap-select.min.js
 //= require_tree .
+$('.nav-link').click(function(){
+		$(".nav-link.active").removeClass("active");
+		$(this).addClass("active");
+		$($(this).data('col2')).hide();
+		$($(this).data('col')).show();
+});
