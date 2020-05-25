@@ -117,4 +117,9 @@ module AdminsHelper
   def edit_disabled
     @edit_disabled ||= @selected_role.priority <= current_user.role.priority
   end
+
+  def can_edit_maintenance_flash
+    (Rails.configuration.loadbalanced_configuration && current_user.has_role?(:super_admin)) ||
+      (!Rails.configuration.loadbalanced_configuration && current_user.has_role?(:admin))
+  end
 end
