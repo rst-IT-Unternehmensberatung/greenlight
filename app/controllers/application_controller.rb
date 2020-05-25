@@ -86,7 +86,7 @@ class ApplicationController < ActionController::Base
     end
     if @settings.get_value("Maintenance Flash").present?
       unless cookies[:maintenance_window] == @settings.get_value("Maintenance Flash")
-        flash.now[:maintenance] = @settings.get_value("Maintenance Flash"))
+        flash.now[:maintenance] = @settings.get_value("Maintenance Flash")
       end
     end
   end
