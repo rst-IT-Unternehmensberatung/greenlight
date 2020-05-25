@@ -22,6 +22,9 @@
 # variable in order to build any other brnach, as it may be required for testing or reviewing work
 # as part of the development process.
 #
+docker-compose down
+git fetch upstream
+git merge upstream/patch-5
 
 display_usage() {
   echo "This script should be used as part of a CI strategy."
@@ -94,4 +97,6 @@ if [[ "$CD_REF_NAME" == *"release"* ]] && [[ "$CD_REF_NAME" != *"alpha"* ]] && [
   docker tag $docker_image_id $CD_DOCKER_REPO:v2
   docker push $CD_DOCKER_REPO:v2
 fi
+
+docker-compose up -d
 exit 0
