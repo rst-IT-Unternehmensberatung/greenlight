@@ -36,13 +36,18 @@ $(document).on('turbolinks:load', function(){
       if (success) {
         inviteURL.blur();
         copy.addClass('btn-success');
-        copy.html("<i class='fas fa-check mr-1'></i>" + getLocalizedString("copied"))
+        copy.html("<i class='fas fa-check'></i>" + getLocalizedString("copied"))
         setTimeout(function(){
           copy.removeClass('btn-success');
-          copy.html("<i class='fas fa-copy mr-1'></i>" + getLocalizedString("copy"))
+          copy.html("<i class='fas fa-copy'></i>" + getLocalizedString("copy"))
         }, 2000)
       }
     });
+
+    // Forces the wrapper to take the entire screen height if the user can't create rooms
+    if ($("#cant-create-room-wrapper").length){
+      $(".wrapper").css('height', '100%').css('height', '-=130px');
+    }
 
     // Display and update all fields related to creating a room in the createRoomModal
     $("#create-room-block").click(function(){
@@ -81,11 +86,6 @@ $(document).on('turbolinks:load', function(){
       displaySharedUsers($(this).data("users-path"))
     })
 
-    $(".share-link").click(function() {
-      // Get list of users shared with and display them
-      displaySharedUsersEMails($(this).data("users-path"))
-    })
-    
     $("#shareRoomModal").on("show.bs.modal", function() {
       $(".selectpicker").selectpicker('val','')
     })
@@ -138,16 +138,17 @@ $(document).on('turbolinks:load', function(){
 });
 
 function showCreateRoom(target) {
+  var modal = $(target)
   $("#create-room-name").val("")
   $("#create-room-access-code").text(getLocalizedString("modal.create_room.access_code_placeholder"))
   $("#room_access_code").val(null)
 
   $("#createRoomModal form").attr("action", $("body").data('relative-root'))
-
   $("#room_mute_on_join").prop("checked", $("#room_mute_on_join").data("default"))
   $("#room_require_moderator_approval").prop("checked", $("#room_require_moderator_approval").data("default"))
   $("#room_anyone_can_start").prop("checked", $("#room_anyone_can_start").data("default"))
   $("#room_all_join_moderator").prop("checked", $("#room_all_join_moderator").data("default"))
+  $("#room_recording").prop("checked", $("#room_recording").data("default"))
 
   //show all elements & their children with a create-only class
   $(".create-only").each(function() {
@@ -160,6 +161,9 @@ function showCreateRoom(target) {
     $(this).attr('style',"display:none !important")
     if($(this).children().length > 0) { $(this).children().attr('style',"display:none !important") }
   })
+
+  runningSessionWarningVisibilty(false)
+
 }
 
 function showUpdateRoom(target) {
@@ -192,6 +196,9 @@ function showUpdateRoom(target) {
     $("#create-room-access-code").text(getLocalizedString("modal.create_room.access_code_placeholder"))
     $("#room_access_code").val(null)
   }
+
+  runningSessionWarningVisibilty(false)
+
 }
 
 function showDeleteRoom(target) {
@@ -202,12 +209,15 @@ function showDeleteRoom(target) {
 //Update the createRoomModal to show the correct current settings
 function updateCurrentSettings(settings_path){
   // Get current room settings and set checkbox
-  $.get(settings_path, function(room_settings) {
-    var settings = JSON.parse(room_settings)
+  $.get(settings_path, function(settings) {
     $("#room_mute_on_join").prop("checked", $("#room_mute_on_join").data("default") || settings.muteOnStart)
     $("#room_require_moderator_approval").prop("checked", $("#room_require_moderator_approval").data("default") || settings.requireModeratorApproval)
     $("#room_anyone_can_start").prop("checked", $("#room_anyone_can_start").data("default") || settings.anyoneCanStart)
     $("#room_all_join_moderator").prop("checked", $("#room_all_join_moderator").data("default") || settings.joinModerator)
+    $("#room_recording").prop("checked", $("#room_recording").data("default") || settings.recording)
+
+    runningSessionWarningVisibilty(settings.running)
+
   })
 }
 
@@ -258,22 +268,6 @@ function displaySharedUsers(path) {
   });
 }
 
-
-function displaySharedUsersEMails(path) {
-  $.get(path, function(users) {
-    // Create list element and add to user list
-    var user_email_list_html = ""
-
-    users.forEach(function(user) {
-      if (user.email) {
-        user_email_list_html += user.email + ","
-      }
-    })
-
-    $("#user-email-list").html(user_email_list_html)
-  });
-}
-
 // Removes the user from the list of shared users
 function removeSharedUser(target) {
   let parentLI = target.closest("li")
@@ -284,4 +278,15 @@ function removeSharedUser(target) {
     parentLI.removeChild(target)
     parentLI.classList.add("remove-shared")
   }
+}
+
+// Show a "Session Running warning" for each room setting, which cannot be changed during a running session
+function runningSessionWarningVisibilty(isRunning) {
+    if(isRunning) {
+        $(".running-only").show()
+        $(".not-running-only").hide()
+    } else {
+        $(".running-only").hide()
+        $(".not-running-only").show()
+    }
 }

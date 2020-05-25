@@ -17,7 +17,6 @@
 # with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
 
 require 'bbb_api'
-require 'securerandom'
 
 class Room < ApplicationRecord
   include Deleteable
@@ -46,12 +45,9 @@ class Room < ApplicationRecord
     where(search_query, search: search_param)
   end
 
-  def self.admins_order(column, direction, running_ids)
+  def self.admins_order(column, direction)
     # Include the owner of the table
     table = joins(:owner)
-
-    # Rely on manual ordering if trying to sort by status
-    return order_by_status(table, running_ids) if column == "status"
 
     return table.order(Arel.sql("rooms.#{column} #{direction}")) if table.column_names.include?(column)
 
@@ -84,19 +80,12 @@ class Room < ApplicationRecord
     ActionCable.server.broadcast("#{uid}_waiting_channel", action: "started")
   end
 
-  # Return table with the running rooms first
-  def self.order_by_status(table, ids)
-    return table if ids.blank?
+  def settings_hash
+    JSON.parse(room_settings || "{}")
+  end
 
-    order_string = "CASE bbb_id "
-
-    ids.each_with_index do |id, index|
-      order_string += "WHEN '#{id}' THEN #{index} "
-    end
-
-    order_string += "ELSE #{ids.length} END"
-
-    table.order(Arel.sql(order_string))
+  def recording?
+    settings_hash["recording"]
   end
 
   private
@@ -112,12 +101,12 @@ class Room < ApplicationRecord
   # Generates a three character uid chunk.
   def uid_chunk
     charset = ("a".."z").to_a - %w(b i l o s) + ("2".."9").to_a - %w(5 8)
-    (0...3).map { charset.to_a[SecureRandom.random_number(charset.size)] }.join
+    (0...3).map { charset.to_a[rand(charset.size)] }.join
   end
 
-  # Generates a fully random room uid.
+  # Generates a random room uid that uses the users name.
   def random_room_uid
-    (0...4).map { uid_chunk }.join('-').downcase
+    [owner.name_chunk, uid_chunk, uid_chunk].join('-').downcase
   end
 
   # Generates a unique bbb_id based on uuid.
