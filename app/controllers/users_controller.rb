@@ -197,6 +197,11 @@ class UsersController < ApplicationController
     end
   end
 
+  # GET | POST /terms
+  def manual
+
+  end
+
   private
 
   def find_user
