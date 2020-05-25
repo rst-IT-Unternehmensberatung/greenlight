@@ -340,8 +340,6 @@ de_DE:
         verify_text: 'Um Ihr Konto zu verifizieren, folgen Sie diesem Link: %{url}'
         verify_link: Konto verifizieren
         thanks: Danke für Ihre Registrierung. Wir wünschen Ihnen noch einen wunderbaren Tag!
-  maintenance:
-    window_alert: "Wartung geplant für %{date}."
   max_concurrent: Die maximale Anzahl gleichzeitiger Verbindungen ist erreicht!
   merged: Zusammengeführt
   modal:
