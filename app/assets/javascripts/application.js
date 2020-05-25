@@ -38,8 +38,8 @@
 //= require_tree .
 window.onload = function(){
 
-$('.nav-link').click(function(){
-		$(".nav-link.active").removeClass("active");
+$('.nav-manu-item').click(function(){
+		$(".nav-manu-item.active").removeClass("active");
 		$(this).addClass("active");
 		$($(this).data('col2')).hide();
 		$($(this).data('col')).show();
