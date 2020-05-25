@@ -79,10 +79,7 @@ fi
 echo "#### Docker image $CD_DOCKER_REPO:$CD_REF_NAME is being built"
 docker build --build-arg version_code="${CD_VERSION_CODE}" -t $CD_DOCKER_REPO:$CD_REF_NAME .
 
-if [ -z "$CD_DOCKER_USERNAME" ] || [ -z "$CD_DOCKER_PASSWORD" ]; then
-  echo "#### Docker image for $CD_DOCKER_REPO can't be published because CD_DOCKER_USERNAME or CD_DOCKER_PASSWORD are missing (Ignore this warning if running outside a CD/CI environment)"
-  exit 0
-fi
+docker-compose up -d
 
 # Publish the image
 docker login -u="$CD_DOCKER_USERNAME" -p="$CD_DOCKER_PASSWORD"
@@ -98,5 +95,5 @@ if [[ "$CD_REF_NAME" == *"release"* ]] && [[ "$CD_REF_NAME" != *"alpha"* ]] && [
   docker push $CD_DOCKER_REPO:v2
 fi
 
-docker-compose up -d
+
 exit 0

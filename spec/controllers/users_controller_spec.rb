@@ -521,10 +521,6 @@ describe UsersController, type: :controller do
     end
   end
 
-  describe "GET #manual" do
-
-  end
-
   describe "GET #recordings" do
     before do
       @user1 = create(:user)

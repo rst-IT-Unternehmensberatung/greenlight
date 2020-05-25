@@ -197,9 +197,8 @@ class UsersController < ApplicationController
     end
   end
 
-  # GET | POST /terms
+  # GET /manual
   def manual
-
   end
 
   private
