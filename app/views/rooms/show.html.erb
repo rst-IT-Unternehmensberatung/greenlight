@@ -46,7 +46,7 @@
                     <i class="fas fa-copy mr-1"></i>
                     <%= t("copy") %>
                   </button>
-                  <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-users-path="<%= room_shared_users_path(@room) %>">
                     <span class="sr-only">Toggle Dropdown</span>
                   </button>
                   <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(476px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
@@ -67,7 +67,7 @@
                     </a>
                   <% end %>
                   <ul id="user-list">
-                    </ul>  
+                    </ul>
             </div>
           </div>
         <% end %>
