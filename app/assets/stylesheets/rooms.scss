@@ -38,9 +38,6 @@
 
 .home-indicator {
   font-size: 22px !important;
-  &.fa-home {
-    align-self: start;
-  }
 }
 
 .btn-del-room {
@@ -57,7 +54,7 @@
   &:hover a {
     visibility: visible;
   }
-  &:last-child {
+  a, .home-indicator {
     align-self: start;
   }
 }
@@ -68,6 +65,9 @@
 }
 
 .room-block {
+  &:hover {
+    background-color: #eeeef2;
+  }
   &:not(.current) {
     .stamp {
       opacity: 0.5;
@@ -77,10 +77,11 @@
 
 #create-room-block {
   border: 1px dashed lightgray;
+  border-radius: 3px;
 
   &:hover {
     cursor: pointer;
-    background-color: rgba(0, 0, 0, 0.04);
+    background-color: #eeeef2;
   }
 }
 
