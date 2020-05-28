@@ -59,6 +59,10 @@
   }
 }
 
+.current .stamp .fas:before {
+    content: "\f04b";
+}
+
 #room-settings-dropdown-label {
   vertical-align: middle;
   padding-top: 12px;

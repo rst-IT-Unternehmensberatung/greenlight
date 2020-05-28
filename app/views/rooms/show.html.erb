@@ -33,12 +33,12 @@
         </div>
       </div>
       <div class="col-lg-8 col-sm-12">
-        <h4 class="text-left mb-0"><%= @room.sessions %> <%= t("room.sessions") %> | <%= @recordings.length %> <%= t("room.recordings") %></h4>
+        <h4 class="text-left mb-3"><%= @room.sessions %> <%= t("room.sessions") %> | <%= @recordings.length %> <%= t("room.recordings") %></h4>
         <% unless exceeds_limit %>
         <% if current_user.role.get_permission("can_create_rooms") %>
           <label class="form-label mt-6"><%= t("room.invite_participants") %></label>
           <div class="row">
-            <div class="col-lg-8 col-md-12 mt-2">
+            <div class="col-lg-8 col-md-12">
               <div class="input-group invite-link-input">
                 <input id="invite-url" type="text" class="form-control" value="<%= request.base_url + @room.invite_path %>" readonly>
                 <div class="input-group-append">
