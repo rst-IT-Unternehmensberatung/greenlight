@@ -22,7 +22,7 @@
 <div class="background pb-1">
   <div class="container">
     <div class="row pt-7 pt-sm-9">
-      <div class="col-sm-12">
+      <div class="col">
         <div id="room-title" class="display-3 form-inline" data-path="<%= update_settings_path(@room) %>">
           <h1 contenteditable=false id="user-text" class="display-3 text-left mb-3 font-weight-400"><%= @room.name %></h1>
           <% if current_user.main_room == @room %>
@@ -32,10 +32,11 @@
           <% end %>
         </div>
       </div>
+    </div>
+    <div class="row">
       <div class="col-lg-8 col-sm-12">
         <h4 class="text-left mb-3"><%= @room.sessions %> <%= t("room.sessions") %> | <%= @recordings.length %> <%= t("room.recordings") %></h4>
         <% unless exceeds_limit %>
-        <% if current_user.role.get_permission("can_create_rooms") %>
           <label class="form-label mt-6"><%= t("room.invite_participants") %></label>
           <div class="row">
             <div class="col-lg-8 col-md-12">
@@ -46,30 +47,22 @@
                     <i class="fas fa-copy mr-1"></i>
                     <%= t("copy") %>
                   </button>
-                  <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split share-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-users-path="<%= room_shared_users_path(@room) %>">
-                    <span class="sr-only">Toggle Dropdown</span>
-                  </button>
-                  <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(476px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
-                    <a class="dropdown-item" href="mailto:<%= current_user.email %>?bcc=&subject=TItel&body=Text%0D%0A%0D%0geht%20hier%20lang">Per E-Mail senden</a>
-                    <a class="dropdown-item" href="#">Teilen</a>
-                    <a class="dropdown-item" href="#">Termin planen</a>
-                    <div role="separator" class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Separated link</a>
-                  </div>
                 </div>
               </div>
             </div>
             <div class="col-lg-4 col-md-12">
+              <div class="row">
+                <div class="col pl-0">
                   <% if Rails.configuration.enable_google_calendar_button %>
                     <a href="<%= google_calendar_path %>" target="__blank" id="schedule" class="btn btn-primary btn-block mt-2">
                       <i class="fas fa-calendar-plus"></i>
                       <%= t("add_to_google_calendar") %>
                     </a>
                   <% end %>
-                  <ul id="user-email-list"></ul>
+                </div>
+              </div>
             </div>
           </div>
-        <% end %>
         <% end %>
       </div>
       <div class="offset-lg-1 col-lg-3 col-sm-12 force-bottom">
