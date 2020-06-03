@@ -40,11 +40,12 @@ window.onload = function() {
     if(!window.location.hash) {
         window.location = window.location + '#loaded';
         window.location.reload();
+				$('.nav-manu-item').click(function(){
+						$(".nav-manu-item.active").removeClass("active");
+						$(this).addClass("active");
+						$($(this).data('col2')).hide();
+						$($(this).data('col')).show();
+				});
     }
-		$('.nav-manu-item').click(function(){
-				$(".nav-manu-item.active").removeClass("active");
-				$(this).addClass("active");
-				$($(this).data('col2')).hide();
-				$($(this).data('col')).show();
-		});
+
 };
