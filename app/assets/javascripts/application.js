@@ -36,16 +36,25 @@
 //= require pickr.min.js
 //= require bootstrap-select.min.js
 //= require_tree .
-window.onload = function() {
-    if(!window.location.hash) {
-        window.location = window.location + '#loaded';
-        window.location.reload();
-				$('.nav-manu-item').click(function(){
-						$(".nav-manu-item.active").removeClass("active");
-						$(this).addClass("active");
-						$($(this).data('col2')).hide();
-						$($(this).data('col')).show();
-				});
-    }
+(function()
+			{
+  			if( window.localStorage )
+  			{
+    			if( !localStorage.getItem( 'firstLoad' ) )
+    			{
+      			localStorage[ 'firstLoad' ] = true;
+      			window.location.reload();
+    			}
 
-};
+    			else
+      			localStorage.removeItem( 'firstLoad' );
+  			}
+			})();
+
+
+$('.nav-manu-item').click(function(){
+		$(".nav-manu-item.active").removeClass("active");
+		$(this).addClass("active");
+		$($(this).data('col2')).hide();
+		$($(this).data('col')).show();
+});
