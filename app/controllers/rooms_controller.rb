@@ -165,11 +165,7 @@ class RoomsController < ApplicationController
 
     # Join the user in and start the meeting.
     opts = default_meeting_options
-    if @room.shared_with?(current_user)
-      opts[:user_is_moderator] = false
-    else
-      opts[:user_is_moderator] = true
-    end
+    opts[:user_is_moderator] = true
 
     # Include the user's choices for the room settings
     @room_settings = JSON.parse(@room[:room_settings])
