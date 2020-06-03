@@ -92,3 +92,12 @@
     </div>
   </div>
 </div>
+
+<script>
+  $('.nav-manu-item').click(function(){
+			$(".nav-manu-item.active").removeClass("active");
+			$(this).addClass("active");
+			$($(this).data('col2')).hide();
+			$($(this).data('col')).show();
+	});
+</script> 
