@@ -328,7 +328,7 @@ class RoomsController < ApplicationController
 
   # Ensure the user owns the room or is allowed to start it
   def verify_room_ownership_or_shared
-   return redirect_to root_path unless @room.owned_by?(current_user)
+   return redirect_to root_path unless @room.owned_by?(current_user) || room_shared_with_user
   end
 
   def validate_accepted_terms
