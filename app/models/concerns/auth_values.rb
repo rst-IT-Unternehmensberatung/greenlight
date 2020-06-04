@@ -24,6 +24,8 @@ module AuthValues
     case auth['provider']
     when :office365
       auth['info']['display_name']
+    when :ldap
+      auth['info']['first_name'] + " " + auth['info']['last_name']
     else
       auth['info']['name']
     end
