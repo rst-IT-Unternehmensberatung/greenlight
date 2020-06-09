@@ -203,17 +203,17 @@
       </div>
     </div>
   </div>
-  <% if can_edit_maintenance_flash %>
+  <% if can_edit_maintenance_banner %>
    <div class="mb-6 row">
      <div class="col-12">
        <div class="form-group">
-         <label class="form-label"><%= t("administrator.site_settings.maintenance_window.title") %></label>
-         <label class="form-label text-muted"><%= t("administrator.site_settings.maintenance_window.info") %></label>
+         <label class="form-label"><%= t("administrator.site_settings.maintenance_banner.title") %></label>
+         <label class="form-label text-muted"><%= t("administrator.site_settings.maintenance_banner.info") %></label>
          <div class="input-group">
-           <input id="maintenance-flash" type="text" class="form-control" value="<%= maintenance_flash %>" placeholder="<%= t("administrator.site_settings.maintenance_window.time") %>">
+           <input id="maintenance-banner" type="text" class="form-control" value="<%= maintenance_banner %>" placeholder="<%= t("administrator.site_settings.maintenance_banner.time") %>">
            <span class="input-group-append">
-              <button onclick="displayMaintenanceFlash('<%= admin_update_settings_path(setting: 'Maintenance Flash') %>')" class="settings-button btn btn-primary" type="button"><%= t("administrator.site_settings.maintenance_window.display") %></button>
-              <button onclick="clearMaintenanceFlash('<%= admin_update_settings_path(setting: 'Maintenance Flash') %>')" class="settings-button btn btn-danger" type="button"><%= t("administrator.site_settings.maintenance_window.clear") %></button>
+              <button onclick="displayMaintenanceBanner('<%= admin_update_settings_path(setting: 'Maintenance Banner') %>')" class="settings-button btn btn-primary" type="button"><%= t("administrator.site_settings.maintenance_banner.display") %></button>
+              <button onclick="clearMaintenanceBanner('<%= admin_update_settings_path(setting: 'Maintenance Banner') %>')" class="settings-button btn btn-danger" type="button"><%= t("administrator.site_settings.maintenance_banner.clear") %></button>
            </span>
          </div>
        </div>

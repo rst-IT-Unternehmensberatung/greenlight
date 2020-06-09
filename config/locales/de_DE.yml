@@ -82,7 +82,7 @@ de_DE:
         info: Einstellen der Voreinstellung für die Sichtbarkeit neuer Aufzeichnungen
         title: Voreinstellung der Aufzeichnungssichtbarkeit
         warning: Diese Einstellung wirkt sich nur auf noch nicht laufende Konferenzen aus.
-      maintenance_window:
+      maintenance_banner:
         info: Zeigt ein Hinweis auf allen Seiten an.
         title: Wartungsmodus
         display: Anzeigen

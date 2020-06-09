@@ -128,14 +128,14 @@ function changeLegalURL(path) {
   $.post(path, {value: url})
 }
 
-// Display the maintenance window flash
-function displayMaintenanceFlash(path) {
-  var message = $("#maintenance-flash").val()
+// Display the maintenance Banner
+function displayMaintenanceBanner(path) {
+  var message = $("#maintenance-banner").val()
   $.post(path, {value: message})
 }
 
-// Clear the maintenance window flash
-function clearMaintenanceFlash(path) {
+// Clear the maintenance Banner
+function clearMaintenanceBanner(path) {
   $.post(path, {value: ""})
 }
 
