@@ -188,7 +188,7 @@ describe RoomsController, type: :controller do
         "lockSettingsDisableCam": "1",
         "webcamsOnlyForModerator": "1" }
       json_room_settings = "{\"muteOnStart\":true,\"requireModeratorApproval\":true," \
-        "\"anyoneCanStart\":true,\"joinModerator\":true,\"lockSettingsDisableMic\":true," \ 
+        "\"anyoneCanStart\":true,\"joinModerator\":true,\"lockSettingsDisableMic\":true," \
 	"\"lockSettingsDisableCam\":true,\"webcamsOnlyForModerator\":true}"
 
       post :create, params: { room: room_params }
