@@ -135,6 +135,11 @@ input:focus, select:focus {
   }
 }
 
+.nav-tabs .nav-link:hover:not(.disabled) {
+  border-color: $primary-color;
+  color: $primary-color;
+}
+
 .pagination {
   .page-item {
     &.active a {
