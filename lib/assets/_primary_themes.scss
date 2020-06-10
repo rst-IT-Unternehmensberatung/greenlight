@@ -135,8 +135,8 @@ input:focus, select:focus {
   }
 }
 
-.nav-tabs .nav-link{
-  color: #6e7687 !important;
+.nav-tabs .nav-link:not(.active){
+  color: #9aa0ac !important;
   &:hover:not(.disabled) {
     border-color: $primary-color;
     color: $primary-color !important;
