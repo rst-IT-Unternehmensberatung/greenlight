@@ -57,7 +57,7 @@
     <div class="row">
       <div class="col-5 col-sm-2">
         <% if @user.image.blank? || !valid_url?(@user.image) %>
-          <span class="avatar avatar-xxl mr-5 mt-2" style="<%= "background-color: #{role_colour(@user.role)};"><%= @user.name.first %></span>
+          <span class="avatar avatar-xxl mr-5 mt-2" style="background-color: <%= role_colour(@user.role) %>;"><%= @user.name.first %></span>
         <% else %>
           <%= image_tag(@user.image, class: "avatar avatar-xxl mr-5 mt-2") %>
         <% end %>
