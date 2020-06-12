@@ -21,7 +21,7 @@
                             <div class="card-header bg-primary h-50"></div>
                             <div class="card-body text-center">
                                 <% if current_user.image.blank? %>
-                                    <span class="avatar avatar-xxxl card-profile-img" style="background-color: <%= role_colour(@user.role) %>;"><%= current_user.name.first %></span>
+                                    <span class="avatar avatar-xxxl card-profile-img" style="background-color: <%= role_colour(current_user.role) %>;"><%= current_user.name.first %></span>
                                 <% else %>
                                     <%= image_tag(current_user.image, class: "avatar avatar-xxxl card-profile-img") %>
                                 <% end %>
