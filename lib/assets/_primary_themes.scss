@@ -62,11 +62,6 @@ a {
 }
 
 .header {
-  & .avatar {
-    background-color: $primary-color !important;
-    color: white !important;
-  }
-
   & a:hover:not(.btn) {
     color: $primary-color !important;
   }
