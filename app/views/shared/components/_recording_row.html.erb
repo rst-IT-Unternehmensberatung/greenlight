@@ -15,14 +15,14 @@
 
 <tr>
   <td>
-    <div id="recording-title" class="form-inline edit_hover_class" data-recordid="<%= recording[:recordID] %>" data-room-uid="<%= room_uid_from_bbb(recording[:meetingID]) %>" data-path="<%= rename_recording_path(meetingID: recording[:meetingID], record_id: recording[:recordID]) %>">
-      <text id='recording-text'>
+    <div id="recording-title" class="edit_hover_class" data-recordid="<%= recording[:recordID] %>" data-room-uid="<%= room_uid_from_bbb(recording[:meetingID]) %>" data-path="<%= rename_recording_path(meetingID: recording[:meetingID], record_id: recording[:recordID]) %>">
+      <span id='recording-text' title="<%= recording[:name] %>">
         <% if recording[:metadata][:name] %>
           <%= recording[:metadata][:name] %>
         <% else %>
           <%= recording[:name] %>
         <% end %>
-      </text>
+      </span>
       <a><i id="edit-record" class="fa fa-edit align-top ml-2" data-edit-recordid="<%= recording[:recordID] %>"></i></a>
     </div>
     <div class="small text-muted">
@@ -31,11 +31,17 @@
   </td>
   <% if recording_thumbnails? %>
     <td class="overflow-hidden">
+      <% if id_p = recording[:playbacks].find_index{|p| p[:type]=="presentation"} %>
+        <a href="<%= recording[:playbacks][id_p][:url] %>" target="_blank">
+      <% end %>
       <% p = recording[:playbacks].find do |p| p.key?(:preview) end %>
       <% if p %>
         <% safe_recording_images(p[:preview][:images][:image]).each do |img| %>
           <%= image_tag(img[:content].strip, class: "thumbnail px-2") %>
         <% end %>
+      <% end %>
+      <% if id_p %>
+        </a>
       <% end %>
     </td>
   <% end %>

@@ -62,11 +62,6 @@ a {
 }
 
 .header {
-  & .avatar {
-    background-color: $primary-color !important;
-    color: white !important;
-  }
-
   & a:hover:not(.btn) {
     color: $primary-color !important;
   }
@@ -132,6 +127,14 @@ input:focus, select:focus {
 #clear-search {
   &:hover {
     color: $primary-color-darken !important;
+  }
+}
+
+.nav-tabs .nav-link:not(.active){
+  color: #9aa0ac !important;
+  &:hover:not(.disabled) {
+    border-color: $primary-color;
+    color: $primary-color !important;
   }
 }
 

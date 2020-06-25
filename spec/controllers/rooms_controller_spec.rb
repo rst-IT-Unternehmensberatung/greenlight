@@ -63,19 +63,6 @@ describe RoomsController, type: :controller do
       expect(response).to render_template(:join)
     end
 
-    it "should render cant_create_rooms if user doesn't have permission to create rooms" do
-      user_role = @user.highest_priority_role
-
-      user_role.update_permission("can_create_rooms", "false")
-      user_role.save!
-
-      @request.session[:user_id] = @user.id
-
-      get :show, params: { room_uid: @user.main_room }
-
-      expect(response).to render_template(:cant_create_rooms)
-    end
-
     it "should be able to search public recordings if user is not owner" do
       @request.session[:user_id] = @user.id
 
@@ -117,7 +104,7 @@ describe RoomsController, type: :controller do
 
     it "redirects to admin if user is a super_admin" do
       @request.session[:user_id] = @owner.id
-      @owner.add_role :super_admin
+      @owner.set_role :super_admin
 
       get :show, params: { room_uid: @owner.main_room, search: :none }
 
@@ -140,7 +127,7 @@ describe RoomsController, type: :controller do
 
     it "redirects to root if owner is pending" do
       @request.session[:user_id] = @owner.id
-      @owner.add_role :pending
+      @owner.set_role :pending
 
       get :show, params: { room_uid: @owner.main_room, search: :none }
 
@@ -149,11 +136,40 @@ describe RoomsController, type: :controller do
 
     it "redirects to root if owner is banned" do
       @request.session[:user_id] = @owner.id
-      @owner.add_role :denied
+      @owner.set_role :denied
 
       get :show, params: { room_uid: @owner.main_room, search: :none }
 
       expect(response).to redirect_to(root_path)
+    end
+  end
+
+  describe "GET #cant_create_rooms" do
+    before do
+      @user = create(:user)
+      @owner = create(:user)
+    end
+
+    it "renders cant_create_rooms if user doesn't have permission to create rooms and has no shared rooms" do
+      @user.role.update_permission("can_create_rooms", "false")
+
+      @request.session[:user_id] = @user.id
+
+      get :cant_create_rooms
+
+      expect(response).to render_template(:cant_create_rooms)
+    end
+
+    it "displays the room if the user can't create rooms but has a shared room" do
+      @user.role.update_permission("can_create_rooms", "false")
+
+      SharedAccess.create(room_id: @owner.main_room.id, user_id: @user.id)
+
+      @request.session[:user_id] = @user.id
+
+      get :cant_create_rooms
+
+      expect(response).to redirect_to(@owner.main_room)
     end
   end
 
@@ -167,9 +183,13 @@ describe RoomsController, type: :controller do
       name = Faker::Games::Pokemon.name
 
       room_params = { name: name, "mute_on_join": "1",
-        "require_moderator_approval": "1", "anyone_can_start": "1", "all_join_moderator": "1" }
+        "require_moderator_approval": "1", "anyone_can_start": "1", "all_join_moderator": "1",
+        "locksettings_disable_microphone": "1",
+        "locksettings_disable_webcam": "1",
+        "webcams_for_moderator_only": "1" }
       json_room_settings = "{\"muteOnStart\":true,\"requireModeratorApproval\":true," \
-        "\"anyoneCanStart\":true,\"joinModerator\":true}"
+        "\"anyoneCanStart\":true,\"joinModerator\":true,\"recording\":false,\"lockSettingsDisableMic\":true," \
+	"\"lockSettingsDisableCam\":true,\"webcamsOnlyForModerator\":true}"
 
       post :create, params: { room: room_params }
 
@@ -184,14 +204,16 @@ describe RoomsController, type: :controller do
       @request.session[:user_id] = @owner.id
 
       @owner.main_room.update_attribute(:room_settings, { "muteOnStart": true, "requireModeratorApproval": true,
-      "anyoneCanStart": true, "joinModerator": true }.to_json)
+      "anyoneCanStart": true, "joinModerator": true, "lockSettingsDisableMic": true, "lockSettingsDisableCam": true,
+      "webcamsOnlyForModerator": true }.to_json)
 
-      json_room_settings = "{\"muteOnStart\":true,\"requireModeratorApproval\":true," \
-        "\"anyoneCanStart\":true,\"joinModerator\":true}"
+      json_room_settings = "{\"running\":false,\"muteOnStart\":true,\"requireModeratorApproval\":true," \
+        "\"anyoneCanStart\":true,\"joinModerator\":true,\"lockSettingsDisableMic\":true," \
+	"\"lockSettingsDisableCam\":true,\"webcamsOnlyForModerator\":true}"
 
       get :room_settings, params: { room_uid: @owner.main_room }, format: :json
 
-      expect(JSON.parse(response.body)).to eql(json_room_settings)
+      expect(JSON.parse(response.body).to_json).to eql(json_room_settings)
     end
 
     it "should redirect to root if not logged in" do
@@ -406,7 +428,7 @@ describe RoomsController, type: :controller do
 
     it "redirects to root if owner is pending" do
       @request.session[:user_id] = @owner.id
-      @owner.add_role :pending
+      @owner.set_role :pending
 
       post :join, params: { room_uid: @room }
 
@@ -415,7 +437,7 @@ describe RoomsController, type: :controller do
 
     it "redirects to root if owner is banned" do
       @request.session[:user_id] = @owner.id
-      @owner.add_role :denied
+      @owner.set_role :denied
 
       post :join, params: { room_uid: @room }
 
@@ -456,7 +478,7 @@ describe RoomsController, type: :controller do
 
     it "allows admin to delete room" do
       @admin = create(:user)
-      @admin.add_role :admin
+      @admin.set_role :admin
       @request.session[:user_id] = @admin.id
 
       expect do
@@ -468,7 +490,7 @@ describe RoomsController, type: :controller do
 
     it "does not allow admin to delete a users home room" do
       @admin = create(:user)
-      @admin.add_role :admin
+      @admin.set_role :admin
       @request.session[:user_id] = @admin.id
 
       expect do
@@ -483,7 +505,7 @@ describe RoomsController, type: :controller do
       allow_any_instance_of(User).to receive(:admin_of?).and_return(false)
 
       @admin = create(:user)
-      @admin.add_role :admin
+      @admin.set_role :admin
       @request.session[:user_id] = @admin.id
 
       expect do
@@ -527,7 +549,7 @@ describe RoomsController, type: :controller do
 
     it "redirects to join path if admin" do
       @admin = create(:user)
-      @admin.add_role :admin
+      @admin.set_role :admin
       @request.session[:user_id] = @admin.id
 
       post :start, params: { room_uid: @user.main_room }
@@ -538,7 +560,7 @@ describe RoomsController, type: :controller do
     it "redirects to root path if not admin of current user" do
       allow_any_instance_of(User).to receive(:admin_of?).and_return(false)
       @admin = create(:user)
-      @admin.add_role :admin
+      @admin.set_role :admin
       @request.session[:user_id] = @admin.id
 
       post :start, params: { room_uid: @user.main_room }
@@ -567,9 +589,10 @@ describe RoomsController, type: :controller do
     it "properly updates room settings through the room settings modal and redirects to current page" do
       @request.session[:user_id] = @user.id
 
-      room_params = { "mute_on_join": "1", "name": @secondary_room.name }
+      room_params = { "mute_on_join": "1", "name": @secondary_room.name, "recording": "1" }
       formatted_room_params = "{\"muteOnStart\":true,\"requireModeratorApproval\":false," \
-        "\"anyoneCanStart\":false,\"joinModerator\":false}" # JSON string format
+        "\"anyoneCanStart\":false,\"joinModerator\":false,\"lockSettingsDisableMic\":false," \
+        "\"lockSettingsDisableCam\":false,\"recording\":true,\"webcamsOnlyForModerator\":false}" # JSON string format
 
       expect { post :update_settings, params: { room_uid: @secondary_room.uid, room: room_params } }
         .to change { @secondary_room.reload.room_settings }
@@ -587,12 +610,14 @@ describe RoomsController, type: :controller do
 
     it "allows admin to update room settings" do
       @admin = create(:user)
-      @admin.add_role :admin
+      @admin.set_role :admin
       @request.session[:user_id] = @admin.id
 
       room_params = { "mute_on_join": "1", "name": @secondary_room.name }
+
       formatted_room_params = "{\"muteOnStart\":true,\"requireModeratorApproval\":false," \
-        "\"anyoneCanStart\":false,\"joinModerator\":false}" # JSON string format
+        "\"anyoneCanStart\":false,\"joinModerator\":false,\"lockSettingsDisableMic\":false," \
+        "\"lockSettingsDisableCam\":false,\"recording\":false,\"webcamsOnlyForModerator\":false}" # JSON string format
 
       expect { post :update_settings, params: { room_uid: @secondary_room.uid, room: room_params } }
         .to change { @secondary_room.reload.room_settings }
@@ -603,7 +628,7 @@ describe RoomsController, type: :controller do
     it "does not allow admins from a different context to update room settings" do
       allow_any_instance_of(User).to receive(:admin_of?).and_return(false)
       @admin = create(:user)
-      @admin.add_role :admin
+      @admin.set_role :admin
       @request.session[:user_id] = @admin.id
 
       room_params = { "mute_on_join": "1", "name": @secondary_room.name }
@@ -743,7 +768,7 @@ describe RoomsController, type: :controller do
 
     it "allows admins to update room access" do
       @admin = create(:user)
-      @admin.add_role :admin
+      @admin.set_role :admin
       @request.session[:user_id] = @admin.id
 
       post :shared_access, params: { room_uid: @room.uid, add: [@user1.uid] }
@@ -756,7 +781,7 @@ describe RoomsController, type: :controller do
     it "redirects to root path if not admin of current user" do
       allow_any_instance_of(User).to receive(:admin_of?).and_return(false)
       @admin = create(:user)
-      @admin.add_role :admin
+      @admin.set_role :admin
       @request.session[:user_id] = @admin.id
 
       post :shared_access, params: { room_uid: @room.uid, add: [] }

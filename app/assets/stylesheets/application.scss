@@ -123,6 +123,13 @@ a {
 .force-text-normal {
   color: #495057;
 }
+.avatar {
+  color: white;
+}
+
+.avatar-manager {
+  border-radius: 5px;
+}
 
 .terms {
   overflow: scroll;
@@ -143,6 +150,10 @@ a {
 
 input:focus {
     border-color: $primary !important;
+}
+
+.input-group button:focus {
+    box-shadow: none !important;
 }
 
 .list-group-item-action.active {

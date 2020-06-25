@@ -80,7 +80,7 @@ $(document).on('turbolinks:load', function(){
         // Get the uid of the selected user
         let user = $(".selectpicker").selectpicker('val')
         if (user != "") {
-          userInfo = JSON.parse(user)
+          let userInfo = JSON.parse(user)
           $("#merge-from").html("<span>" + userInfo.name + "</span>" + "<span class='text-muted d-block'>" + userInfo.email + "</span>" + "<span id='from-uid' class='text-muted d-block'>" + userInfo.uid + "</span>")
         }
       })
@@ -95,7 +95,7 @@ $(document).on('turbolinks:load', function(){
       })
 
       // Updates the colour picker to the correct colour
-      role_colour = $("#role-colorinput-regular").data("colour")
+      let role_colour = $("#role-colorinput-regular").data("colour")
       $("#role-colorinput-regular").css("background-color", role_colour);
       $("#role-colorinput-regular").css("border-color", role_colour);
 
@@ -122,27 +122,27 @@ function changeBrandingImage(path) {
   $.post(path, {value: url})
 }
 
-
 // Change the Legal URL to the one provided
 function changeLegalURL(path) {
   var url = $("#legal-url").val()
   $.post(path, {value: url})
 }
 
+// Display the maintenance Banner
+function displayMaintenanceBanner(path) {
+  var message = $("#maintenance-banner").val()
+  $.post(path, {value: message})
+}
+
+// Clear the maintenance Banner
+function clearMaintenanceBanner(path) {
+  $.post(path, {value: ""})
+}
+
 // Change the Privacy Policy URL to the one provided
 function changePrivacyPolicyURL(path) {
   var url = $("#privpolicy-url").val()
   $.post(path, {value: url})
-
-// Display the maintenance window flash
-function displayMaintenanceFlash(path) {
-  var message = $("#maintenance-flash").val()
-  $.post(path, {value: message})
-}
-
-// Clear the maintenance window flash
-function clearMaintenanceFlash(path) {
-  $.post(path, {value: ""})
 }
 
 function mergeUsers() {

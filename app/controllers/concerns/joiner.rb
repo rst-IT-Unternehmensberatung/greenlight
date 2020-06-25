@@ -53,10 +53,13 @@ module Joiner
     if room_running?(@room.bbb_id) || @room.owned_by?(current_user) || room_setting_with_config("anyoneCanStart")
 
       # Determine if the user needs to join as a moderator.
-      opts[:user_is_moderator] = @room.owned_by?(current_user) || room_setting_with_config("joinModerator") || @shared_room
+      opts[:user_is_moderator] = @room.owned_by?(current_user) || room_setting_with_config("joinModerator") || current_user.role.get_permission("can_create_rooms")
 
       opts[:require_moderator_approval] = room_setting_with_config("requireModeratorApproval")
       opts[:mute_on_start] = room_setting_with_config("muteOnStart")
+      opts[:locksettings_disable_microphone] = room_setting_with_config("lockSettingsDisableMic")
+      opts[:locksettings_disable_webcam] = room_setting_with_config("lockSettingsDisableCam")
+      opts[:webcams_for_moderator_only] = room_setting_with_config("webcamsOnlyForModerator")
 
       if current_user
         redirect_to join_path(@room, current_user.name, opts, current_user.uid)
@@ -87,7 +90,7 @@ module Joiner
     {
       user_is_moderator: false,
       meeting_logout_url: request.base_url + logout_room_path(@room),
-      meeting_recorded: true,
+      meeting_recorded: @room.recording?,
       moderator_message: "#{invite_msg}\n\n#{request.base_url + room_path(@room)}",
       host: request.host,
       recording_default_visibility: @settings.get_value("Default Recording Visibility") == "public"
@@ -105,6 +108,14 @@ module Joiner
       "Room Configuration All Join Moderator"
     when "anyoneCanStart"
       "Room Configuration Allow Any Start"
+    when "recording"
+     "Room Configuration Recording"
+    when "lockSettingsDisableMic"
+      "Room Configuration Disable Microphone"
+    when "lockSettingsDisableCam"
+      "Room Configuration Disable Webcam"
+    when "webcamsOnlyForModerator"
+      "Room Configuration Webcam for Moderator only"
     end
 
     case @settings.get_value(config)

@@ -133,17 +133,19 @@ $(document).on('turbolinks:load', function(){
 });
 
 function showCreateRoom(target) {
-  var modal = $(target)
   $("#create-room-name").val("")
   $("#create-room-access-code").text(getLocalizedString("modal.create_room.access_code_placeholder"))
   $("#room_access_code").val(null)
 
   $("#createRoomModal form").attr("action", $("body").data('relative-root'))
-
   $("#room_mute_on_join").prop("checked", $("#room_mute_on_join").data("default"))
   $("#room_require_moderator_approval").prop("checked", $("#room_require_moderator_approval").data("default"))
   $("#room_anyone_can_start").prop("checked", $("#room_anyone_can_start").data("default"))
   $("#room_all_join_moderator").prop("checked", $("#room_all_join_moderator").data("default"))
+  $("#room_recording").prop("checked", $("#room_recording").data("default"))
+  $("#room_locksettings_disable_microphone").prop("checked", $("#room_locksettings_disable_microphone").data("default"))
+  $("#room_locksettings_disable_webcam").prop("checked", $("#room_locksettings_disable_webcam").data("default"))
+  $("#room_webcams_for_moderator_only").prop("checked", $("#room_webcams_for_moderator_only").data("default"))
 
   //show all elements & their children with a create-only class
   $(".create-only").each(function() {
@@ -156,6 +158,9 @@ function showCreateRoom(target) {
     $(this).attr('style',"display:none !important")
     if($(this).children().length > 0) { $(this).children().attr('style',"display:none !important") }
   })
+
+  runningSessionWarningVisibilty(false)
+
 }
 
 function showUpdateRoom(target) {
@@ -188,6 +193,9 @@ function showUpdateRoom(target) {
     $("#create-room-access-code").text(getLocalizedString("modal.create_room.access_code_placeholder"))
     $("#room_access_code").val(null)
   }
+
+  runningSessionWarningVisibilty(false)
+
 }
 
 function showDeleteRoom(target) {
@@ -198,12 +206,18 @@ function showDeleteRoom(target) {
 //Update the createRoomModal to show the correct current settings
 function updateCurrentSettings(settings_path){
   // Get current room settings and set checkbox
-  $.get(settings_path, function(room_settings) {
-    var settings = JSON.parse(room_settings) 
+  $.get(settings_path, function(settings) {
     $("#room_mute_on_join").prop("checked", $("#room_mute_on_join").data("default") || settings.muteOnStart)
     $("#room_require_moderator_approval").prop("checked", $("#room_require_moderator_approval").data("default") || settings.requireModeratorApproval)
     $("#room_anyone_can_start").prop("checked", $("#room_anyone_can_start").data("default") || settings.anyoneCanStart)
     $("#room_all_join_moderator").prop("checked", $("#room_all_join_moderator").data("default") || settings.joinModerator)
+    $("#room_recording").prop("checked", $("#room_recording").data("default") || settings.recording)
+
+    runningSessionWarningVisibilty(settings.running)
+
+    $("#room_locksettings_disable_microphone").prop("checked", $("#room_locksettings_disable_microphone").data("default") || settings.lockSettingsDisableMic)
+    $("#room_locksettings_disable_webcam").prop("checked", $("#room_locksettings_disable_webcam").data("default") || settings.lockSettingsDisableCam)
+    $("#room_webcams_for_moderator_only").prop("checked", $("#room_webcams_for_moderator_only").data("default") || settings.webcamsOnlyForModerator)
   })
 }
 
@@ -264,4 +278,15 @@ function removeSharedUser(target) {
     parentLI.removeChild(target)
     parentLI.classList.add("remove-shared")
   }
+}
+
+// Show a "Session Running warning" for each room setting, which cannot be changed during a running session
+function runningSessionWarningVisibilty(isRunning) {
+    if(isRunning) {
+        $(".running-only").show()
+        $(".not-running-only").hide()
+    } else {
+        $(".running-only").hide()
+        $(".not-running-only").show()
+    }
 }

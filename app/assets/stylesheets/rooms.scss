@@ -44,12 +44,23 @@
   width: 70% !important;
 }
 
-.edit_hover_class a{
-  visibility: hidden;
+#room-title {
+  a {
+    visibility: hidden;
+  }
+  h1 {
+    max-width: calc(100% - 3rem);
+  }
+  &:hover a {
+    visibility: visible;
+  }
+  a, .home-indicator {
+    align-self: start;
+  }
 }
 
-.edit_hover_class:hover a {
-  visibility: visible;
+.current .stamp .fas:before {
+    content: "\f04b";
 }
 
 #room-settings-dropdown-label {
@@ -58,6 +69,9 @@
 }
 
 .room-block {
+  &:hover {
+    background-color: #eeeef2;
+  }
   &:not(.current) {
     .stamp {
       opacity: 0.5;
@@ -67,10 +81,11 @@
 
 #create-room-block {
   border: 1px dashed lightgray;
+  border-radius: 3px;
 
   &:hover {
     cursor: pointer;
-    background-color: rgba(0, 0, 0, 0.04);
+    background-color: #eeeef2;
   }
 }
 

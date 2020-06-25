@@ -82,11 +82,12 @@ en:
         info: Set the default recording visbility for new recordings
         title: Recording Default Visibility
         warning: This setting will only be applied to rooms that aren't running
-      maintenance_window:
-        info: Displays a flash to inform the user of a scheduled maintenance window
-        title: Maintenance Window
-        display: Display
+      maintenance_banner:
+        info: Displays a Banner to inform the user of a scheduled maintenance
+        title: Maintenance Banner
+        display: Set
         clear: Clear
+        time: "Maintenance: On Friday, there may be disruptions in service starting at 6 p.m."
       registration:
         info: Change the way that users register to the website
         title: Registration Method
@@ -111,7 +112,7 @@ en:
       demoted: User has been successfully demoted
       invite: Invite successfully sent to %{email}
       invite_email_verification: Emails must be enabled in order to use this method. Please contact your system administrator.
-      merge_fail: There was an issue merging the user accounts. Please check the users selected and try again 
+      merge_fail: There was an issue merging the user accounts. Please check the users selected and try again
       merge_success: User accounts merged successfully
       perm_deleted: User has been permanently deleted
       promoted: User has been successfully promoted
@@ -141,7 +142,7 @@ en:
       edit_site_settings: Allow users with this role to edit site settings
       edit_roles: Allow users with this role to edit other roles
       manage_users: Allow users with this role to manage users
-      invalid_assignment: There was a problem assigning the roles to the user. Please check the values and try again 
+      invalid_assignment: There was a problem assigning the roles to the user. Please check the values and try again
       colour:
         title: Role Colour
         info: Set the colour that will be associated with the role
@@ -155,6 +156,14 @@ en:
         info: Allows any user to start the meeting at any time. By default, only the room owner can start the meeting.
       all_moderator:
         info: Gives all users moderator privileges in BigBlueButton when they join the meeting.
+      recordings:
+        info: Records a recording of the room and enables moderators to set recording markers
+      webcam_for_moderator:
+        info: User's Webcams are visible to moderators only.
+      lock_webcam:
+        info: Do not allow viewers to use the webcam.
+      lock_mic:
+        info: Do not allow viewers to use the microphone.
       options:
         disabled: Disabled
         enabled: Always Enabled
@@ -162,9 +171,12 @@ en:
     rooms:
       title: Server Rooms
       table:
+        ended: "Ended: %{session}"
         id: ID
         not_running: Not Running
+        participants: Participants
         running: Running
+        started: "Started: %{session}"
         status: Status
         view: View
     title: Organization Settings
@@ -354,8 +366,6 @@ en:
         verify_text: 'To verify your account, just follow this link: %{url}'
         verify_link: Verify Account
         thanks: Thanks for joining and have a great day!
-  maintenance:
-    window_alert: Maintenance window scheduled for %{date}
   max_concurrent: The maximum number of concurrent sessions allowed has been reached!
   merged: Merged
   modal:
@@ -387,7 +397,7 @@ en:
       warning: You will <b>not</b> be able to recover this room
       recording_warning: or any of its %{recordings_num} associated recordings.
     invite_user:
-      email_placeholder: Enter the users' emails (seperated by commas)
+      email_placeholder: Enter the users' emails (separated by commas)
       footer: The user will receive an email with instructions on how to sign up
       send: Send Invite
       title: Invite User
@@ -405,10 +415,16 @@ en:
       update: Update Room
       client: Select client type
       join_moderator: All users join as moderators
+      recordings: Enable room recordings
       mute: Mute users when they join
       require_approval: Require moderator approval before joining
       start: Allow any user to start this meeting
+      lock_mic_disable: Disable Microphone sharing
+      lock_webcam_disable: Disable Webcam sharing
+      webcams_for_moderator_only: Allow only moderators to see Webcams
       footer_text: Adjustment to your room can be done at anytime.
+      recording: Record sessions
+      session_active: Active session
     rename_room:
       name_placeholder: Enter a new room name...
     share_access:
@@ -476,7 +492,7 @@ en:
       fail: Your account has not been approved yet. If multiples days have passed since you signed up, please contact your administrator.
       signup: Your account was successfully created. It has been sent to an administrator for approval.
     banned:
-      fail: You do not have access to this application. If you believe this is a mistake, please contact your administrator. 
+      fail: You do not have access to this application. If you believe this is a mistake, please contact your administrator.
     deprecated:
       new_signin: Select a new login method for you account. All your rooms from your old account will be migrated to the new account
       twitter_signin: Signing in via Twitter has been deprecated and will be removed in the next release. Click <a href="%{link}"> here </a> to move your account to a new authentication method
@@ -488,6 +504,7 @@ en:
   remove: Remove
   rename: Rename
   reset_password:
+    invalid_token: Password reset token is invalid. Please try resetting your password again.
     subtitle: Reset Password
     password: New Password
     confirm: New Password Confirmation
@@ -512,6 +529,7 @@ en:
     enter_the_access_code: Enter the room's access code
     invalid_provider: You have entered an invalid url. Please check the url and try again.
     invited: You have been invited to join
+    recording_present: The session is going to be recorded. This includes voice and video from your side.
     invite_participants: Invite Participants
     join: Join
     last_session: Last session on %{session}
@@ -553,9 +571,10 @@ en:
       provider: Provider
       image: Image
       image_url: Profile Image URL
-      roles: User Roles
+      roles: User Role
       subtitle: Update your Account Info
       title: Account Info
+      reset_password: Reset user password
     delete:
       button: Yes, I would like to delete my account.
       disclaimer: If you choose to delete your account, it will <b>NOT</b> be recoverable. All information regarding your account, including settings, rooms, and recording will be removed.

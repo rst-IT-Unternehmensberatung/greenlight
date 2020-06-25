@@ -1,0 +1,104 @@
+<%
+# BigBlueButton open source conferencing system - http://www.bigbluebutton.org/.
+# Copyright (c) 2018 BigBlueButton Inc. and by respective authors (see below).
+# This program is free software; you can redistribute it and/or modify it under the
+# terms of the GNU Lesser General Public License as published by the Free Software
+# Foundation; either version 3.0 of the License, or (at your option) any later
+# version.
+#
+# BigBlueButton is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+# You should have received a copy of the GNU Lesser General Public License along
+# with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
+%>
+
+<div class="container pt-6" id="manual">
+<div class="row text-center">
+  <h1>BigBlueButton Anleitung</h1>
+  <br>
+  <p>Hier finden Sie alles relevante rund um die Konferenzplattform BigBlueButton. Wähle eine der drei Ansichten und scrolle dann weiter runter.</p>
+  </div>
+
+<nav class="nav row navbar-dark bg-dark sticky-top text-center">
+<a class="nav-manu-item btn-lg col" type="button" data-toggle="collapse" data-col=".m" data-col2=".z, .p"><span class="mx-1">Lehrer</span><span class="badge badge-danger mx-1 badge-pill">M (Moderator)</span></a>
+<a class="nav-manu-item btn-lg col" type="button" data-toggle="collapse"  data-col=".z" data-col2=".m, .p"><span class="mx-1">Schüler</span><span class="badge badge-info mx-1 badge-pill">Z (Zuschauer)</span></a>
+<a class="nav-manu-item btn-lg col" type="button" data-toggle="collapse" data-col=".p" data-col2=".z, .m"><span class="mx-1">Präsentator</span><span class="badge badge-warning mx-1 badge-pill">P (Präsentator)</span></a>
+</nav>
+
+<div class="row">
+  <ol>
+    <li>Einführung</li>
+    <li>Raumansicht (Startseite)</li>
+    <ol>
+      <li>Übersicht</li>
+      <li>Zugriff auf Räume teile</li>
+      <li>Raum erstellen</li>
+      <li>Raum betreten</li>
+    </ol>
+    <li>Konferenzansicht</li>
+    <ol>
+      <li>Vor der Benutzung</li>
+      <li>Übersicht</li>
+      <li>Rechte</li>
+      <ol>
+        <li>Moderatoren (Lehrer)<span class="badge badge-danger ml-2 badge-pill">M</span></li>
+        <li>Zuschauer (Schüler)</li>
+        <li>Präsentatoren</li>
+      </ol>
+      <li>Rechte übertragen <span class="badge badge-danger ml-2 badge-pill">M</span></li>
+      <li>Zuschauerrechte einstellen <span class="badge badge-danger ml-2 badge-pill">M</span></li>
+      <li>Notizen</li>
+      <li>Chats</li>
+      <li>Umfragen <span class="badge badge-warning ml-2 badge-pill">P</span></li>
+      <li>Präsentationen <span class="badge badge-warning ml-2 badge-pill">P</span></li>
+      <li>Whiteboard <span class="badge badge-warning ml-2 badge-pill">P</span></li>
+      <li>Statusicons</li>
+      <li>Breakout-Räume <span class="badge badge-danger ml-2 badge-pill">M</span></li>
+      <li>Aufzeichnungen machen <span class="badge badge-danger ml-2 badge-pill">M</span></li>
+      <li>Konferenz verlassen</li>
+    </ol>
+    <li>Tipps und Tricks</li>
+    <ol>
+      <li>Webcams größer machen</li>
+      <li>Schnellumfragen</li>
+      <li>Schnell muten <span class="badge badge-danger ml-2 badge-pill">M</span></li>
+    </ol>
+  </ol>
+
+</div>
+<div class="row">
+<div class="col-md-12">
+    <div class="collapse m">
+        <p>Content 1.1.</p>
+    </div>
+    <div class="collapse m" >
+        <p>Content 1.2.</p>
+    </div>
+        <div class="collapse z" >
+        <p>Content 1.3.</p>
+    </div>
+<div class="collapse m z" >
+        <p>Content 1.4.</p>
+    </div>
+    <div class="collapse p" >
+        <p>Content 2.1.</p>
+    </div>
+        <div class="collapse m z p" >
+        <p>Content 2.2.</p>
+    </div>
+
+
+    </div>
+  </div>
+</div>
+
+<script>
+  $('.nav-manu-item').click(function(){
+			$(".nav-manu-item.active").removeClass("active");
+			$(this).addClass("active");
+			$($(this).data('col2')).hide();
+			$($(this).data('col')).show();
+	});
+  $('a[href="/b/users/manual"]').addClass("active");
+</script>

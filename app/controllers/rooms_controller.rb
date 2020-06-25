@@ -25,7 +25,7 @@ class RoomsController < ApplicationController
   before_action :validate_accepted_terms, unless: -> { !Rails.configuration.terms }
   before_action :validate_verified_email, except: [:show, :join],
                 unless: -> { !Rails.configuration.enable_email_verification }
-  before_action :find_room, except: [:create, :join_specific_room]
+  before_action :find_room, except: [:create, :join_specific_room, :cant_create_rooms]
   before_action :verify_room_ownership_or_admin_or_shared, only: [:start, :shared_access]
   before_action :verify_room_ownership_or_admin, only: [:update_settings, :destroy]
   before_action :verify_room_ownership_or_shared, only: [:remove_shared_access]
@@ -69,23 +69,30 @@ class RoomsController < ApplicationController
 
     # If its the current user's room
     if current_user && (@room.owned_by?(current_user) || @shared_room)
-      if current_user.highest_priority_role.get_permission("can_create_rooms")
-        # User is allowed to have rooms
-        @search, @order_column, @order_direction, recs =
-          recordings(@room.bbb_id, params.permit(:search, :column, :direction), true)
+      # User is allowed to have rooms
+      @search, @order_column, @order_direction, recs =
+        recordings(@room.bbb_id, params.permit(:search, :column, :direction), true)
 
-        @user_list = shared_user_list if shared_access_allowed
+      @user_list = shared_user_list if shared_access_allowed
 
-        @pagy, @recordings = pagy_array(recs)
-      else
-        # Render view for users that cant create rooms
-        @recent_rooms = Room.where(id: cookies.encrypted["#{current_user.uid}_recently_joined_rooms"])
-        render :cant_create_rooms
-      end
+      @pagy, @recordings = pagy_array(recs)
     else
       return redirect_to root_path, flash: { alert: I18n.t("room.invalid_provider") } if incorrect_user_domain
 
       show_user_join
+    end
+  end
+
+  # GET /rooms
+  def cant_create_rooms
+    shared_rooms = current_user.shared_rooms
+
+    if current_user.shared_rooms.empty?
+      # Render view for users that cant create rooms
+      @recent_rooms = Room.where(id: cookies.encrypted["#{current_user.uid}_recently_joined_rooms"])
+      render :cant_create_rooms
+    else
+      redirect_to shared_rooms[0]
     end
   end
 
@@ -164,6 +171,10 @@ class RoomsController < ApplicationController
     @room_settings = JSON.parse(@room[:room_settings])
     opts[:mute_on_start] = room_setting_with_config("muteOnStart")
     opts[:require_moderator_approval] = room_setting_with_config("requireModeratorApproval")
+    opts[:record] = room_setting_with_config("recording")
+    opts[:locksettings_disable_microphone] = room_setting_with_config("lockSettingsDisableMic")
+    opts[:locksettings_disable_webcam] = room_setting_with_config("lockSettingsDisableCam")
+    opts[:webcams_for_moderator_only] = room_setting_with_config("webcamsOnlyForModerator")
 
     begin
       redirect_to join_path(@room, current_user.name, opts, current_user.uid)
@@ -254,8 +265,10 @@ class RoomsController < ApplicationController
   # GET /:room_uid/room_settings
   def room_settings
     # Respond with JSON object of the room_settings
+    status = { running: room_running?(@room.bbb_id) }
+    settings = @room.settings_hash
     respond_to do |format|
-      format.json { render body: @room.room_settings.to_json }
+      format.json { render body: status.merge(settings).to_json }
     end
   end
 
@@ -284,6 +297,10 @@ class RoomsController < ApplicationController
       "requireModeratorApproval": options[:require_moderator_approval] == "1",
       "anyoneCanStart": options[:anyone_can_start] == "1",
       "joinModerator": options[:all_join_moderator] == "1",
+      "recording": options[:recording] == "1",
+      "lockSettingsDisableMic": options[:locksettings_disable_microphone] == "1",
+      "lockSettingsDisableCam": options[:locksettings_disable_webcam] == "1",
+      "webcamsOnlyForModerator": options[:webcams_for_moderator_only] == "1",
     }
 
     room_settings.to_json
@@ -291,7 +308,8 @@ class RoomsController < ApplicationController
 
   def room_params
     params.require(:room).permit(:name, :auto_join, :mute_on_join, :access_code,
-      :require_moderator_approval, :anyone_can_start, :all_join_moderator)
+      :require_moderator_approval, :anyone_can_start, :all_join_moderator, :locksettings_disable_microphone,
+      :locksettings_disable_webcam, :webcams_for_moderator_only, :recording)
   end
 
   # Find the room from the uid.
