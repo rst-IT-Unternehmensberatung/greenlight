@@ -23,8 +23,8 @@
 # as part of the development process.
 #
 docker-compose down
-git fetch upstream
-git merge upstream/patch-5
+git fetch origin
+git merge origin/schule
 
 display_usage() {
   echo "This script should be used as part of a CI strategy."
@@ -80,20 +80,5 @@ echo "#### Docker image $CD_DOCKER_REPO:$CD_REF_NAME is being built"
 docker build --build-arg version_code="${CD_VERSION_CODE}" -t $CD_DOCKER_REPO:$CD_REF_NAME .
 
 docker-compose up -d
-
-# Publish the image
-docker login -u="$CD_DOCKER_USERNAME" -p="$CD_DOCKER_PASSWORD"
-echo "#### Docker image $CD_DOCKER_REPO:$CD_REF_NAME is being published"
-docker push $CD_DOCKER_REPO
-
-# Publish image as latest and v2 if it is a release (excluding alpha and beta)
-if [[ "$CD_REF_NAME" == *"release"* ]] && [[ "$CD_REF_NAME" != *"alpha"* ]] && [[ "$CD_REF_NAME" != *"beta"* ]]; then
-  docker_image_id=$(docker images | grep -E "^$CD_DOCKER_REPO.*$CD_REF_NAME" | awk -e '{print $3}')
-  docker tag $docker_image_id $CD_DOCKER_REPO:latest
-  docker push $CD_DOCKER_REPO:latest
-  docker tag $docker_image_id $CD_DOCKER_REPO:v2
-  docker push $CD_DOCKER_REPO:v2
-fi
-
 
 exit 0
