@@ -156,6 +156,14 @@ de_DE:
         info: "Ermöglicht es jedem Teilnehmer, die Konferenz jederzeit zu starten. Standardmäßig kann nur der Rauminitiator die Besprechung starten."
       all_moderator:
         info: "Gewährt allen Teilnehmern Moderatorenrechte in BigBlueButton, wenn sie an der Konferenz teilnehmen."
+      recordings:
+        info: "Ermöglicht dem Moderator Aufzeichnungen der Konferenz zu erstellen."
+      webcam_for_moderator:
+        info: Die Webcams der Benutzer sind nur für Moderatoren sichtbar.
+      lock_webcam:
+        info: Erlauben Sie den Zuschauern nicht, die Webcam zu benutzen.
+      lock_mic:
+        info: Erlauben Sie den Zuschauern nicht, das Mikrofon zu benutzen.
       options:
         disabled: Deaktiviert
         enabled: Immer aktiviert
@@ -409,6 +417,12 @@ de_DE:
       mute: Teilnehmer beim Betreten stummschalten
       require_approval: Freigabe durch Moderator bevor der Raum betreten werden kann
       start: Jeder Teilnehmer kann das Meeting starten
+      lock_mic_disable: Mikrofonfreigabe deaktivieren
+      lock_webcam_disable: Webcamfreigabe deaktivieren
+      webcams_for_moderator_only: Nur Moderatoren dürfen Webcams sehen
+      recordings: Raumaufzeichnungen aktivieren
+      recording: Sitzungen aufzeichnen
+      session_active: Aktive Sitzung
       footer_text: Anpassungen des Raums können jederzeit vorgenommen werden.
     rename_room:
       name_placeholder: Neuen Raumnamen eingeben...
@@ -514,6 +528,7 @@ de_DE:
     enter_the_access_code: Raumzugangscode bitte eingeben
     invalid_provider: "Sie haben eine ungültige URL eingegeben, bitte überprüfen Sie die URL und versuchen Sie es erneut."
     invited: Sie wurden zur Teilnahme eingeladen
+    recording_present: Die Sitzung wird aufgezeichnet. Dazu gehören auch Sprache und Video von Ihrer Seite.
     invite_participants: Teilnehmer einladen
     join: Teilnehmen
     last_session: "Letzte Konferenz am %{session}"
