@@ -419,11 +419,11 @@ de_DE:
       start: Jeder Teilnehmer kann das Meeting starten
       lock_mic_disable: Mikrofonfreigabe deaktivieren
       lock_webcam_disable: Webcamfreigabe deaktivieren
-      webcams_for_moderator_only: Nur Moderatoren dürfen Webcams sehen
+      webcams_for_moderator_only: "Nur Moderatoren dürfen Webcams sehen"
       recordings: Raumaufzeichnungen aktivieren
       recording: Sitzungen aufzeichnen
       session_active: Aktive Sitzung
-      footer_text: Anpassungen des Raums können jederzeit vorgenommen werden.
+      footer_text: "Anpassungen des Raums können jederzeit vorgenommen werden."
     rename_room:
       name_placeholder: Neuen Raumnamen eingeben...
     share_access:
@@ -478,7 +478,7 @@ de_DE:
       visibility: Sichtbarkeit
       formats: Formate
     visibility:
-      public: Öffentlich
+      public: "Öffentlich"
       unlisted: Nicht gelistet
     format:
       notes: Notizen
@@ -513,7 +513,7 @@ de_DE:
     active: Aktiv
     admin: Admin
     banned: Gesperrt
-    deleted: Gelöscht
+    deleted: "Gelöscht"
     pending: Wartend
     user: Benutzer
   room:
@@ -522,13 +522,13 @@ de_DE:
     create_room_error: Bei der Erstellung des Raums ist ein Fehler aufgetreten
     create_room_success: Raum erfolgreich erstellt
     delete:
-      home_room: Der Startraum des Users kann nicht gelöscht werden
-      success: Raum erfolgreich gelöscht
+      home_room: "Der Startraum des Users kann nicht gelöscht werden"
+      success: "Raum erfolgreich gelöscht"
       fail: "Raum konnte nicht gelöscht werden (%{error})"
     enter_the_access_code: Raumzugangscode bitte eingeben
     invalid_provider: "Sie haben eine ungültige URL eingegeben, bitte überprüfen Sie die URL und versuchen Sie es erneut."
     invited: Sie wurden zur Teilnahme eingeladen
-    recording_present: Die Sitzung wird aufgezeichnet. Dazu gehören auch Sprache und Video von Ihrer Seite.
+    recording_present: "Die Sitzung wird aufgezeichnet. Dazu gehören auch Sprache und Video von Ihrer Seite."
     invite_participants: Teilnehmer einladen
     join: Teilnehmen
     last_session: "Letzte Konferenz am %{session}"
@@ -577,8 +577,8 @@ de_DE:
     delete:
       button: "Ja, ich möchte mein Konto löschen."
       disclaimer: "Wenn Sie Ihr Konto löschen, können Sie es <b>NICHT</b> wiederherstellen. Alle mit Ihrem Konto verbundenen Informationen - wie Einstellungen, Räume und Aufzeichnungen - werden gelöscht."
-      subtitle: Konto endgültig löschen
-      title: Konto löschen
+      subtitle: "Konto endgültig löschen"
+      title: "Konto löschen"
     password:
       confirmation: Bestätigung von neuem Passwort
       new: Neues Passwort
