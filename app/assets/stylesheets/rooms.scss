@@ -59,9 +59,9 @@
   }
 }
 
-.current .stamp .fas:before {
+/*.current .stamp .fas:before {
     content: "\f04b";
-}
+}*/
 
 #room-settings-dropdown-label {
   vertical-align: middle;
@@ -113,6 +113,11 @@
 
 .bootstrap-select .dropdown-menu li.active small.text-muted{
   color: #9aa0ac !important
+}
+
+#recording-table .edit_hover_class {
+  word-break: break-all;
+  white-space: normal;
 }
 
 .not-saved {
