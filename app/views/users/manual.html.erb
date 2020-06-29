@@ -6,7 +6,7 @@
     </div>
 
     <div class="col-md-6 mb-4">
-      <div id="search-bar" class="d-inline-block float-right">
+      <!--<div id="search-bar" class="d-inline-block float-right">
         <div class="input-group">
           <input id="search-input" type="text" class="form-control" placeholder="Suche..." value="">
           <span class="input-group-append">
@@ -15,13 +15,13 @@
             </button>
           </span>
         </div>
-      </div>
+      </div>-->
     </div>
 </div>
   <div class="row">
 
-    <p class="m-auto">Hier finden Sie alles Relevante rund um die Konferenzplattform BigBlueButton. Wähle eine der drei Ansichten aus und scrolle dann weiter runter.</p>
-    <p>Lehrer und Schüler werden in dieser Anleitung als Moderator (M) und Zuschauer (Z) bezeichnet. </p>
+    <p>Hier finden Sie alles Relevante rund um die Konferenzplattform BigBlueButton. Wähle eine der drei Ansichten aus und scrolle dann weiter runter.</p>
+    <p><b>Lehrer</b> und <b>Schüler</b> werden in dieser Anleitung als <b>Moderator (M)</b> und <b>Zuschauer (Z)</b> bezeichnet.</p>
   </div>
 
   <nav class="nav row sticky-top text-center justify-content-around">
@@ -443,3 +443,13 @@ FAQ: Es treten Rückkopplungen / Echos auf: Finden Sie den Verursacher anhand de
     </div>
   </div>
 </div>
+
+<script>
+  $('.nav-manu-item').click(function(){
+			$(".nav-manu-item.active").removeClass("active");
+			$(this).addClass("active");
+			$($(this).data('col2')).hide();
+			$($(this).data('col')).show();
+	});
+  $('a[href="/b/users/manual"]').addClass("active");
+</script>
