@@ -1,104 +1,439 @@
-<%
-# BigBlueButton open source conferencing system - http://www.bigbluebutton.org/.
-# Copyright (c) 2018 BigBlueButton Inc. and by respective authors (see below).
-# This program is free software; you can redistribute it and/or modify it under the
-# terms of the GNU Lesser General Public License as published by the Free Software
-# Foundation; either version 3.0 of the License, or (at your option) any later
-# version.
-#
-# BigBlueButton is distributed in the hope that it will be useful, but WITHOUT ANY
-# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-# PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
-# You should have received a copy of the GNU Lesser General Public License along
-# with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
-%>
 
 <div class="container pt-6" id="manual">
-<div class="row text-center">
-  <h1>BigBlueButton Anleitung</h1>
-  <br>
-  <p>Hier finden Sie alles relevante rund um die Konferenzplattform BigBlueButton. Wähle eine der drei Ansichten und scrolle dann weiter runter.</p>
+  <div class="row mt-2">
+    <div class="col-md-6">
+      <p class="subtitle">BigBlueButton Anleitung</p>
+    </div>
+
+    <div class="col-md-6 mb-4">
+      <div id="search-bar" class="d-inline-block float-right">
+        <div class="input-group">
+          <input id="search-input" type="text" class="form-control" placeholder="Suche..." value="">
+          <span class="input-group-append">
+            <button class="btn btn-outline-primary" type="button" onclick="searchPage()">
+              <i class="fas fa-search"></i>
+            </button>
+          </span>
+        </div>
+      </div>
+    </div>
+</div>
+  <div class="row">
+
+    <p class="m-auto">Hier finden Sie alles relevante rund um die Konferenzplattform BigBlueButton. Wähle eine der drei Ansichten aus und scrolle dann weiter runter.</p>
+    <p>Lehrer und Schüler werden in dieser Anleitung als Moderator (M) und Zuschauer (Z) bezeichnet. </p>
   </div>
 
-<nav class="nav row navbar-dark bg-dark sticky-top text-center">
-<a class="nav-manu-item btn-lg col" type="button" data-toggle="collapse" data-col=".m" data-col2=".z, .p"><span class="mx-1">Lehrer</span><span class="badge badge-danger mx-1 badge-pill">M (Moderator)</span></a>
-<a class="nav-manu-item btn-lg col" type="button" data-toggle="collapse"  data-col=".z" data-col2=".m, .p"><span class="mx-1">Schüler</span><span class="badge badge-info mx-1 badge-pill">Z (Zuschauer)</span></a>
-<a class="nav-manu-item btn-lg col" type="button" data-toggle="collapse" data-col=".p" data-col2=".z, .m"><span class="mx-1">Präsentator</span><span class="badge badge-warning mx-1 badge-pill">P (Präsentator)</span></a>
-</nav>
+  <nav class="nav row sticky-top text-center justify-content-around">
+    <a class="nav-manu-item col-md-3 m-button btn-outline-danger" tabindex="1" data-toggle="collapse" data-col=".m" data-col2=".z, .p"><span class="mx-1">Lehrer</span><span class="badge badge-danger mx-1 badge-pill">M (Moderator)</span></a>
+    <a class="nav-manu-item col-md-3 z-button btn-outline-info" tabindex="1" data-toggle="collapse"  data-col=".z" data-col2=".m, .p"><span class="mx-1">Schüler</span><span class="badge badge-info mx-1 badge-pill">Z (Zuschauer)</span></a>
+    <a class="nav-manu-item col-md-3 p-button btn-outline-success" tabindex="1" data-toggle="collapse" data-col=".p" data-col2=".z, .m"><span class="mx-1">Präsentator</span><span class="badge badge-success mx-1 badge-pill">P (Präsentator)</span></a>
+  </nav>
 
-<div class="row">
-  <ol>
-    <li>Einführung</li>
-    <li>Raumansicht (Startseite)</li>
-    <ol>
-      <li>Übersicht</li>
-      <li>Zugriff auf Räume teile</li>
-      <li>Raum erstellen</li>
-      <li>Raum betreten</li>
-    </ol>
-    <li>Konferenzansicht</li>
-    <ol>
-      <li>Vor der Benutzung</li>
-      <li>Übersicht</li>
-      <li>Rechte</li>
+  <div class="row">
+    <ol type="A">
+      <li><a href="#1">Einführung</a></li>
+      <li><a href="#2">Raumansicht (Startseite)</a></li>
       <ol>
-        <li>Moderatoren (Lehrer)<span class="badge badge-danger ml-2 badge-pill">M</span></li>
-        <li>Zuschauer (Schüler)</li>
-        <li>Präsentatoren</li>
+        <li><a href="#21">Übersicht</a></li>
+        <li><a href="#22">Raum erstellen<span class="badge badge-danger ml-2 badge-pill">M</span></a></li>
+        <li><a href="#23">Raumzugriff teilen<span class="badge badge-danger ml-2 badge-pill">M</span></a></li>
+        <li><a href="#24">Aufzeichungen verwalten<span class="badge badge-danger ml-2 badge-pill">M</span></a></li>
+        <li><a href="#25">Raum betreten</a></li>
       </ol>
-      <li>Rechte übertragen <span class="badge badge-danger ml-2 badge-pill">M</span></li>
-      <li>Zuschauerrechte einstellen <span class="badge badge-danger ml-2 badge-pill">M</span></li>
-      <li>Notizen</li>
-      <li>Chats</li>
-      <li>Umfragen <span class="badge badge-warning ml-2 badge-pill">P</span></li>
-      <li>Präsentationen <span class="badge badge-warning ml-2 badge-pill">P</span></li>
-      <li>Whiteboard <span class="badge badge-warning ml-2 badge-pill">P</span></li>
-      <li>Statusicons</li>
-      <li>Breakout-Räume <span class="badge badge-danger ml-2 badge-pill">M</span></li>
-      <li>Aufzeichnungen machen <span class="badge badge-danger ml-2 badge-pill">M</span></li>
-      <li>Konferenz verlassen</li>
+      <li><a href="#3">Konferenzansicht</a></li>
+      <ol>
+        <li><a href="#31">Vor der Benutzung</a></li>
+        <li><a href="#32">Übersicht</a></li>
+        <li><a href="#33">Rechte</a></li>
+        <li><a href="#34">Rechte übertragen<span class="badge badge-danger ml-2 badge-pill">M</span></a></li>
+        <li><a href="#35">Zuschauerrechte einstellen<span class="badge badge-danger ml-2 badge-pill">M</span></a></li>
+        <li><a href="#36">Notizen</a></li>
+        <li><a href="#37">Chats</a></li>
+        <li><a href="#38">Umfragen<span class="badge badge-success ml-2 badge-pill">P</span></a></li>
+        <li><a href="#39">Präsentationen<span class="badge badge-success ml-2 badge-pill">P</span></a></li>
+        <li><a href="#310">Whiteboard<span class="badge badge-success ml-2 badge-pill">P</span></a></li>
+        <li><a href="#311">Statusicons</a></li>
+        <li><a href="#312">Breakout-Räume<span class="badge badge-danger ml-2 badge-pill">M</span></a></li>
+        <li><a href="#313">Aufzeichnungen<span class="badge badge-danger ml-2 badge-pill">M</span></a></li>
+        <li><a href="#314">Weiteres<span class="badge badge-danger ml-2 badge-pill">M</span></a></li>
+        <li><a href="#315">Konferenz verlassen</a></li>
+      </ol>
+      <li><a href="#4">Tipps und Tricks</a></li>
+      <ol>
+        <li><a href="#41">Webcams größer machen</a></li>
+        <li><a href="#42">Schnellumfragen<span class="badge badge-success ml-2 badge-pill">P</span></a></li>
+        <li><a href="#43">Schnell muten<span class="badge badge-danger ml-2 badge-pill">M</span></a></li>
+      </ol>
     </ol>
-    <li>Tipps und Tricks</li>
-    <ol>
-      <li>Webcams größer machen</li>
-      <li>Schnellumfragen</li>
-      <li>Schnell muten <span class="badge badge-danger ml-2 badge-pill">M</span></li>
-    </ol>
-  </ol>
 
-</div>
-<div class="row">
-<div class="col-md-12">
-    <div class="collapse m">
-        <p>Content 1.1.</p>
-    </div>
-    <div class="collapse m" >
-        <p>Content 1.2.</p>
-    </div>
-        <div class="collapse z" >
-        <p>Content 1.3.</p>
-    </div>
-<div class="collapse m z" >
-        <p>Content 1.4.</p>
-    </div>
-    <div class="collapse p" >
-        <p>Content 2.1.</p>
-    </div>
-        <div class="collapse m z p" >
-        <p>Content 2.2.</p>
-    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
 
+      <p></p>
 
+      <ol type="A">
+        <h3 id="1"><li>Einführung</li></h3>
+        <div class="collapse m z p">
+          <p>
+            BigBlueButton ermöglicht es, Ton- und Videoverbindungen mit anderen Teilnehmern aufzubauen. Es
+            können Präsentationen vorgeführt, Texte geteilt, Whiteboards bemalt, Abfragen und Abstimmungen
+            durchgeführt oder einfach nur Worte miteinander ausgetauscht werden. Dabei kann es für
+            unterschiedliche Zwecke wie Online-Schulungen, Vorführungen, Verhandlungen, Webinare, Meetings
+            oder sogar für Bewerbungsgespräche genutzt werden.
+          </p>
+          <div class="alert alert-warning" role="alert">
+            <h4 class="alert-heading"><i class="fas fa-exclamation-circle mr-2"></i>Anforderungen</h4>
+            <p>Wir empfehlen den Einsatz eines Computers mit einem <a class="alert-link" href="https://www.whatismybrowser.com/" data-toggle="tooltip" data-placement="bottom" title="aktualität prüfen">aktuellen</a> <a class="alert-link" href="https://www.google.com/chrome/" data-toggle="tooltip" data-placement="bottom" title="runterladen">Google Chrome Browser</a> und
+              einem angeschlossenen Headset (Kopfhörer vom Handy gehen meist auch). Bei Smartphones und Tabletts
+              kann es zu Einschränkungen kommen und sollte deshalb nicht vom Moderator (Lehrer) oder für größere
+              Konferenzen mit Videoübertragung verwendet werden.</p>
+          </div>
+        </div>
+        <h3 id="2"><li>Raumansicht (Startseite)</li></h3>
+        <ol>
+          <h3 id="21"><li>Übersicht</li></h3>
+          <p class="collapse p">Der Präsentator ist eine Unterrolle in einer Konferenz. Wechseln Sie die Rolle um diesen Inhalt zu lesen.</p>
+          <div class="collapse z">
+            <p>Am Anfang erhalten Sie die Startseite in der Sie den Raum-Link, den Ihnen ein Moderator (Lehrer) zugeschickt hat, eintragen können. Dieser Link kann auch direkt aufgerufen werden.</p>
+            <img src="" alt="1 Zuschaueransicht einfach">
+            <p>Wenn Ihnen Räume geteilt werden, erhalten Sie diese Übersichtlich aufgelistet. Solang die Konferenz in diesem Raum noch nicht angefangen hat, steht auf dem großen Button nur "neu laden". </p>
+            <img src="" alt="2 Zuschaueransicht Räume">
+            <p>Wenn ein Moderator Konferenzen aufgezeichnet hat, können diese durch anklicken des jeweiligen Raums, unten angezeigt werden.</p>
+          </div>     
+          <div class="collapse m">
+            Moderatoren haben folgende Möglichkeiten:
+            <ol>
+            <li>Übersicht über den ausgewählten Raum mit eindeutigem Raum-Link zum teilen für andere Teilnehmer. (Siehe: <a href="#23">Raumzugriff teilen</a>)</li>
+            <li>Übersicht der eigenen, und geteilten (<i class="fas fa-share-alt"></i>) Räume anderer Moderatoren.</li>
+            <li>Aufzeichnungen des ausgewählten Raums</li>
+</ol>
+            <img src="" alt="3 Startseite des Moderators">
+            <p>Eigene Räume können über die drei Punkte weiter Eingestellt und auch an andere Lehrer freigegeben werden. Dazu mehr in den folgenden Punkten.</p>
+          </div>
+          <div class="collapse z m"><a href="#25">Nächster Schritt &raquo;</a></div>
+          <h3 id="22"><li>Raum erstellen<span class="badge badge-danger ml-2 badge-pill">M</span></li></h3>
+          <p class="collapse p z">Dieser Inhalt ist nur für Moderatoren.</p>
+          <div class="collapse m">
+            <p>Mit der Rolle eines Moderators ist es möglich weiter Konferenzräume zu erstellen. Klicken Sie dazu auf die Schrift "Raum erstellen" am ende der Raumauflistung.</p>
+            <img src="" alt="4 Raum Einstellungen">
+            <ol>
+              <li>Geben Sie erst einen eindeutigen Raumnamen an z.B. "Fach Klasse".</li>
+              <li>Optinales Passwort für das betreten des Konferenzraums.</li>
+              <li>Empfohlen: Alle Teilnehmer werden beim betreten Stumm geschaltet und müssen sich erst einmal </li>
+            </ol>
+<p>Diese Raumeinstellungen können Sie jederzeit wieder Anpassen indem Sie neben dem jeweiligen Raum auf die drei Punkte klicken und dann auf "Raumeinstellungen ändern".</p>
+            
+          </div>
+          <h3 id="23"><li>Raumzugriff teilen<span class="badge badge-danger ml-2 badge-pill">M</span></li></h3>
+          <p class="collapse p z">Dieser Inhalt ist nur für Moderatoren.</p>
+          <div class="collapse m">
+            <p>Eigenene Räume können mit anderen geteilt werden. Dabei geht dies mit dem klassischen Raum-Link den Sie an Ihre Teilnehmer versenden oder man teilt den Raum direkt mit anderen. Dadurch erhalten diese eine Verknüpfung auf der Startseite und sehen „nicht gelistete“ Aufzeichnungen (<a href="#24">Siehe: Aufzeichungen verwalten</a>) dieses Raums. Andere Moderatoren erhalten zusätzlich auch Moderatorrechte in der Konferenz selbst. Dadurch können Sie den Raum auch alleine starten.</p>
+
+          </div>
+          <h3 id="24"><li>Aufzeichnungen verwalten<span class="badge badge-danger ml-2 badge-pill">M</span></li></h3>
+          <p class="collapse p z">Dieser Inhalt ist nur für Moderatoren.</p>
+          <div class="collapse m">
+            <p>Wenn Sie einen Raum auswählen, werden unten auf der Seite die aufgezeichneten Konferenzen aufgelistet. Dies kann je nach Auslastung des Server bis zu 24 Stunden dauern. Unter dem Punkt Sichtbarkeit wird der Zugriff auf die Aufzeichnung eingestellt. Standardmäßig ist dieses Feld auf "nicht gelistet". 
+            <dl>
+    <dt>Nicht gelistet</dt>
+    <dd>Jedem dem der Raum geteilt wurde, kann das Video anschauen.</dd>
+    <dt>Öffentlich</dt>
+    <dd>Über den Raum-Link kann die Aufzeichnung angeschaut werden, ohne eingeloggt zu sein.</dd>
+  </dl></p>
+            <p>Wie man Aufzeichnungen anfertigt, finden Sie im Punkt <a href="#33">C13</a>.</p>
+
+          </div>
+          <h3 id="25"><li>Raum betreten</li></h3>
+          <p class="collapse p">Der Präsentator ist eine Unterrolle in einer Konferenz. Wechseln Sie die Rolle um diesen Inhalt zu lesen.</p>
+        <div class="collapse z">
+            <p>
+              Standardmäßig können Räume erst gestartet werden, wenn die Konferenz durch einen Moderator gestartet wurde. Warte solange und aktualisiere regelmäßg deine Seite. Wenn der Raum betreten werden darf, drücke auf den blauen "Teilnehmen" Knopf.
+            </p>
+          </div>   
+          <div class="collapse m">
+            <p>Sie können einen Raum auswählen und durch den blauen "Starten" Knopf betreten. Konferenzen anderer Moderatoren können durch den jeweiligen Raum-Link aufgerufen werden. Wenn Räume mit Ihnen geteilt wurden, finden Sie diese auch in der Liste der eigenen Räume.
+            </p>
+          </div>    
+          <div class="collapse z m"><a href="#31">Nächster Schritt &raquo;</a></div>
+        </ol>
+        <h3 id="3"><li>Konferenzansicht</li></h3>
+        <ol>
+          <h3 id="31"><li>Vor der Benutzung</li></h3>
+          <p class="collapse p">Der Präsentator ist eine Unterrolle in einer Konferenz. Wechseln Sie die Rolle um diesen Inhalt zu lesen.</p>
+          <div class="collapse m z">
+            <p>Wenn Sie in den Raum betreten erscheint eine Abfrage wie Sie der Konferenz beitreten möchten. Falls Sie im Verlauf der Konferenz sprechen möchten, wählen Sie hier „Mit Mikrofon“ aus. 
+            </p><p>
+            In einem weiteren Fenster fragt Ihr Browser nach der Erlaubnis Ihr Mikrofon zu benutzen. Durch bestätigen dieser Abfrage mit "Erlauben" genehmigen Sie den Zugriff auf das Mikrofon. Diese Abfragt kann häufiger kommen (bei Webcamnutzung, oder der Bildschirmfreigabe) und sieht womöglich bei jedem Browser anders aus.
+            </p>
+
+          </div> 
+          <div class="collapse z m"><a href="#32">Nächster Schritt &raquo;</a></div>
+          <h3 id="32"><li>Übersicht</li></h3>
+          <p class="collapse p">Der Präsentator ist eine Unterrolle in einer Konferenz. Wechseln Sie die Rolle um diesen Inhalt zu lesen.</p>
+          <div class="collapse m z">
+            <p>Auf der linken Seite ist die Menüleiste mit der Teilnahmeliste zu erkennen. Standardmäßig ist der „öffentliche Chat“ ausgeklappt. 
+              Im Hauptteil ist die Präsentationsfläche (Hier Weiß) zu sehen. Unter dieser sind die Steuerelemente um seinen Ton ein und auszuschalten, Mikrofon und/oder seine Webcam zu teilen.
+            </p>
+
+          </div> 
+          <div class="collapse m z">
+            <p>
+            </p>
+
+          </div>
+   
+          <h3 id="33"><li>Rechte</li></h3>
+          <div class="collapse m z p">
+            <p>In BigBlueButton wird zwischen den drei folgenden Rechten unterschieden. In dieser Anleitung wird zusätzlich der Überbegriff Teilnehmer genannt, der alle in einer Konferenz teilnehmenden zusammenfasst.
+              In der Teilnehmerliste sind die Rechte an den Formen vor den Namen abzulesen. Dies spiegelt sich auch in der Raumansicht wieder.
+            </p>
+
+            <div class="row">
+              <div class="col-sm-6 text-center">
+                <h4>Moderator</h4>
+                <span class="badge badge-pill badge-danger badge-big">M</span>
+                <ul>
+                  <li>Rechte verteilen und einschränken,</li>
+                  <li>Breakout Räume verwalten</li>
+                  <li>Aufzeichnungen starten</li>
+                  <li>Teilnehmer aus Konferenz entfernen</li>
+                  <li>Konferenzen beenden</li>
+
+                </ul>
+              </div>
+              <div class="col-sm-6 text-center">
+                <h4>Zuschauer</h4>
+                <span class="badge badge-pill badge-info badge-big">Z</span>
+                <ul>
+                  <li>mit allen Chatten</li>
+                  <li>Reden und anderen Zuhören</li>
+                  <li>Umfragen beantworten</li>
+                  <li>Statusicons benutzen </li>
+
+                </ul>
+                <p class="collapse m">Diese Privilegien können als Moderator eingeschränkt werden (Siehe <a href="#35">Zuschauerrechte einstellen</a>).</p>
+              </div>
+              <div class="col">
+                <h4>Präsentator</h4>
+                <span class="badge badge-pill badge-success badge-big float-left">P</span>
+                <p>Dieses Recht kann nur eine Person in der Konferenz haben. Der erste Moderator im Raum erhält standartmäßig dieses Recht. Moderatoren können das Recht auf andere Teilnehmer übertragen oder auch wieder endziehen. Wählen Sie dazu in der Teilnehmerliste einen Namen aus und klicken Sie auf „Zum Präsentator machen“.</p>
+                <p>Nutzer mit diesem Recht haben folgende zusätzliche Funktionen: </p>
+                <ul>
+                  <li>Präsentationen zu verwalten</li>
+                  <li>Whiteboard zu benutzen und den Mehrbenutzermodus zu aktivieren</li>
+                  <li>eigenen Bildschirm mit anderen Teilnehmern teilen</li>
+                </ul>
+              </div>
+            </div>   
+
+          </div> 
+          <h3 id="34"><li>Rechte übertragen<span class="badge badge-danger ml-2 badge-pill">M</span></li></h3>
+          <div class="collapse p z">
+            <p>Dieses Recht ist dem Moderator vorbehalten. Sprechen Sie Ihren Moderator darauf an, falls Sie eine Funktion benötigen.</p> 
+          </div>
+          <div class="collapse m">
+            <p>Über die Teilnehmerliste können andere Teilnehmer angeklickt werden und Ihnen Rechte wie die des Moderators oder des Präsentators zugeteilt werden. Gehen Sie mit bedacht mit dieser Funktion um.</p>
+          </div>
+          
+          <h3 id="35"><li>Zuschauerrechte einstellen<span class="badge badge-danger ml-2 badge-pill">M</span></li></h3>
+          <div class="collapse p z">
+            <p>Dieses Recht ist dem Moderator vorbehalten. Sprechen Sie Ihren Moderator darauf an, falls Sie eine Funktion benötigen.</p> 
+          </div>
+          <div class="collapse m">
+            <p>Um die Rechte von Zuschauern weiter einzuschränken gehen Sie über das Zahnrad in der Menüleiste auf Zuschauerrechte einstellen. Alle getroffenen Einstellungen betreffen nicht die Moderatoren.</p>
+            <p>Funktionen und ihre Bedeutung:</p>
+            <ul>
+              <li><b>Webcam und Mikrofon sperren:</b> Diese können nicht mehr ausgewählt und benutzt werden.
+              <p>Beachten Sie das Webcams auch in Aufzeichnungen gespeichert werden.</p></li>
+              <li><b>Nur Moderatoren sehen Webcams:</b> Wir empfehlen diese Funktion zu sperren, da eine hohe Anzahl an gleichzeitigen Streams die Endgeräte (besonders Smartphones) stark beansprucht.</li>
+              <li><b>Öffentliche Chatnachriten senden:</b> Sperrt die Kommunikation aller Zuschauer im öffentlichen Chat zu schreiben. </li>
+              <li><b>Private Chatnachrichten senden:</b> Verbietet den Kontakt untereinander, aber nicht zum Moderator hin.</li>
+              <li><b>Geteilte Notizen bearbeiten:</b> Sperrt alle Zuschauer aus die Noitzen zu verändern.</li>
+              <li><b>Andere Teilnehmer in der Teilnehmerliste sehen:</b> Empfehlenswert bei Webinaren, bei denen sich die Zuschauer nicht gegenseitig sehen sollen.</li>
+            </ul>
+            <p>Wenn Änderungen an den Einstellungen gemacht werden, wird dies jedem Teilnehmer mit einem Popup oben rechts signalisiert. Ausserdem wird unter jedem Zuschauer ein „Gesperrt“ angezeigt wenn mindestens eine (Außer „nur Moderatoren sehen Webcams“) Einstellung die Zuschauer einschränkt.</p>
+          </div> 
+          <h3 id="36"><li>Notizen</li></h3>
+          <div class="collapse p"><p>Der Präsentator ist eine Unterrolle in einer Konferenz. Wechseln Sie die Rolle um diesen Inhalt zu lesen.</p></div>
+          <div class="collapse z m">
+            <p>Änderungen in den „geteilte Notizen“ sind für jeden sofort ersichtlich. Der Text kann übersichtlicher formatiert werden als über das Whiteboard. Notizen können standartmäßig von allen beschrieben werden. </p>
+            <p>Erklärung der Icons von links nach rechts: Fett schreiben, Kursiv schreiben, Unterstrichen, durchgestrichen, Nummerische Liste, ungeordnete Liste, Änderung rückgängig machen, Änderung wiederherstellen, Notizen runterladen.</p>
+
+          </div> 
+          <div class="collapse m">
+            <p>Das beschreiben der Notizen durch Zuschauer, kann durch den Moderator abgestellt werden. (Siehe: <a href="#35">Zuschauerrechte einstellen</a>)</p>
+
+          </div> 
+          <h3 id="37"><li>Chats</li></h3>
+          <div class="collapse p"><p>Der Präsentator ist eine Unterrolle in einer Konferenz. Wechseln Sie die Rolle um diesen Inhalt zu lesen.</p></div>
+          <div class="collapse z m">
+            <p>Private Chatnachrichten können mit einem Linksklick auf den gewünschten Gesprächspartner in der Teilnehmerliste links eröffnet werden. </p>
+            <p>Neue Nachrichten werden mit einem roten Kreis Gekennzeichnet. Einmal direkt hinter dem Chatnamen und falls die Menüleiste eingeklappt ist an diesem Icon oben links. </p>
+          </div>
+          <div class="collapse m">
+            <p>Das Schreiben in den öffentlichen und / oder zu privaten Personen kann für Zuschauer eingeschränkt werden.</p>
+
+          </div> 
+          <h3 id="38"><li>Umfragen<span class="badge badge-success ml-2 badge-pill">P</span></li></h3>
+          <div class="collapse m z">
+            <p>Umfragen können nur vom Präsentator gestellt werden. (Wenn du mehr dazu erfahren möchtest, klicke auf den grünen Präsentator Button oben rechts.)
+              Alle anderen bekommen einen Hinweißton abgespielt wenn eine Umfrage gestartet wurde. Diese wird unten rechts in der Präsentationsfläche angezeigt. 
+              Wenn der Präsentator möchte, kann er das Umfrageergebniss auch auf der derzeitig, angezeigten Folie veröffentlichen. 
+            </p>
+
+          </div> 
+          <div class="collapse p">
+            <p>Der Präsentator hat das Recht über das blaue Plus Umfragen zu starten. Dafür können vordefinierte Antwortmöglichkeiten ausgewählt werden oder eigene über den Punkt „Benutzerdefinierte Umfrage“ eingegeben werden.
+              Umfragen erscheinen bei allen unten Rechts am Bildschirm: 
+              
+              Wenn alle Teilnehmer auf die Frage geantwortet haben, kann das Ergebniss mit klick auf "veröffentlichen" auf die aktuell angezeigte Folie für alle Teilnehmer sichtbar gemacht werden. Das Umfrageergebnis bleibt auch auf dieser Folie wenn zu einer anderen Folie gewechselt wird.
+              
+              Tipp: Erstellen Sie eine extra Folie in Ihrer Präsentation mit der Frage und den dazugehörigen Antwortmöglichkeiten. Siehe dazu unter "Schnellumfragen" 
+            </p>
+
+          </div> 
+          <h3 id="39"><li>Präsentationen<span class="badge badge-success ml-2 badge-pill">P</span></li></h3>
+          <div class="collapse m z">
+            <p>Präsentationen können nur vom Präsentator verwaltet werden. (Wenn du mehr dazu erfahren möchtest, klicke auf den grünen Präsentator Button oben rechts.)
+              Alle anderen Teilnehmer sehen nur die aktuelle Folie die in der Präsentationsfläche angezeigt wird.
+            </p>
+
+          </div> 
+          <div class="collapse p">
+            <p>Über den blauen Plus Icon, unten links, können neue Präsentationen hochgeladen werden. Dabei ist es egal welches Format (Word, PowerPoint oder auch OpenOffice Dokumente) Sie dafür wählen. Bevorzugt ist aber ein Dokument im PDF Format.</p>
+          <p>Präsentationen können für alle Teilnehmer zum download freigegeben werden.</p>
+          </div> 
+          <h3 id="310"><li>Whiteboard<span class="badge badge-success ml-2 badge-pill">P</span></li></h3>
+          <div class="collapse m z">
+            <p>Das Whiteboard ist Grundsätzlich dem Präsentator verbehalten. Benutzen dürfen die Zeichenfläche aber andere wenn der Mehrbenutzermodus vom Präsentator aktiviert wurde. (Wenn du mehr dazu erfahren möchtest, klicke auf den grünen Präsentator Button oben rechts.)
+            </p>
+          </div> 
+          
+          <div class="collapse p">
+            <p>Das Whiteboard Feature ist dazu gedacht Dinge zu markieren und dem Zuschauer kenntlicher zu gestalten. Oder auch für kurze Anmerkungen und buntes gemeinsames Malen. 
+              Anmerkungen kann man auf jeder Folie, die man hochgeladen hat, machen. Wenn man möchte kann man auch leere Seiten hochladen, um schnell Skizzen anzufertigen. 
+            </p>
+            </div> 
+          
+          <div class="collapse p m z">
+            <p>Zur benutzung des Whiteboards befindet sich auf der rechten Seite der Präsentationsfläche eine Leiste die wie folgt aufgebaut ist:</p>
+            <p>links -> rechts: Textfeld, Linie, Kreis, Dreieck, Viereck, Stift, Pointer und Verschieben bei gezoomter Folie 
+              Werkzeuge (oben beschrieben), 
+              Dicke
+              Farbe
+              eigene Anmerkungen Rückgängig machen
+              alle eigenen Anmerkungen löschen
+          <div class="collapse p">
+              Mehrbenutzermodus starten
+              Ist der Mehrbenutzermodus aktiv, können alle Teilnehmer/-innen die Werkzeuge (in ihrer eigenen Farbe) nutzen.
+              </div>
+            </p>
+            </div> 
+          <h3 id="311"><li>Statusicons</li></h3>
+      <p class="collapse p">Der Präsentator ist eine Unterrolle in einer Konferenz. Wechseln Sie die Rolle um diesen Inhalt zu lesen.</p>
+          <div class="collapse z m">
+            <p>Die Funktion „Status setzen“ gibt jedem Teilnehmer die Möglichkeit auf sich Aufmerksam zu machen.  Dazu klicken Sie auf Ihren Namen in der Teilnehmerliste und anschließend auf „Status setzen“. In der nun erscheinenden Liste kann man unter vielen Emotionen, aber auch kurze Statusupdates geben. 
+            </p><p>
+            
+            Außerdem kann der Zuschauer auch eine kurze Toilettenpause mit einem abwesenden Status signalisieren. 
+            </p><p>
+            Wenn der Status vollendet ist kann man diesen mit einem weiteren klick auf den Namen mit „Status zurücksetzen“ wieder entfernen. 
+            </p>
+
+          </div>
+          <div class="collapse m">
+            <p>Moderatorem können auch kurze Fragen, wie ob alle den Inhalt der Folie verstanden haben, in die Runde gestellt werden, ohne dafür eine Umfrage zu stellen. Die Zuschauer können dann mit einem Daumen hoch oder runter darauf antworten. </p>
+            <p>Nach dieser kurzen Frage können alle Statusicons von den Teilnehmern gelöscht werden, indem Sie auf das Zahnrad und dann „Teilnehmer verwalten“ klicken und dann „Alle Statusicons löschen“.</p>
+
+          </div> 
+          <h3 id="312"><li>Breakout-Räume<span class="badge badge-danger ml-2 badge-pill">M</span></li></h3>
+          <div class="collapse m">
+            <p>Bei einem Breakout-Raum handelt es sich um eine Art Gruppenarbeitsraum, der innerhalb einer Konferenz geöffnet werden kann. Damit ist es möglich, innerhalb eines Kurses die Teilnehmenden in kleinere Gruppen einzuteilen und für zeitlich definierte Erarbeitungsphasen in einem getrennten Raum zusammenkommen zu lassen. Über das Zahnrad-Icon "Teilnehmer verwalten" kann der Befehl "Breakout-Räume erstellen" ausgeführt werden. 
+            </p><p>
+            Nun öffnet sich die Maske, anhand derer der Breakout-Raum definiert werden kann: Neben der Anzahl der Räume kann die Dauer der Gruppenarbeitsphase sowie die Aufteilung der Teilnehmer in die einzelnen Gruppenarbeitsräume festgelegt werden. Der Moderator kann zwischen allen Räumen hin und her springen. Mit dem Klick auf Erstellen öffnen sich die Räume und die Teilnehmenden werden je nach Festlegung den einzelnen Räumen zugeteilt bzw. können sich ihren Raum selbst wählen. Der Breakout-Raum unterscheidet sich optisch wie funktional nicht von der bislang gewohnten Raumumgebung. Der einzige Unterschied ist die Angabe der verbleibenden Zeit am oberen Bildschirmrand. Mit Schließen des Fensters betritt man automatisch wieder den Ausgangsraum.
+            </p>
+            <div class="alert alert-warning" role="alert">
+              <h4 class="alert-heading"><i class="fas fa-exclamation-circle mr-2"></i>Hinweis</h4>
+              <p>Wird vor der Aufteilung in Breakout-Räume im gemeinsamen Kursraum eine Präsentation eingebunden, so bleibt die zuletzt angesehene Folie im Breakout-Raum sichtbar. Auf diese Weise können Arbeitsaufträge gestellt und mit in den Gruppenarbeitsraum genommen werden</p>
+            </div>
+          </div> 
+          <div class="collapse z p m">
+            <p></p>
+            <div class="alert alert-warning" role="alert">
+              <h4 class="alert-heading"><i class="fas fa-exclamation-circle mr-2"></i>Achtung</h4>
+              <p>Werden die Geteilten Notizen oder der Chat in einem Breakout-Raum verwendet, muss darauf geachtet werden, dass diese Gruppenarbeitsräume zeitlich begrenzt sind und die Notizen nach Ablaufen der Zeit nicht mehr eingesehen werden können. Sie müssen also vor Ablauf der Zeit gespeichert werden.</p>
+            </div>
+          </div> 
+          <h3 id="313"><li>Aufzeichnungen<span class="badge badge-danger ml-2 badge-pill">M</span></li></h3>
+      <p class="collapse p">Der Präsentator ist eine Unterrolle in einer Konferenz. Wechseln Sie die Rolle um diesen Inhalt zu lesen.</p>
+          <div class="collapse m">
+            <p>BigBlueButton verfügt über einen Recorder zur Aufzeichnung von Besprechungen, Kursen und
+              Unterrichtseinheiten. Das dürfte für diejenigen Schüler/-innen hilfreich sein, die den Lernstoff
+              nacharbeiten oder wiederholen möchten. 
+              Der Lehrer kann so aber auch eine Aufgabe veranschaulichen und diese Aufzeichnung den Schülern zur Verfügung stellen, mit der bitte die Aufgabe bis zum angegebenen Zeitpunkt zu bearbeiten. 
+            </p>
+            <div class="alert alert-warning" role="alert">
+              <h4 class="alert-heading"><i class="fas fa-exclamation-circle mr-2"></i>Hinweis</h4>
+              <p>Erst nach Beendigung der Konferenz über den "Konferenz beenden"-Knopf wird begonnen die Aufzeichnung zu generieren. Diese generierung kann bis zu 24 Stunden dauern.</p>
+            </div>
+          </div>
+      <div class="collapse p"><p>Wenn Ihnen Räume geteilt wurden, in denen Aufzeichnungen vorhanden sind. Können Sie diese im jeweiligen Raum ansehen indem Sie auf "Präsentation" klicken. </p></div>
+          <h3 id="314"><li>Weiteres<span class="badge badge-danger ml-2 badge-pill">M</span></li></h3>
+      <p class="collapse p z">Dieser Inhalt ist nur für Moderatoren.</p>
+          <div class="collapse m">
+            <p>Teilnehmer Bannen</p> <b>folgt...</b>
+
+          </div> 
+      <h3 id="315"><li>Konferenz verlassen</li></h3>
+      <div class="collapse z p">
+            <p>Um die Konferenz zu verlassen, klickt man oben rechts im Menü auf "Konferenz verlassen". Natürlich kann man die Konferenz auch durch schließen des Browser Fensters verlassen.</p>
+
+          </div> 
+          <div class="collapse m">
+            <p>Als Moderator hat man zusätzlich die Option „Konferenz beenden“, dadurch wird die ganze Konferenz beendet und alle Teilnehmer landen auf der Startseite. </p>
+
+          </div>
+         
+        </ol>
+        <h3 id="4"><li>Tipps und Tricks</li></h3>
+        <ol>
+          <h3 id="41"><li>Webcams größer machen</li></h3>
+          <div class="collapse m z p">
+            <p>Präsentation minimieren (oben rechts) oder Präsentationsfläche verkleinern.
+              Diese Änderungen sind Benutzerbezogen, dass heißt andere Teilnehmen sehen nicht ob Sie die Präsentation minimieren oder die Webcams verschieben. <img src="https://support.blindsidenetworks.com/hc/article_attachments/360044515132/adjustwebcams.gif" alt="">
+              
+              Ausserdem können die Fenster der Webcams, bei angezeigter Präsentation, durch klicken und ziehen, unter oder auch in die Präsentationsfläche verschoben werden.
+            </p>
+
+          </div> 
+          <h3 id="42"><li>Schnellumfragen<span class="badge badge-success ml-2 badge-pill">P</span></li></h3>
+          <p class="collapse p z">Dieser Inhalt ist nur für Präsentatoren.</p>
+          <div class="collapse p">
+            <p>Wenn in einer Präsentation verschiedene Antwortmöglichkeiten im Format (1., 2., 3. oder a., b., c. usw.) erkannt werden. Erscheint links unten bei der aktuellen Folie automatisch ein Knopf für eine Schnellumfrage. </p>
+
+          </div> 
+          <h3 id="43"><li>Schnell muten<span class="badge badge-danger ml-2 badge-pill">M</span></li></h3>
+          <p class="collapse p z">Dieser Inhalt ist nur für Moderatoren.</p>
+          <div class="collapse m">
+            <p>Wenn jemand ungebeten Töne von sich gibt oder Rückkopplungen erzeugt, kann dieser schnell über den Indikator, an dem man sieht wer gerade spricht, gemutet werden. Dieser befindet sich oben links.</p>
+
+          </div>
+          <h3 id="44"><li>Keine Webcam zur Hand?</li></h3>
+          <div class="collapse m z">
+            <p>Sie besitzten keine Webcam an Ihrem Computer? Melden Sie sich doch zusätzlich an einem Smartphone an und aktiveren dort nur die Frontkamera ohne Ihr Mikrofon (Sonst entsteht ein Echo).</p>
+
+          </div> 
+        </ol>
+      </ol>
+
+<p>
+FAQ: Es treten Rückkopplungen / Echos auf: Finden Sie den Verursacher anhand des Sprecherindikator. Dieser sollte Kopfhörer verwenden oder versuchen die Lautsprecher Lautstärke auf ein Minimum zu reduzieren.  
+</p>
+      
+      
+      <p>Sie haben Fehler gefunden oder haben anregungen zu dieser Anleitung? Dann schreiben Sie uns doch unverbindlich an.</p>
     </div>
   </div>
 </div>
-
-<script>
-  $('.nav-manu-item').click(function(){
-			$(".nav-manu-item.active").removeClass("active");
-			$(this).addClass("active");
-			$($(this).data('col2')).hide();
-			$($(this).data('col')).show();
-	});
-  $('a[href="/b/users/manual"]').addClass("active");
-</script>
