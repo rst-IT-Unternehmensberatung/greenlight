@@ -74,6 +74,7 @@ ol,ul{
 .m-button {
     border: 2px solid;
     border-radius: 25px;
+  color: $mdanger !important;
    &.active, &:hover {
      background-color: $mdanger;
      color: white;
@@ -82,6 +83,7 @@ ol,ul{
 .p-button {
     border: 2px solid;
     border-radius: 25px;
+  color: $pwarning !important;
    &.active, &:hover {
      background-color: $pwarning;
      color: white;
@@ -90,6 +92,7 @@ ol,ul{
  .z-button {
     border: 2px solid;
     border-radius: 25px;
+   color: $zinfo !important;
    &.active, &:hover {
      background-color: $zinfo;
      color: white;
@@ -108,3 +111,8 @@ ol,ul{
   }
 }
 
+@media (max-width:990px) and (min-width:770px) {
+  .nav-manu-item > span {
+    display: block;
+  }
+}
