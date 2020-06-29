@@ -77,7 +77,7 @@ ol,ul{
   color: $mdanger !important;
    &.active, &:hover {
      background-color: $mdanger;
-     color: white;
+     color: white !important;
    }
 }
 .p-button {
@@ -86,7 +86,7 @@ ol,ul{
   color: $pwarning !important;
    &.active, &:hover {
      background-color: $pwarning;
-     color: white;
+     color: white !important;
    }
 }  
  .z-button {
@@ -95,7 +95,7 @@ ol,ul{
    color: $zinfo !important;
    &.active, &:hover {
      background-color: $zinfo;
-     color: white;
+     color: white !important;
    }
 }
 
