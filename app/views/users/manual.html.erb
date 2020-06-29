@@ -446,12 +446,15 @@
 </div>
 
 <script>
-  $('a').click(function()){event.preventDefault();}
+
   $('.nav-manu-item').click(function(){
     $(".nav-manu-item.active").removeClass("active");
     $(this).addClass("active");
     $($(this).data('col2')).hide();
     $($(this).data('col')).show();
   });
+  $('a').click(function(){event.preventDefault();});
+
   $('a[href="/b/users/manual"]').addClass("active");
+
 </script>
