@@ -31,7 +31,7 @@
   border: 1px solid rgba(0, 40, 100, 0.12);
 }
 
-zinfo: #17a2b8;
+$zinfo: #17a2b8;
 $mdanger: #dc3545;
 $pwarning: #28a745;
 
@@ -67,7 +67,8 @@ ol,ul{
   margin: 10px;
   font-weight: bold;
   transition: all 0.1s;
-  &:hover {text-decoration: none;}
+  &:hover {text-decoration: none;
+  cursor: pointer;}
   &:focus {outline: none;}
 }
 .m-button {
@@ -106,3 +107,4 @@ ol,ul{
     border-radius: 5px;
   }
 }
+
