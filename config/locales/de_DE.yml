@@ -553,6 +553,7 @@ de_DE:
       recent_rooms: Den kürzlich betretenen Raum betreten
       title: Raum betreten
     no_sessions: In diesem Raum haben noch keine Konferenzen stattgefunden.
+    add_presentation: "Präsentation hinzufügen"
     preupload_success: "Präsentation erfolgreich hochgeladen"
     preupload_error: "Es gab einen Fehler bei der Aktualisierung der Raumpräsentation."
     recordings: Aufzeichnungen des Raums
