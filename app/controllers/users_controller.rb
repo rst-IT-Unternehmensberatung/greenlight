@@ -197,6 +197,10 @@ class UsersController < ApplicationController
     end
   end
 
+  # GET /manual
+  def manual
+  end
+
   private
 
   def find_user

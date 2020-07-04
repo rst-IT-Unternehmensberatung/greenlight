@@ -54,6 +54,7 @@ module BbbServer
     join_opts = {}
     join_opts[:userID] = uid if uid
     join_opts[:join_via_html5] = true
+    join_opts[:guest] = true if options[:require_moderator_approval] && !options[:user_is_moderator]
 
     bbb_server.join_meeting_url(room.bbb_id, name, password, join_opts)
   end
@@ -67,6 +68,9 @@ module BbbServer
       attendeePW: room.attendee_pw,
       moderatorOnlyMessage: options[:moderator_message],
       muteOnStart: options[:mute_on_start] || false,
+      lockSettingsDisableMic: options[:locksettings_disable_microphone] || false,
+      lockSettingsDisableCam: options[:locksettings_disable_webcam] || false,
+      webcamsOnlyForModerator: options[:webcams_for_moderator_only] || false,
       "meta_#{META_LISTED}": options[:recording_default_visibility] || false,
       "meta_bbb-origin-version": Greenlight::Application::VERSION,
       "meta_bbb-origin": "Greenlight",

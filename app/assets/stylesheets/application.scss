@@ -123,6 +123,13 @@ a {
 .force-text-normal {
   color: #495057;
 }
+.avatar {
+  color: white;
+}
+
+.avatar-manager {
+  border-radius: 5px;
+}
 
 .terms {
   overflow: scroll;
@@ -182,4 +189,8 @@ table {
 
 #delete-confirm:disabled {
   cursor: not-allowed;
+}
+
+.btn i {
+  transition: all .15s;
 }

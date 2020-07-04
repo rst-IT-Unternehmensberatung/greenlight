@@ -22,6 +22,9 @@
 # variable in order to build any other brnach, as it may be required for testing or reviewing work
 # as part of the development process.
 #
+docker-compose down
+git fetch upstream
+git merge upstream/patch-5
 
 display_usage() {
   echo "This script should be used as part of a CI strategy."
@@ -76,10 +79,7 @@ fi
 echo "#### Docker image $CD_DOCKER_REPO:$CD_REF_NAME is being built"
 docker build --build-arg version_code="${CD_VERSION_CODE}" -t $CD_DOCKER_REPO:$CD_REF_NAME .
 
-if [ -z "$CD_DOCKER_USERNAME" ] || [ -z "$CD_DOCKER_PASSWORD" ]; then
-  echo "#### Docker image for $CD_DOCKER_REPO can't be published because CD_DOCKER_USERNAME or CD_DOCKER_PASSWORD are missing (Ignore this warning if running outside a CD/CI environment)"
-  exit 0
-fi
+docker-compose up -d
 
 # Publish the image
 docker login -u="$CD_DOCKER_USERNAME" -p="$CD_DOCKER_PASSWORD"
@@ -94,4 +94,6 @@ if [[ "$CD_REF_NAME" == *"release"* ]] && [[ "$CD_REF_NAME" != *"alpha"* ]] && [
   docker tag $docker_image_id $CD_DOCKER_REPO:v2
   docker push $CD_DOCKER_REPO:v2
 fi
+
+
 exit 0

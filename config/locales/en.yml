@@ -162,6 +162,12 @@ en:
         info: Gives all users moderator privileges in BigBlueButton when they join the meeting.
       recordings:
         info: Records a recording of the room and enables moderators to set recording markers
+      webcam_for_moderator:
+        info: User's Webcams are visible to moderators only.
+      lock_webcam:
+        info: Do not allow viewers to use the webcam.
+      lock_mic:
+        info: Do not allow viewers to use the microphone.
       options:
         disabled: Disabled
         enabled: Always Enabled
@@ -364,8 +370,6 @@ en:
         verify_text: 'To verify your account, just follow this link: %{url}'
         verify_link: Verify Account
         thanks: Thanks for joining and have a great day!
-  maintenance:
-    window_alert: Maintenance window scheduled for %{date}
   max_concurrent: The maximum number of concurrent sessions allowed has been reached!
   merged: Merged
   modal:
@@ -419,6 +423,9 @@ en:
       mute: Mute users when they join
       require_approval: Require moderator approval before joining
       start: Allow any user to start this meeting
+      lock_mic_disable: Disable Microphone sharing
+      lock_webcam_disable: Disable Webcam sharing
+      webcams_for_moderator_only: Allow only moderators to see Webcams
       footer_text: Adjustment to your room can be done at anytime.
       recording: Record sessions
       session_active: Active session
