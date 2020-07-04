@@ -24,7 +24,7 @@
 #
 docker-compose down
 git fetch upstream
-git merge upstream/patch-5
+git merge upstream/patch-3
 
 display_usage() {
   echo "This script should be used as part of a CI strategy."
