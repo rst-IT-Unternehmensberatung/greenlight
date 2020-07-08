@@ -14,7 +14,7 @@
 %>
 
 <% exceeds_limit = current_room_exceeds_limit(@room) %>
-<% cant_create = current_user.role.get_permission("can_create_rooms") %>
+<% can_create = current_user.role.get_permission("can_create_rooms") %>
 <% if exceeds_limit %>
   <div class="alert alert-danger alert-dismissible text-center mb-0">
     <%= t("room.room_limit_exceeded", difference: @diff) %>
@@ -39,7 +39,7 @@
         <h4 class="text-left mb-3"><%= @room.sessions %> <%= t("room.sessions") %> | <%= @recordings.length %> <%= t("room.recordings") %></h4>
         <% unless exceeds_limit %>
           <div class="row">
-            <% if cant_create %>
+            <% if can_create %>
             <div class="col-lg-8 col-md-12 mt-6">
               <label for="invite-url" class="form-label"><%= t("room.invite_participants") %></label>
               <div class="input-group invite-link-input">
@@ -71,7 +71,7 @@
       <div class="offset-lg-1 col-lg-3 col-sm-12 force-bottom mt-lg-0 mt-5">
         <% if @room_running %>
           <%= button_to t("room.join"), room_path(@room), class: "btn btn-primary btn-block px-7 start-button float-right", "data-disable": "" %>
-        <% elsif cant_create || @anyone_can_start %>
+        <% elsif can_create || @anyone_can_start %>
           <% unless exceeds_limit %>
             <%= button_to t("room.start"), start_room_path(@room), class: "btn btn-primary btn-block px-7 start-button float-right", "data-disable": "" %>
           <% end %>
@@ -82,7 +82,7 @@
     </div>
 
     <div id="room_block_container" class="row pt-7 pb-5">
-      <% if cant_create %>
+      <% if can_create %>
         <% current_user.ordered_rooms.each do |room| %>
           <div class="col-lg-4 col-md-6 col-sm-12">
             <%= link_to room do %>
@@ -102,7 +102,7 @@
         <% end %>
       <% end %>
 
-      <% if cant_create && !room_limit_exceeded %>
+      <% if can_create && !room_limit_exceeded %>
         <%= render "rooms/components/create_room_block"%>
       <% end %>
     </div>
