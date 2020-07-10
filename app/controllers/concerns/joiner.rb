@@ -59,7 +59,7 @@ module Joiner
       opts[:webcams_for_moderator_only] = room_setting_with_config("webcamsOnlyForModerator")
 
       if current_user
-        opts[:user_is_moderator] = @room.owned_by?(current_user) || current_user.role.get_permission("can_create_rooms")
+        opts[:user_is_moderator] = @room.owned_by?(current_user) || room_setting_with_config("joinModerator") || current_user.role.get_permission("can_create_rooms")
         redirect_to join_path(@room, current_user.name, opts, current_user.uid)
       else
         opts[:user_is_moderator] = @room.owned_by?(current_user) || room_setting_with_config("joinModerator")
