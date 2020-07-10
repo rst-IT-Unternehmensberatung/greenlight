@@ -157,6 +157,9 @@ module Greenlight
     # Allow users to share rooms by default
     config.shared_access_default = "true"
 
+    # Don't allow users to preupload presentations by default
+    config.preupload_presentation_default = "false"
+
     # Default admin password
     config.admin_password_default = ENV['ADMIN_PASSWORD'] || 'administrator'
   end
