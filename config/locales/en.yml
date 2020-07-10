@@ -88,6 +88,9 @@ en:
         display: Set
         clear: Clear
         time: "Maintenance: On Friday, there may be disruptions in service starting at 6 p.m."
+      preupload:
+        info: Users can preupload a presentation to be used as the default presentation for that specific room
+        title: Allow Users to Preupload Presentations
       registration:
         info: Change the way that users register to the website
         title: Registration Method
