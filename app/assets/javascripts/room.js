@@ -132,7 +132,7 @@ $(document).on('turbolinks:load', function(){
 
     $("#presentation-upload").change(function(data) {
       var file = data.target.files[0]
-      
+
       // Check file type and size to make sure they aren't over the limit
       if (validFileUpload(file)) {
         $("#presentation-upload-label").text(file.name)
@@ -321,9 +321,9 @@ function updatePreuploadPresentationModal(target) {
       $("#use-pres").show()
     }
   });
-  
+
   $("#preuploadPresentationModal form").attr("action", $(target).data("path"))
-  
+
   // Reset values to original to prevent confusion
   $("#presentation-upload").val("")
   $("#presentation-upload-label").text($("#presentation-upload-label").data("placeholder"))
@@ -331,6 +331,5 @@ function updatePreuploadPresentationModal(target) {
 }
 
 function validFileUpload(file) {
-  console.log(file.size/1024/1024)
   return file.size/1024/1024 <= 30
 }
