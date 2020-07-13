@@ -88,7 +88,7 @@ ol,ul{
      background-color: $pwarning;
      color: white !important;
    }
-}  
+}
  .z-button {
     border: 2px solid;
     border-radius: 25px;
@@ -98,8 +98,24 @@ ol,ul{
      color: white !important;
    }
 }
-
-
+.p-right {
+  float: right;
+  padding: 1.5rem;
+  padding-right: 0px;
+}
+.p-left {
+  float: left;
+  padding: 1.5rem;
+  padding-left: 0px;
+}
+.p-center{
+  margin: 0 auto;
+  display: block;
+  padding: 1.5rem;
+}
+.p-max{
+  max-width: 500px;
+}
 .badge-big {
   font-size: 40px;
     padding: .4em;
