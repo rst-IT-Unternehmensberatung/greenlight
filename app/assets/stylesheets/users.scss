@@ -49,6 +49,7 @@ ol,ul{
     font-weight: 300;
     line-height: 1.2;
     vertical-align:middle;
+    clear:both;
     .badge {
       font-size: 12px;
       vertical-align:middle;
@@ -115,6 +116,9 @@ ol,ul{
 }
 .p-max{
   max-width: 500px;
+}
+.clearfix {
+  clear:both;
 }
 .badge-big {
   font-size: 40px;
