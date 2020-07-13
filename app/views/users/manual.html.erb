@@ -255,7 +255,7 @@
         </div>
         <div class="collapse m">
           <p>Um die Rechte von Zuschauern weiter einzuschränken gehen Sie über das Zahnrad in der Menüleiste auf Zuschauerrechte einstellen. Alle getroffenen Einstellungen betreffen nicht die Moderatoren.</p>
-          <%= image_tag("manual/35.jpg"), class: "text-center" %>
+          <%= image_tag("manual/35.jpg") %>
           <p>Funktionen und ihre Bedeutung:</p>
           <ul>
             <li><b>Webcam und Mikrofon sperren:</b> Diese können nicht mehr ausgewählt und benutzt werden.
@@ -272,7 +272,7 @@
         <h3 id="36"><li>Notizen</li></h3>
         <div class="collapse p"><p>Der Präsentator ist eine Unterrolle in einer Konferenz. Wechseln Sie die Rolle um diesen Inhalt zu lesen.</p></div>
         <div class="collapse z m">
-          <%= image_tag("manual/36.jpg"), class: "text-center" %>
+          <%= image_tag("manual/36.jpg") %>
           <p>Änderungen in den „geteilte Notizen“ sind für jeden sofort ersichtlich. Der Text kann übersichtlicher formatiert werden als über das Whiteboard. Notizen können standardmäßig von allen beschrieben werden. </p>
           <p>Erklärung der Icons von links nach rechts: Fett schreiben, kursiv schreiben, Unterstrichen, durchgestrichen, nummerische Liste, ungeordnete Liste, Änderung rückgängig machen, Änderung wiederherstellen, Notizen runterladen.</p>
 
@@ -465,8 +465,8 @@
     $('html,body').animate({scrollTop: $(aid).offset().top},'slow');
   });
   $('a[href="/b/users/manual"]').addClass("active");
-// Default view
-    $(".z-button").addClass("active"); 
+
+  $(".z-button").addClass("active");
 </script>
 <% if current_user.role.get_permission("can_create_rooms") %>
    <script>
