@@ -114,14 +114,14 @@ ol,ul{
   margin-left: 0px;
 }
 .p-center{
-  margin: 1.5rem auto;
+  margin: 1.5rem auto !important;
   display: block;
   padding: 1rem;
 }
 .p-max{
   max-width: 500px;
 }
-.clearfix {
+.clearfix, .alert {
   clear:both;
 }
 .badge-big {
