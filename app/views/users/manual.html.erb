@@ -120,11 +120,15 @@
           <div class="collapse m">
             <p>Mit der Rolle eines Moderators ist es möglich weiter Konferenzräume zu erstellen. Klicken Sie dazu auf die Schrift "Raum erstellen" am Ende der Raumauflistung.</p>
             <img src="" alt="4 Raum Einstellungen">
-            <ol>
+            <ul>
               <li>Geben Sie erst einen eindeutigen Raumnamen an z.B. "Fach Klasse".</li>
               <li>Optionales Passwort für das betreten des Konferenzraums.</li>
-              <li>Empfohlen: Alle Teilnehmer werden beim betreten stumm geschaltet und müssen sich erst einmal </li>
-            </ol>
+              <li><b>Teilnehmer beim Betreten stummschalten:</b>Empfohlen: Alle Teilnehmer werden beim betreten stumm geschaltet und müssen sich erst einmal </li>
+              <li><b>Freigabe durch Moderator bevor der Raum betreten werden kann:</b> Als Moderator erhält man eine Benachrichtigung, in der laufenden Konferenz, wenn ein neuer Teilnehmer sich der Konferenz anschließen möchte. Dies kann man dann Akzeptieren oder verbieten. </li>
+              <li><b>Jeder Teilnehmer kann das Meeting starten: </b>Auch Zuschauer.</li>
+              <li><b>Sitzung aufzeichnen: </b>Gibt dem Moderator die Möglichkeit Aufzeichnungen in der Konferenz zu starten. (Siehe: <a class="archor" href="#313">Aufzeichnungen</a>)</li>
+              <li><b>Mikrofon-, Webcamfreigabe und nur Moderatoren dürfen Webcams sehen:</b> Voreinstellungen die genau die Einstellungen unter <a class="archor" href="#313">"Zuschauerrechte einstellen"</a> regeln.</li>
+            </ul>
             <p>Diese Raumeinstellungen können Sie jederzeit wieder Anpassen indem Sie neben dem jeweiligen Raum auf die drei Punkte klicken und dann auf "Raumeinstellungen ändern".</p>
 
           </div>
@@ -251,6 +255,7 @@
         </div>
         <div class="collapse m">
           <p>Um die Rechte von Zuschauern weiter einzuschränken gehen Sie über das Zahnrad in der Menüleiste auf Zuschauerrechte einstellen. Alle getroffenen Einstellungen betreffen nicht die Moderatoren.</p>
+          <%= image_tag("manual/35.jpg"), class: "text-center" %>
           <p>Funktionen und ihre Bedeutung:</p>
           <ul>
             <li><b>Webcam und Mikrofon sperren:</b> Diese können nicht mehr ausgewählt und benutzt werden.
@@ -267,6 +272,7 @@
         <h3 id="36"><li>Notizen</li></h3>
         <div class="collapse p"><p>Der Präsentator ist eine Unterrolle in einer Konferenz. Wechseln Sie die Rolle um diesen Inhalt zu lesen.</p></div>
         <div class="collapse z m">
+          <%= image_tag("manual/36.jpg"), class: "text-center" %>
           <p>Änderungen in den „geteilte Notizen“ sind für jeden sofort ersichtlich. Der Text kann übersichtlicher formatiert werden als über das Whiteboard. Notizen können standardmäßig von allen beschrieben werden. </p>
           <p>Erklärung der Icons von links nach rechts: Fett schreiben, kursiv schreiben, Unterstrichen, durchgestrichen, nummerische Liste, ungeordnete Liste, Änderung rückgängig machen, Änderung wiederherstellen, Notizen runterladen.</p>
 
@@ -410,7 +416,7 @@
       <h3 id="41"><li>Webcams größer machen</li></h3>
       <div class="collapse m z p">
         <p>Präsentation minimieren (oben rechts) oder Präsentationsfläche verkleinern.
-          Diese Änderungen sind Benutzerbezogen, dass heißt andere Teilnehmen sehen nicht ob Sie die Präsentation minimieren oder die Webcams verschieben. <img style="max-width:60%;" src="https://support.blindsidenetworks.com/hc/article_attachments/360044515132/adjustwebcams.gif" alt="">
+          Diese Änderungen sind Benutzerbezogen, dass heißt andere Teilnehmen sehen nicht ob Sie die Präsentation minimieren oder die Webcams verschieben. <img class="d-block" style="max-width:60%;" src="https://support.blindsidenetworks.com/hc/article_attachments/360044515132/adjustwebcams.gif" alt="">
 
           Ausserdem können die Fenster der Webcams, bei angezeigter Präsentation, durch klicken und ziehen, unter oder auch in die Präsentationsfläche verschoben werden.
         </p>
@@ -459,5 +465,12 @@
     $('html,body').animate({scrollTop: $(aid).offset().top},'slow');
   });
   $('a[href="/b/users/manual"]').addClass("active");
-
+// Default view
+    $(".z-button").addClass("active"); 
 </script>
+<% if current_user.role.get_permission("can_create_rooms") %>
+   <script>
+     $(".z-button").removeClass("active");
+     $(".m-button").addClass("active");
+  </script>
+<% end %>
