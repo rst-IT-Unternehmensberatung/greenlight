@@ -55,6 +55,8 @@ class Room < ApplicationRecord
     # Rely on manual ordering if trying to sort by status
     return order_by_status(table, running_ids) if column == "status"
 
+    return table.order("COALESCE(rooms.last_session,rooms.created_at) DESC") if column == "created_at"
+
     return table.order(Arel.sql("rooms.#{column} #{direction}")) if table.column_names.include?(column)
 
     return table.order(Arel.sql("#{column} #{direction}")) if column == "users.name"
@@ -90,15 +92,13 @@ class Room < ApplicationRecord
   def self.order_by_status(table, ids)
     return table if ids.blank?
 
-    order_string = "CASE bbb_id "
+    # Get active rooms first
+    active_rooms = table.where(bbb_id: ids)
 
-    ids.each_with_index do |id, index|
-      order_string += "WHEN '#{id}' THEN #{index} "
-    end
+    # Get other rooms sorted by last session date || created at date (whichever is higher)
+    inactive_rooms = table.where.not(bbb_id: ids).order("COALESCE(rooms.last_session,rooms.created_at) DESC")
 
-    order_string += "ELSE #{ids.length} END"
-
-    table.order(Arel.sql(order_string))
+    active_rooms + inactive_rooms
   end
 
   def settings_hash
@@ -122,9 +122,9 @@ class Room < ApplicationRecord
   # Generates a fully random room uid.
   def random_room_uid
     # 6 character long random string of chars from a..z and 0..9
-    full_chunk = SecureRandom.alphanumeric(6).downcase
+    full_chunk = SecureRandom.alphanumeric(9).downcase
 
-    [owner.name_chunk, full_chunk[0..2], full_chunk[3..5]].join("-")
+    [owner.name_chunk, full_chunk[0..2], full_chunk[3..5], full_chunk[6..8]].join("-")
   end
 
   # Generates a unique bbb_id based on uuid.
