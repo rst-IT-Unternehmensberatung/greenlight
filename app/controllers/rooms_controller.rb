@@ -171,10 +171,10 @@ class RoomsController < ApplicationController
     @room_settings = JSON.parse(@room[:room_settings])
     opts[:mute_on_start] = room_setting_with_config("muteOnStart")
     opts[:require_moderator_approval] = room_setting_with_config("requireModeratorApproval")
-    opts[:record] = room_setting_with_config("recording")
     opts[:locksettings_disable_microphone] = room_setting_with_config("lockSettingsDisableMic")
     opts[:locksettings_disable_webcam] = room_setting_with_config("lockSettingsDisableCam")
     opts[:webcams_for_moderator_only] = room_setting_with_config("webcamsOnlyForModerator")
+    opts[:record] = record_meeting
 
     begin
       redirect_to join_path(@room, current_user.name, opts, current_user.uid)
@@ -289,10 +289,8 @@ class RoomsController < ApplicationController
   # GET /:room_uid/room_settings
   def room_settings
     # Respond with JSON object of the room_settings
-    status = { running: room_running?(@room.bbb_id) }
-    settings = @room.settings_hash
     respond_to do |format|
-      format.json { render body: status.merge(settings).to_json }
+      format.json { render body: @room.room_settings }
     end
   end
 
@@ -399,4 +397,13 @@ class RoomsController < ApplicationController
     current_user.rooms.length >= limit
   end
   helper_method :room_limit_exceeded
+
+  def record_meeting
+    # If the require consent setting is checked, then check the room setting, else, set to true
+    if recording_consent_required?
+      room_setting_with_config("recording")
+    else
+      true
+    end
+  end
 end

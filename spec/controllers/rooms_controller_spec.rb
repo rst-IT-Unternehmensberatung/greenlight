@@ -207,13 +207,17 @@ describe RoomsController, type: :controller do
       "anyoneCanStart": true, "joinModerator": true, "lockSettingsDisableMic": true, "lockSettingsDisableCam": true,
       "webcamsOnlyForModerator": true }.to_json)
 
-      json_room_settings = "{\"running\":false,\"muteOnStart\":true,\"requireModeratorApproval\":true," \
-        "\"anyoneCanStart\":true,\"joinModerator\":true,\"lockSettingsDisableMic\":true," \
-	"\"lockSettingsDisableCam\":true,\"webcamsOnlyForModerator\":true}"
+      json_room_settings = { "anyoneCanStart" => true,
+                             "joinModerator" => true,
+                             "muteOnStart" => true,
+                             "requireModeratorApproval" => true,
+                             "lockSettingsDisableMic" => true,
+                             "lockSettingsDisableCam" => true,
+                             "webcamsOnlyForModerator" => true }
 
       get :room_settings, params: { room_uid: @owner.main_room }, format: :json
 
-      expect(JSON.parse(response.body).to_json).to eql(json_room_settings)
+      expect(JSON.parse(response.body)).to eql(json_room_settings)
     end
 
     it "should redirect to root if not logged in" do
