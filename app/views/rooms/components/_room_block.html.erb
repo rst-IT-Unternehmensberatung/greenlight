@@ -50,7 +50,7 @@
               <a href="" data-toggle="modal" data-target="#createRoomModal" class="update-room dropdown-item" data-settings-path="<%= room_settings_path(room) %>">
                 <i class="dropdown-icon fas fa-cog"></i> <%= t("room.settings") %>
               </a>
-              <% if preupload_allowed? %>
+              <% if preupload_allowed %>
                 <a href="" data-toggle="modal" data-target="#preuploadPresentationModal" class="preupload-room dropdown-item" data-path="<%= preupload_presentation_path(room) %>" data-settings-path="<%= current_presentation_path(room) %>">
                   <i class="dropdown-icon fas fa-file-upload"></i> <%= t("room.add_presentation") %>
                 </a>
