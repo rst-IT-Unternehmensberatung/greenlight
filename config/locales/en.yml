@@ -90,7 +90,7 @@ en:
         title: Maintenance Banner
         display: Set
         clear: Clear
-        time: "Maintenance: On Friday, there may be disruptions in service starting at 6 p.m."
+        time: "Example: Update scheduled on December 13 @ 23:00 ET. Users may experience problems signing in."
       preupload:
         info: Users can preupload a presentation to be used as the default presentation for that specific room
         title: Allow Users to Preupload Presentations
@@ -417,7 +417,7 @@ en:
       forgot_password: Forgot Password?
     preupload:
       change: Replace Presentation
-      choose: Choose a file (.doc, .docx, .pptx, .pdf)
+      choose: Choose a file (%{type})
       current: "Current Presentation:"
       footer: Depending on the size of the presentation, it may require additional time to upload before it can be used.
       invalid: Invalid size/file type. Please see the restrictions below.
