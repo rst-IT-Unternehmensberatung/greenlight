@@ -210,10 +210,10 @@ describe RoomsController, type: :controller do
       json_room_settings = { "anyoneCanStart" => true,
                              "joinModerator" => true,
                              "muteOnStart" => true,
-                             "requireModeratorApproval" => true,
                              "lockSettingsDisableMic" => true,
                              "lockSettingsDisableCam" => true,
-                             "webcamsOnlyForModerator" => true }
+                             "webcamsOnlyForModerator" => true,
+                             "requireModeratorApproval" => true }
 
       get :room_settings, params: { room_uid: @owner.main_room }, format: :json
 

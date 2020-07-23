@@ -45,9 +45,9 @@ en:
         invalid: Invalid URL
       legal:
         change: Change URL
-        info: Change the Legal Link that appears in the bottom of the page
-        placeholder: Legal URL...
-        title: Legal
+        info: Change the Terms Link that appears in the bottom of the page
+        placeholder: Terms URL...
+        title: Terms
         invalid: Invalid URL
       privpolicy:
         change: Change URL
@@ -285,7 +285,7 @@ en:
     designs: Custom Designs
     authentication: User Authentication
   footer:
-    legal: Legal
+    legal: Terms
     privpolicy: Privacy Policy
     powered_by: Powered by %{href}.
   forgot_password:
@@ -544,6 +544,7 @@ en:
       fail: Failed to delete room (%{error})
     enter_the_access_code: Enter the room's access code
     invalid_provider: You have entered an invalid url. Please check the url and try again.
+    invitation_description: You have been invited to join %{name} using BigBlueButton. To join, click the link above and enter your name.
     invited: You have been invited to join
     recording_present: The session is going to be recorded. This may include voice and video from your side.
     invite_participants: Invite Participants

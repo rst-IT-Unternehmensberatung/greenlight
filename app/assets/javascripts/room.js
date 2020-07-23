@@ -222,10 +222,10 @@ function updateCurrentSettings(settings_path){
     $("#room_require_moderator_approval").prop("checked", $("#room_require_moderator_approval").data("default") || settings.requireModeratorApproval)
     $("#room_anyone_can_start").prop("checked", $("#room_anyone_can_start").data("default") || settings.anyoneCanStart)
     $("#room_all_join_moderator").prop("checked", $("#room_all_join_moderator").data("default") || settings.joinModerator)
+    $("#room_recording").prop("checked", $("#room_recording").data("default") || Boolean(settings.recording))
     $("#room_locksettings_disable_microphone").prop("checked", $("#room_locksettings_disable_microphone").data("default") || settings.lockSettingsDisableMic)
     $("#room_locksettings_disable_webcam").prop("checked", $("#room_locksettings_disable_webcam").data("default") || settings.lockSettingsDisableCam)
     $("#room_webcams_for_moderator_only").prop("checked", $("#room_webcams_for_moderator_only").data("default") || settings.webcamsOnlyForModerator)
-    $("#room_recording").prop("checked", $("#room_recording").data("default") || Boolean(settings.recording))
   })
 }
 
