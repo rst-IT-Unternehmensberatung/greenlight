@@ -45,18 +45,19 @@
 
             <nav class="row m-0">
               <div class="nav col nav-tabs m-0 p-0 admin-tabs">
-                <a class="nav-item p-3 nav-link " data-toggle="collapse" data-target=".room-collapse" aria-expanded="true" aria-controls="room_settings">
+                <a class="nav-item p-3 nav-link " data-toggle="tab" role="tab" href="#room_settings">
                   <i class="fas mr-3 fa-cog"></i>
                   Allgemein
                 </a>
-                <a class="nav-item p-3 nav-link collapsed" data-toggle="collapse" data-target=".room-collapse" aria-expanded="false" aria-controls="room_viewer">
+                <a class="nav-item p-3 nav-link " data-toggle="tab" role="tab" href="#room_viewer">
                   <i class="fas mr-3 fa-eye"></i>
                   Zuschauer
                 </a>
               </div>
             </nav>
 
-            <div class="collapse room-collapse show" id="room_settings">
+            <div class="tab-content">
+            <div class="tab-pane fade active in" id="room_settings">
 
             <% mute = room_configuration("Room Configuration Mute On Join") %>
             <% if mute != "disabled" %>
@@ -111,7 +112,7 @@
 
           </div>
 
-          <div class="collapse room-collapse" id="room_viewer">
+          <div class="tab-pane fade" id="room_viewer">
 
             <% lockmic = room_configuration("Room Configuration Disable Microphone") %>
             <% if lockmic != "disabled" %>
@@ -139,6 +140,7 @@
                 <span class="custom-switch-indicator float-right cursor-pointer"></span>
               </label>
             <% end %>
+            </div>
             </div>
 
           <div class="mt-4">
