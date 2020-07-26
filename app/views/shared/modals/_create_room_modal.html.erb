@@ -43,6 +43,21 @@
               </span>
             </div>
 
+            <nav class="row m-0">
+              <div class="nav col nav-tabs m-0 p-0">
+                <a class="nav-item p-3 nav-link active collapsed" data-toggle="collapse" data-target=".room-collapse" aria-expanded="true" aria-controls="room_settings room_viewer">
+                  <i class="fas mr-3 fa-palette"></i>
+                  Allgemein
+                </a>
+                <a class="nav-item p-3 nav-link " data-toggle="collapse" data-target=".room-collapse" aria-expanded="false" aria-controls="room_settings room_viewer">
+                  <i class="fas mr-3 fa-toolbox"></i>
+                  Zuschauer
+                </a>
+              </div>
+            </nav>
+
+            <div class="collapse room-collapse show" id="room_settings">
+
             <% mute = room_configuration("Room Configuration Mute On Join") %>
             <% if mute != "disabled" %>
               <label class="custom-switch pl-0 mt-3 mb-3 w-100 text-left d-inline-block <%= "enabled-setting" if mute == "enabled" %>">
@@ -69,6 +84,7 @@
                 <span class="custom-switch-indicator float-right cursor-pointer"></span>
               </label>
             <% end %>
+
             <% moderator = room_configuration("Room Configuration All Join Moderator") %>
             <% if moderator != "disabled" %>
               <label class="custom-switch pl-0 mt-3 mb-3 w-100 text-left d-inline-block <%= "enabled-setting" if moderator == "enabled" %>">
@@ -77,6 +93,7 @@
                 <span class="custom-switch-indicator float-right cursor-pointer"></span>
               </label>
             <% end %>
+
             <% recording = room_configuration("Room Configuration Recording") %>
             <% if recording_consent_required? && recording != "disabled" %>
               <label class="custom-switch pl-0 mt-3 mb-3 w-100 text-left d-inline-block <%= "enabled-setting" if recording == "enabled" %>">
@@ -85,6 +102,16 @@
                 <span class="custom-switch-indicator not-running-only float-right cursor-pointer"></span>
             </label>
             <% end %>
+
+            <label id="auto-join-label" class="create-only custom-switch pl-0 mt-3 mb-3 w-100 text-left d-inline-block">
+              <span class="custom-switch-description"><%= t("modal.create_room.auto_join") %></span>
+              <%= f.check_box :auto_join, class: "custom-switch-input", checked: false %>
+              <span class="custom-switch-indicator float-right cursor-pointer"></span>
+            </label>
+
+          </div>
+
+          <div class="collapse room-collapse" id="room_viewer">
 
             <% lockmic = room_configuration("Room Configuration Disable Microphone") %>
             <% if lockmic != "disabled" %>
@@ -112,12 +139,8 @@
                 <span class="custom-switch-indicator float-right cursor-pointer"></span>
               </label>
             <% end %>
+            </div>
 
-            <label id="auto-join-label" class="create-only custom-switch pl-0 mt-3 mb-3 w-100 text-left d-inline-block">
-              <span class="custom-switch-description"><%= t("modal.create_room.auto_join") %></span>
-              <%= f.check_box :auto_join, class: "custom-switch-input", checked: false %>
-              <span class="custom-switch-indicator float-right cursor-pointer"></span>
-            </label>
           <div class="mt-4">
             <%= f.submit t("modal.create_room.create"), class: "create-only btn btn-primary btn-block" %>
             <%= f.submit t("modal.room_settings.update"), class: "update-only btn btn-primary btn-block" %>

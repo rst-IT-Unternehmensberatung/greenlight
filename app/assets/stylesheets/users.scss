@@ -56,6 +56,9 @@ ol,ul{
       margin-top: -0.5em;
     }
   }
+  p {
+    text-align: justify;
+  }
   nav{
     background-color: white;
     box-shadow: 0 2px 6px white;
@@ -107,11 +110,11 @@ ol,ul{
 
 .p-right {
   float: right;
-  margin-right: 0px;
+  margin-right: 0 !important;
 }
 .p-left {
   float: left;
-  margin-left: 0px;
+  margin-left: 0 !important;
 }
 .p-center{
   margin: 1.5rem auto !important;
@@ -138,5 +141,10 @@ ol,ul{
 @media (max-width:990px) and (min-width:770px) {
   .nav-manu-item > span {
     display: block;
+  }
+}
+@media (max-width:990px) {
+  .p-left, .p-right {
+    float: none !important;
   }
 }

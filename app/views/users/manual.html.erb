@@ -21,15 +21,15 @@
   <hr class="mt-0">
   <div class="row">
     <div class="col">
-      <p>Hier finden Sie alles Relevante rund um die Konferenzplattform BigBlueButton. Wähle eine der drei Ansichten aus und scrolle dann weiter runter.</p>
+      <p>Hier finden Sie alles Relevante rund um die Konferenzplattform BigBlueButton.</p>
       <p><b>Lehrer</b> und <b>Schüler</b> werden in dieser Anleitung als <b>Moderator (M)</b> und <b>Zuschauer (Z)</b> bezeichnet.</p>
     </div>
   </div>
 
   <nav class="nav row sticky-top text-center justify-content-around">
-    <a class="nav-manu-item col-md-3 m-button btn-outline-danger" tabindex="1" data-toggle="collapse" data-col=".m" data-col2=".z, .p"><span class="mx-1">Lehrer</span><span class="badge badge-danger mx-1 badge-pill">M (Moderator)</span></a>
-    <a class="nav-manu-item col-md-3 z-button btn-outline-info" tabindex="1" data-toggle="collapse"  data-col=".z" data-col2=".m, .p"><span class="mx-1">Schüler</span><span class="badge badge-info mx-1 badge-pill">Z (Zuschauer)</span></a>
-    <a class="nav-manu-item col-md-3 p-button btn-outline-success" tabindex="1" data-toggle="collapse" data-col=".p" data-col2=".z, .m"><span class="mx-1">Präsentator</span><span class="badge badge-success mx-1 badge-pill">P (Präsentator)</span></a>
+    <a class="nav-manu-item col-md-3 m-button btn-outline-danger" tabindex="1" data-toggle="collapse" data-col=".m" data-col2=".z, .p"><span class="mx-1">Moderator (Lehrer)</span><span class="badge badge-danger mx-1 badge-pill">M</span></a>
+    <a class="nav-manu-item col-md-3 z-button btn-outline-info" tabindex="1" data-toggle="collapse"  data-col=".z" data-col2=".m, .p"><span class="mx-1">Zuschauer (Schüler)</span><span class="badge badge-info mx-1 badge-pill">Z</span></a>
+    <!--<a class="nav-manu-item col-md-3 p-button btn-outline-success" tabindex="1" data-toggle="collapse" data-col=".p" data-col2=".z, .m"><span class="mx-1">Präsentator</span><span class="badge badge-success mx-1 badge-pill">P (Präsentator)</span></a>-->
   </nav>
 
   <div class="row">
@@ -88,9 +88,11 @@
               einem angeschlossenen Headset (Kopfhörer vom Handy gehen meist auch). Bei Smartphones und Tabletts
               kann es zu Einschränkungen kommen und sollte deshalb nicht vom Moderator (Lehrer) oder für größere
               Konferenzen mit Videoübertragung verwendet werden.</p>
+              <%= image_tag("manual/1_1.jpg", class: "p-left", alt:"") %>
+              <%= image_tag("manual/1_2.jpg", class: "p-left", alt:"") %>
           </div>
           <div class="alert alert-primary" role="alert">
-            <span>Für eine Kurzanleitung folgen Sie den blau markierten Links am Ende des jeweiligen Abschnitts. <a class="archor primary-link" href="#21">Kurzanleitung starten &raquo;</a></span>
+            <span>Für eine Kurzanleitung folgen Sie den blau markierten Kästen am Ende des jeweiligen Abschnitts. <a class="archor primary-link" href="#21">Kurzanleitung starten &raquo;</a></span>
           </div>
         </div>
         <h3 id="2"><li>Raumansicht (Startseite)</li></h3>
@@ -142,7 +144,7 @@
           <h3 id="24"><li>Aufzeichnungen verwalten<span class="badge badge-danger ml-2 badge-pill">M</span></li></h3>
           <p class="collapse p z">Dieser Inhalt ist nur für Moderatoren.</p>
           <div class="collapse m">
-            <p>Wie man Aufzeichnungen anfertigt, finden Sie im Punkt <a  class="archor" href="#33">C13</a>.</p>
+            <p>Wie man Aufzeichnungen anfertigt, finden Sie im Punkt <a  class="archor" href="#313">C13</a>.</p>
 
             <p>Wenn Sie einen Raum auswählen, werden unten auf der Seite die aufgezeichneten Konferenzen aufgelistet. Dies kann je nach Auslastung des Servers bis zu 24 Stunden dauern. Unter dem Punkt Sichtbarkeit wird der Zugriff auf die Aufzeichnung eingestellt. Standardmäßig ist dieses Feld auf "nicht gelistet".
             <dl>
@@ -205,8 +207,8 @@
             In der Teilnehmerliste sind die Rechte an der <b>Form</b> vor dem Namen abzulesen. Dies spiegelt sich auch in der <a  class="archor" href="#2">Raumansicht (oben Rechts)</a> wieder. (Farben können variieren)
           </p>
 
-          <div class="row clearfix">
-            <div class="col-sm-6 text-center">
+          <div class="row clearfix justify-content-around">
+            <div class="col-lg-3 col-sm-6 col-12 text-center">
               <h4>Moderator</h4>
               <span class="badge badge-pill badge-danger badge-big">M</span>
               <ul>
@@ -218,7 +220,7 @@
 
               </ul>
             </div>
-            <div class="col-sm-6 text-center">
+            <div class="col-lg-3 col-sm-6 col-12 text-center">
               <h4>Zuschauer</h4>
               <span class="badge badge-pill badge-info badge-big">Z</span>
               <ul>
@@ -230,19 +232,17 @@
               </ul>
               <p class="collapse m">Diese Privilegien können als Moderator eingeschränkt werden (Siehe <a  class="archor" href="#35">Zuschauerrechte einstellen</a>).</p>
             </div>
-            <div class="col-12">
-              <h4 class="text-center text-md-left">Präsentator</h4>
-            </div>
-            <div class="col-sm-2 text-center"><span class="badge badge-pill badge-success badge-big">P</span></div>
-            <div class="col-sm-10">
-              <p>Dieses Recht kann nur eine Person in der Konferenz haben. Der erste Moderator im Raum erhält standardmäßig dieses Recht. Moderatoren können das Recht auf andere Teilnehmer übertragen oder auch wieder entziehen. Wählen Sie dazu in der Teilnehmerliste einen Namen aus und klicken Sie auf „Zum Präsentator machen“.</p>
+          </div>
+          <div class="row clearfix justify-content-center">
+            <div class="col-sm-2 text-right mt-5"><span class="badge badge-pill badge-success badge-big">P</span></div>
+            <div class="col-sm-6">
+              <h4 class="text-center">Präsentator</h4><p>Dieses Recht kann nur eine Person in der Konferenz haben. Der erste Moderator im Raum erhält standardmäßig dieses Recht. Moderatoren können das Recht auf andere Teilnehmer übertragen oder auch wieder entziehen. Wählen Sie dazu in der Teilnehmerliste einen Namen aus und klicken Sie auf „Zum Präsentator machen“.</p>
               <p>Nutzer mit diesem Recht haben folgende zusätzliche Funktionen: </p>
               <ul>
                 <li>Präsentationen zu verwalten</li>
                 <li>Whiteboard zu benutzen und den Mehrbenutzermodus zu aktivieren</li>
                 <li>eigenen Bildschirm mit anderen Teilnehmern teilen</li>
               </ul>
-
             </div>
           </div>
 
@@ -261,21 +261,27 @@
         </div>
         <div class="collapse m">
           <p>Um die Rechte von Zuschauern weiter einzuschränken gehen Sie über das Zahnrad in der Menüleiste auf Zuschauerrechte einstellen. Alle getroffenen Einstellungen betreffen nicht die Moderatoren.</p>
-          <%= image_tag("manual/351.jpg", class: "p-left p-max", alt:"") %>
-          <%= image_tag("manual/352.jpg", class: "p-left p-max", alt:"") %>
-          <p>Funktionen und ihre Bedeutung:</p>
-          <ul>
-            <li><b>Webcam und Mikrofon sperren:</b> Diese können nicht mehr ausgewählt und benutzt werden.
-            </li>
-            <li><b>Nur Moderatoren sehen Webcams:</b> Wir empfehlen diese Funktion zu sperren, da eine hohe Anzahl an gleichzeitigen Streams die Endgeräte (besonders Smartphones) stark beansprucht. <div class="alert alert-warning" role="alert">Beachten Sie das Webcams auch in Aufzeichnungen gespeichert werden.
-              </div></li>
-            <li><b>Öffentliche Chatnachriten senden:</b> Sperrt die Kommunikation aller Zuschauer im öffentlichen Chat zu schreiben. </li>
-            <li><b>Private Chatnachrichten senden:</b> Verbietet den Kontakt untereinander, aber nicht zum Moderator hin.</li>
-            <li><b>Geteilte Notizen bearbeiten:</b> Sperrt alle Zuschauer aus die Notizen zu verändern.</li>
-            <li><b>Andere Teilnehmer in der Teilnehmerliste sehen:</b> Empfehlenswert bei Webinaren, bei denen sich die Zuschauer nicht gegenseitig sehen sollen.</li>
-          </ul>
-          <p>Wenn Änderungen an den Einstellungen gemacht werden, wird dies jedem Teilnehmer mit einem Popup oben rechts signalisiert. Außerdem wird unter jedem Zuschauer ein „Gesperrt“ angezeigt wenn mindestens eine (Außer „nur Moderatoren sehen Webcams“) Einstellung die Zuschauer einschränkt.</p>
-        </div>
+          <%= image_tag("manual/351.jpg", class: "p-center p-max", alt:"") %>
+          <div class="row">
+            <div class="col-md-6">
+              <%= image_tag("manual/352.jpg", class: "p-max", alt:"") %>
+            </div>
+            <div class="col-md-6">
+              <p>Funktionen und ihre Bedeutung:</p>
+              <ul>
+                <li><b>Webcam und Mikrofon sperren:</b> Diese können nicht mehr ausgewählt und benutzt werden.</li>
+                <li><b>Nur Moderatoren sehen Webcams:</b> Wir empfehlen diese Funktion zu sperren, da eine hohe Anzahl an gleichzeitigen Streams die Endgeräte (besonders Smartphones) stark beansprucht.
+                  <div class="alert alert-warning" role="alert">Beachten Sie das Webcams auch in Aufzeichnungen gespeichert werden.</div></li>
+                <li><b>Öffentliche Chatnachriten senden:</b> Sperrt die Kommunikation aller Zuschauer im öffentlichen Chat zu schreiben. </li>
+                <li><b>Private Chatnachrichten senden:</b> Verbietet den Kontakt untereinander, aber nicht zum Moderator hin.</li>
+                <li><b>Geteilte Notizen bearbeiten:</b> Sperrt alle Zuschauer aus die Notizen zu verändern.</li>
+                <li><b>Andere Teilnehmer in der Teilnehmerliste sehen:</b> Empfehlenswert bei Webinaren, bei denen sich die Zuschauer nicht gegenseitig sehen sollen.</li>
+              </ul>
+              <p>Wenn Änderungen an den Einstellungen gemacht werden, wird dies jedem Teilnehmer mit einem Popup oben rechts signalisiert. Außerdem wird unter jedem Zuschauer ein „Gesperrt“ angezeigt wenn mindestens eine (Außer „nur Moderatoren sehen Webcams“) Einstellung die Zuschauer einschränkt.</p>
+            </div>
+          </div>
+
+          </div>
         <h3 id="36"><li>Notizen</li></h3>
         <div class="collapse p"><p>Der Präsentator ist eine Unterrolle in einer Konferenz. Wechseln Sie die Rolle um diesen Inhalt zu lesen.</p></div>
         <div class="collapse z m">
@@ -301,13 +307,13 @@
         </div>
         <h3 id="38"><li>Umfragen<span class="badge badge-success ml-2 badge-pill">P</span></li></h3>
         <div class="collapse m z">
-          <p>Umfragen können nur vom Präsentator gestellt werden. (Wenn du mehr dazu erfahren möchtest, klicke auf den grünen Präsentator Button oben rechts.)
+          <p>Umfragen können nur vom Präsentator gestellt werden. Mehr Informatioen wer der Präsentator ist, erfährst du im Abschnitt <a href="#33">Rechte</a>.
             Alle anderen bekommen einen Hinweißton abgespielt, wenn eine Umfrage gestartet wurde. Diese wird unten rechts in der Präsentationsfläche angezeigt.
             Wenn der Präsentator möchte, kann er das Umfrageergebnis auch auf der derzeitig, angezeigten Folie veröffentlichen.
           </p>
 
         </div>
-        <div class="collapse p">
+        <div class="collapse p m z">
           <p>Der Präsentator hat das Recht über das blaue Plus Umfragen zu starten. Dafür können vordefinierte Antwortmöglichkeiten ausgewählt werden oder eigene über den Punkt „Benutzerdefinierte Umfrage“ eingegeben werden.
             Umfragen erscheinen bei allen unten Rechts am Bildschirm:
 
@@ -319,22 +325,22 @@
         </div>
         <h3 id="39"><li>Präsentationen<span class="badge badge-success ml-2 badge-pill">P</span></li></h3>
         <div class="collapse m z">
-          <p>Präsentationen können nur vom Präsentator verwaltet werden. (Wenn du mehr dazu erfahren möchtest, klicke auf den grünen Präsentator Button oben rechts.)
+          <p>Präsentationen können nur vom Präsentator verwaltet werden.
             Alle anderen Teilnehmer sehen nur die aktuelle Folie, die in der Präsentationsfläche angezeigt wird.
           </p>
 
         </div>
-        <div class="collapse p">
+        <div class="collapse p m z">
           <p>Über den blauen Plus Icon, unten links, können neue Präsentationen hochgeladen werden. Dabei ist es egal welches Format (Word, PowerPoint oder auch OpenOffice Dokumente) Sie dafür wählen. Bevorzugt ist aber ein Dokument im PDF Format.</p>
           <p>Präsentationen können für alle Teilnehmer zum download freigegeben werden.</p>
         </div>
         <h3 id="310"><li>Whiteboard<span class="badge badge-success ml-2 badge-pill">P</span></li></h3>
         <div class="collapse m z">
-          <p>Das Whiteboard ist grundsätzlich dem Präsentator vorbehalten. Andere Teilnehmer dürfen die Zeichenfläche verwenden, wenn der Mehrbenutzermodus vom Präsentator aktiviert wurde. (Wenn du mehr dazu erfahren möchtest, klicke auf den grünen Präsentator Button oben rechts.)
+          <p>Das Whiteboard ist grundsätzlich dem Präsentator vorbehalten. Andere Teilnehmer dürfen die Zeichenfläche verwenden, wenn der Mehrbenutzermodus vom Präsentator aktiviert wurde. Mehr Informatioen wer der Präsentator ist, erfährst du im Abschnitt <a href="#33">Rechte</a>.
           </p>
         </div>
 
-        <div class="collapse p">
+        <div class="collapse p m z">
           <p>Das Whiteboard Feature ist dazu gedacht Dinge zu markieren und dem Zuschauer kenntlicher zu gestalten. Oder auch für kurze Anmerkungen und buntes gemeinsames Malen.
             Anmerkungen kann man auf jeder Folie, die man hochgeladen hat, machen. Wenn man möchte, kann man auch leere Seiten hochladen, um schnell Skizzen anzufertigen.
           </p>
@@ -398,7 +404,7 @@
         </p>
         <div class="alert alert-warning" role="alert">
           <h4 class="alert-heading"><i class="fas fa-exclamation-circle mr-2"></i>Hinweis</h4>
-          <p>Erst nach Beendigung der Konferenz über den "Konferenz beenden"-Knopf wird begonnen die Aufzeichnung zu generieren. Diese generierung kann bis zu 24 Stunden dauern.</p>
+          <p>Erst nach dem beenden der Konferenz über den "Konferenz beenden"-Knopf wird begonnen die Aufzeichnung zu generieren. Dies kann bis zu 24 Stunden dauern. Nach der fertigstellung wird die Aufzeichnung unter dem jeweiligen Raum angezeigt.</p>
         </div>
       </div>
       <div class="collapse p"><p>Wenn Ihnen Räume geteilt wurden, in denen Aufzeichnungen vorhanden sind. Können Sie diese im jeweiligen Raum ansehen indem Sie auf "Präsentation" klicken. </p></div>

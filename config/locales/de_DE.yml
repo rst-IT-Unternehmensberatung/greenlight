@@ -429,7 +429,7 @@ de_DE:
       lock_webcam_disable: Webcamfreigabe deaktivieren
       webcams_for_moderator_only: "Nur Moderatoren dürfen Webcams sehen"
       recordings: Raumaufzeichnungen aktivieren
-      recording: Sitzungen aufzeichnen
+      recording: Aufzeichnung des Raums erlauben
       session_active: Aktive Sitzung
       footer_text: "Anpassungen des Raums können jederzeit vorgenommen werden."
     rename_room:
