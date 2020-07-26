@@ -75,7 +75,7 @@
           <% unless exceeds_limit %>
             <%= button_to t("room.start"), start_room_path(@room), class: "btn btn-primary btn-block px-7 start-button float-right", "data-disable": "" %>
           <% end %>
-          <% elsif room_configuration("Room Configuration All Join Moderator") != "disabled" %>
+          <% elsif room_configuration("Room Configuration All Join Moderator") == "enabled" %>
             <% unless exceeds_limit %>
               <%= button_to t("room.start"), start_room_path(@room), class: "btn btn-primary btn-block px-7 start-button float-right", "data-disable": "" %>
             <% end %>
