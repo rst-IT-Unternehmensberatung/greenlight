@@ -77,6 +77,9 @@
       opacity: 0.5;
     }
   }
+ .room-name-text {
+  word-break: break-word;
+  }
 }
 
 #create-room-block {

@@ -75,10 +75,6 @@
           <% unless exceeds_limit %>
             <%= button_to t("room.start"), start_room_path(@room), class: "btn btn-primary btn-block px-7 start-button float-right", "data-disable": "" %>
           <% end %>
-          <% elsif anyone_can_start %>
-            <% unless exceeds_limit %>
-              <%= button_to t("room.start"), start_room_path(@room), class: "btn btn-primary btn-block px-7 start-button float-right", "data-disable": "" %>
-            <% end %>
         <% else %>
           <button type="button" onclick="location.reload();" class="btn btn-primary btn-block px-7 start-button float-right">neu laden</button>
         <% end %>
