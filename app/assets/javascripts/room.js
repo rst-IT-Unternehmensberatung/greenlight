@@ -36,10 +36,10 @@ $(document).on('turbolinks:load', function(){
       if (success) {
         inviteURL.blur();
         copy.addClass('btn-success');
-        copy.html("<i class='fas fa-check'></i>" + getLocalizedString("copied"))
+        copy.html("<i class='fas fa-check mr-1'></i> " + getLocalizedString("copied"))
         setTimeout(function(){
           copy.removeClass('btn-success');
-          copy.html("<i class='fas fa-copy'></i>" + getLocalizedString("copy"))
+          copy.html("<i class='fas fa-copy mr-1'></i> " + getLocalizedString("copy"))
         }, 2000)
       }
     });
@@ -129,6 +129,27 @@ $(document).on('turbolinks:load', function(){
         $("#user-list").append(listItem)
       }
     })
+
+    $("#presentation-upload").change(function(data) {
+      var file = data.target.files[0]
+
+      // Check file type and size to make sure they aren't over the limit
+      if (validFileUpload(file)) {
+        $("#presentation-upload-label").text(file.name)
+      } else {
+        $("#invalid-file-type").show()
+        $("#presentation-upload").val("")
+        $("#presentation-upload-label").text($("#presentation-upload-label").data("placeholder"))
+      }
+    })
+
+    $(".preupload-room").click(function() {
+      updatePreuploadPresentationModal(this)
+    })
+
+    $("#remove-presentation").click(function(data) {
+      removePreuploadPresentation($(this).data("remove"))
+    })
   }
 });
 
@@ -158,9 +179,6 @@ function showCreateRoom(target) {
     $(this).attr('style',"display:none !important")
     if($(this).children().length > 0) { $(this).children().attr('style',"display:none !important") }
   })
-
-  runningSessionWarningVisibilty(false)
-
 }
 
 function showUpdateRoom(target) {
@@ -193,9 +211,6 @@ function showUpdateRoom(target) {
     $("#create-room-access-code").text(getLocalizedString("modal.create_room.access_code_placeholder"))
     $("#room_access_code").val(null)
   }
-
-  runningSessionWarningVisibilty(false)
-
 }
 
 function showDeleteRoom(target) {
@@ -211,10 +226,7 @@ function updateCurrentSettings(settings_path){
     $("#room_require_moderator_approval").prop("checked", $("#room_require_moderator_approval").data("default") || settings.requireModeratorApproval)
     $("#room_anyone_can_start").prop("checked", $("#room_anyone_can_start").data("default") || settings.anyoneCanStart)
     $("#room_all_join_moderator").prop("checked", $("#room_all_join_moderator").data("default") || settings.joinModerator)
-    $("#room_recording").prop("checked", $("#room_recording").data("default") || settings.recording)
-
-    runningSessionWarningVisibilty(settings.running)
-
+    $("#room_recording").prop("checked", $("#room_recording").data("default") || Boolean(settings.recording))
     $("#room_locksettings_disable_microphone").prop("checked", $("#room_locksettings_disable_microphone").data("default") || settings.lockSettingsDisableMic)
     $("#room_locksettings_disable_webcam").prop("checked", $("#room_locksettings_disable_webcam").data("default") || settings.lockSettingsDisableCam)
     $("#room_webcams_for_moderator_only").prop("checked", $("#room_webcams_for_moderator_only").data("default") || settings.webcamsOnlyForModerator)
@@ -280,13 +292,33 @@ function removeSharedUser(target) {
   }
 }
 
-// Show a "Session Running warning" for each room setting, which cannot be changed during a running session
-function runningSessionWarningVisibilty(isRunning) {
-    if(isRunning) {
-        $(".running-only").show()
-        $(".not-running-only").hide()
+function updatePreuploadPresentationModal(target) {
+  $.get($(target).data("settings-path"), function(presentation) {
+    if(presentation.attached) {
+      $("#current-presentation").show()
+      $("#presentation-name").text(presentation.name)
+      $("#change-pres").show()
+      $("#use-pres").hide()
     } else {
-        $(".running-only").hide()
-        $(".not-running-only").show()
+      $("#current-presentation").hide()
+      $("#change-pres").hide()
+      $("#use-pres").show()
     }
+  });
+
+  $("#preuploadPresentationModal form").attr("action", $(target).data("path"))
+  $("#remove-presentation").data("remove",  $(target).data("remove"))
+
+  // Reset values to original to prevent confusion
+  $("#presentation-upload").val("")
+  $("#presentation-upload-label").text($("#presentation-upload-label").data("placeholder"))
+  $("#invalid-file-type").hide()
+}
+
+function removePreuploadPresentation(path) {
+  $.post(path, {})
+}
+
+function validFileUpload(file) {
+  return file.size/1024/1024 <= 30
 }

@@ -77,6 +77,9 @@
       opacity: 0.5;
     }
   }
+ .room-name-text {
+  word-break: break-word;
+  }
 }
 
 #create-room-block {
@@ -136,4 +139,18 @@
 .enabled-setting {
   background: lightgray;
   pointer-events: none;
+}
+
+#recording-table .edit_hover_class {
+  word-break: break-all;
+  white-space: normal;
+}
+
+.custom-file-label::after {
+font-family: 'Font Awesome 5 Free';
+content: "\f574";
+font-weight: 900;
+}
+#room-owner-name {
+  line-height: 12px;
 }

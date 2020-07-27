@@ -404,6 +404,14 @@ de_DE:
       or: oder
       with: "Einloggen mit %{provider}"
       forgot_password: "Passwort vergessen?"
+    preupload:
+      change: Präsentation ändern
+      choose: Wählen Sie eine Datei...
+      current: "Aktuelle Präsentation:"
+      footer: "Erlaubte Dateitypen: .doc, .docx, .pptx, .pdf"
+      footer_bottom: "Maximale Dateigröße: 30 MB oder 150 Seiten"
+      title: Präsentation hinzufügen
+      use: Präsentation verwenden
     rename_recording:
     remove_shared:
       title: "Sind Sie sicher, dass Sie diesen Raum aus Ihrer Raumliste entfernen wollen?"
@@ -421,7 +429,7 @@ de_DE:
       lock_webcam_disable: Webcamfreigabe deaktivieren
       webcams_for_moderator_only: "Nur Moderatoren dürfen Webcams sehen"
       recordings: Raumaufzeichnungen aktivieren
-      recording: Sitzungen aufzeichnen
+      recording: Aufzeichnung des Raums erlauben
       session_active: Aktive Sitzung
       footer_text: "Anpassungen des Raums können jederzeit vorgenommen werden."
     rename_room:
@@ -545,8 +553,11 @@ de_DE:
       recent_rooms: Den kürzlich betretenen Raum betreten
       title: Raum betreten
     no_sessions: In diesem Raum haben noch keine Konferenzen stattgefunden.
+    add_presentation: "Präsentation hinzufügen"
+    preupload_success: "Präsentation erfolgreich hochgeladen"
+    preupload_error: "Es gab einen Fehler bei der Aktualisierung der Raumpräsentation."
     recordings: Aufzeichnungen des Raums
-    room_limit: Sie haben die maximale Anzahl von Räumen eingerichtet.
+    room_limit: "Sie haben die maximale Anzahl von Räumen eingerichtet."
     room_limit_exceeded: "Sie haben die Anzahl der erlaubten Räume überschritten. Bitte löschen Sie %{difference} Räume, um diesen Raum zu betreten."
     sessions: Konferenzen
     settings: Raumeinstellungen

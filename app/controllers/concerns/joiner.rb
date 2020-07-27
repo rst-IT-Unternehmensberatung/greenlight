@@ -59,9 +59,10 @@ module Joiner
       opts[:webcams_for_moderator_only] = room_setting_with_config("webcamsOnlyForModerator")
 
       if current_user
-        opts[:user_is_moderator] = @room.owned_by?(current_user) || current_user.role.get_permission("can_create_rooms")
+        opts[:user_is_moderator] = @room.owned_by?(current_user) || room_setting_with_config("joinModerator") || current_user.role.get_permission("can_create_rooms")
         redirect_to join_path(@room, current_user.name, opts, current_user.uid)
       else
+        opts[:user_is_moderator] = @room.owned_by?(current_user) || room_setting_with_config("joinModerator")
         join_name = params[:join_name] || params[@room.invite_path][:join_name]
         opts[:user_is_moderator] = @room.owned_by?(current_user) || room_setting_with_config("joinModerator")
         redirect_to join_path(@room, join_name, opts, fetch_guest_id)
@@ -88,7 +89,7 @@ module Joiner
     {
       user_is_moderator: false,
       meeting_logout_url: request.base_url + logout_room_path(@room),
-      meeting_recorded: @room.recording?,
+      meeting_recorded: true,
       moderator_message: "#{invite_msg}\n\n#{request.base_url + room_path(@room)}",
       host: request.host,
       recording_default_visibility: @settings.get_value("Default Recording Visibility") == "public"

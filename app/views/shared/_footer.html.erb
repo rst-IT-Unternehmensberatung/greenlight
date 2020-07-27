@@ -14,7 +14,8 @@
 %>
 
 <footer class="footer pt-3">
-  <p class="text-center mb-1">rst IT-Unternehmensberatung GmbH 
+  <p class="text-center mb-1">
+    <a href="https://www.rst-consulting.de" target="_blank">rst</a> IT-Unternehmensberatung GmbH |
     <%= t("footer.powered_by", href: link_to(t("greenlight"), "https://bigbluebutton.org/2018/07/09/greenlight-2-0/", target: "_blank", rel: "noopener")).html_safe %> <%= Greenlight::Application::VERSION %>
     <% if legal_url.present? %>
       <span>

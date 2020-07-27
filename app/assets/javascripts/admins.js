@@ -26,11 +26,11 @@ $(document).on('turbolinks:load', function(){
         var search = new URL(location.href).searchParams.get('search')
 
         var url = window.location.pathname + "?page=1"
-
+      
         if (search) {
           url += "&search=" + search
-        }
-
+        }  
+      
         window.location.replace(url);
       })
 
@@ -47,7 +47,7 @@ $(document).on('turbolinks:load', function(){
       });
       // Fixes turbolinks issue with bootstrap select
       $(window).trigger('load.bs.select.data-api');
-
+      
       // Display merge accounts modal with correct info
       $(".merge-user").click(function() {
         // Update the path of save button
@@ -56,17 +56,17 @@ $(document).on('turbolinks:load', function(){
         let userInfo = $(this).data("info")
 
         $("#merge-to").html("<span>" + userInfo.name + "</span>" + "<span class='text-muted d-block'>" + userInfo.email + "</span>" + "<span class='text-muted d-block'>" + userInfo.uid + "</span>")
-
+ 
       })
 
       $("#mergeUserModal").on("show.bs.modal", function() {
         $(".selectpicker").selectpicker('val','')
       })
-
+  
       $(".bootstrap-select").on("click", function() {
         $(".bs-searchbox").siblings().hide()
       })
-
+  
       $(".bs-searchbox input").on("input", function() {
         if ($(".bs-searchbox input").val() == '' || $(".bs-searchbox input").val().length < 3) {
           $(".bs-searchbox").siblings().hide()
@@ -86,7 +86,11 @@ $(document).on('turbolinks:load', function(){
       })
     }
     else if(action == "site_settings"){
-      loadColourSelectors()
+      var urlParams = new URLSearchParams(window.location.search);
+      // Only load the colour selectors if on the appearance tab
+      if (urlParams.get("tab") == null || urlParams.get("tab") == "appearance") {
+        loadColourSelectors()
+      }
     }
     else if (action == "roles"){
       // Refreshes the new role modal
@@ -119,30 +123,30 @@ $(document).on('turbolinks:load', function(){
 // Change the branding image to the image provided
 function changeBrandingImage(path) {
   var url = $("#branding-url").val()
-  $.post(path, {value: url})
+  $.post(path, {value: url, tab: "appearance"})
 }
 
 // Change the Legal URL to the one provided
 function changeLegalURL(path) {
   var url = $("#legal-url").val()
-  $.post(path, {value: url})
-}
-
-// Display the maintenance Banner
-function displayMaintenanceBanner(path) {
-  var message = $("#maintenance-banner").val()
-  $.post(path, {value: message})
-}
-
-// Clear the maintenance Banner
-function clearMaintenanceBanner(path) {
-  $.post(path, {value: ""})
+  $.post(path, {value: url, tab: "administration"})
 }
 
 // Change the Privacy Policy URL to the one provided
 function changePrivacyPolicyURL(path) {
   var url = $("#privpolicy-url").val()
-  $.post(path, {value: url})
+  $.post(path, {value: url, tab: "administration"})
+}
+
+// Display the maintenance Banner
+function displayMaintenanceBanner(path) {
+  var message = $("#maintenance-banner").val()
+  $.post(path, {value: message, tab: "administration"})
+}
+
+// Clear the maintenance Banner
+function clearMaintenanceBanner(path) {
+  $.post(path, {value: "", tab: "administration"})
 }
 
 function mergeUsers() {
@@ -158,7 +162,7 @@ function filterRole(role) {
 
   if (search) {
     url += "&search=" + search
-  }
+  }  
 
   window.location.replace(url);
 }
@@ -245,19 +249,19 @@ function loadColourSelectors() {
   })
 
   pickrLighten.on("save", (color, instance) => {
-    $.post($("#coloring-path-lighten").val(), {value: color.toHEXA().toString()}).done(function() {
+    $.post($("#coloring-path-lighten").val(), {value: color.toHEXA().toString(), tab: "appearance"}).done(function() {
       location.reload()
     });
   })
 
   pickrDarken.on("save", (color, instance) => {
-    $.post($("#coloring-path-darken").val(), {value: color.toHEXA().toString()}).done(function() {
+    $.post($("#coloring-path-darken").val(), {value: color.toHEXA().toString(), tab: "appearance"}).done(function() {
       location.reload()
     });
   })
 }
 
-function loadRoleColourSelector(role_colour, disabled) {
+function loadRoleColourSelector(role_colour, disabled) { 
   if (!disabled) {
     const pickrRoleRegular = new Pickr({
       el: '#role-colorinput-regular',
@@ -267,7 +271,7 @@ function loadRoleColourSelector(role_colour, disabled) {
       defaultRepresentation: 'HEX',
       closeWithKey: 'Enter',
       default: role_colour,
-
+  
       components: {
           palette: true,
           preview: true,
@@ -278,7 +282,7 @@ function loadRoleColourSelector(role_colour, disabled) {
           },
       },
     });
-
+  
     // On save update the colour input's background colour and update the role colour input
     pickrRoleRegular.on("save", (color, instance) => {
       $("#role-colorinput-regular").css("background-color", color.toHEXA().toString());

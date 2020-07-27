@@ -207,13 +207,17 @@ describe RoomsController, type: :controller do
       "anyoneCanStart": true, "joinModerator": true, "lockSettingsDisableMic": true, "lockSettingsDisableCam": true,
       "webcamsOnlyForModerator": true }.to_json)
 
-      json_room_settings = "{\"running\":false,\"muteOnStart\":true,\"requireModeratorApproval\":true," \
-        "\"anyoneCanStart\":true,\"joinModerator\":true,\"lockSettingsDisableMic\":true," \
-	"\"lockSettingsDisableCam\":true,\"webcamsOnlyForModerator\":true}"
+      json_room_settings = { "anyoneCanStart" => true,
+                             "joinModerator" => true,
+                             "muteOnStart" => true,
+                             "lockSettingsDisableMic" => true,
+                             "lockSettingsDisableCam" => true,
+                             "webcamsOnlyForModerator" => true,
+                             "requireModeratorApproval" => true }
 
       get :room_settings, params: { room_uid: @owner.main_room }, format: :json
 
-      expect(JSON.parse(response.body).to_json).to eql(json_room_settings)
+      expect(JSON.parse(response.body)).to eql(json_room_settings)
     end
 
     it "should redirect to root if not logged in" do
@@ -821,6 +825,109 @@ describe RoomsController, type: :controller do
 
       expect(SharedAccess.exists?(room_id: @room.id, user_id: @user1.id)).to be true
       expect(response).to redirect_to root_path
+    end
+  end
+
+  describe "POST #preupload_presentation" do
+    before do
+      @user = create(:user)
+      @file = fixture_file_upload('files/sample.pdf', 'application/pdf')
+      @invalid_file = fixture_file_upload('files/invalid.jpg', 'image/jpg')
+      allow(Rails.configuration).to receive(:preupload_presentation_default).and_return("true")
+    end
+
+    it "adds a presentation to the room" do
+      @request.session[:user_id] = @user.id
+
+      post :preupload_presentation, params: { room_uid: @user.main_room, room: { presentation: @file } }
+
+      expect(@user.main_room.presentation.attached?).to be true
+      expect(flash[:success]).to be_present
+      expect(response).to redirect_to @user.main_room
+    end
+
+    it "rejects file types that are not allowed" do
+      @request.session[:user_id] = @user.id
+
+      post :preupload_presentation, params: { room_uid: @user.main_room, room: { presentation: @invalid_file } }
+
+      expect(@user.main_room.presentation.attached?).to be false
+      expect(flash[:alert]).to be_present
+      expect(response).to redirect_to @user.main_room
+    end
+
+    it "allows admins to add a presentation to the room" do
+      allow_any_instance_of(User).to receive(:admin_of?).and_return(true)
+      @admin = create(:user)
+      @admin.set_role :admin
+      @request.session[:user_id] = @admin.id
+
+      post :preupload_presentation, params: { room_uid: @user.main_room, room: { presentation: @file } }
+
+      expect(@user.main_room.presentation.attached?).to be true
+      expect(flash[:success]).to be_present
+      expect(response).to redirect_to @user.main_room
+    end
+
+    it "redirects to root path if not admin of current user" do
+      allow_any_instance_of(User).to receive(:admin_of?).and_return(false)
+      @admin = create(:user)
+      @admin.set_role :admin
+      @request.session[:user_id] = @admin.id
+
+      post :preupload_presentation, params: { room_uid: @user.main_room, room: { presentation: @file } }
+
+      expect(response).to redirect_to(root_path)
+    end
+  end
+
+  describe "POST #remove_presentation" do
+    before do
+      @user = create(:user)
+      @user.main_room.presentation.attach(fixture_file_upload('files/sample.pdf', 'application/pdf'))
+      allow(Rails.configuration).to receive(:shared_access_default).and_return("true")
+    end
+
+    it "removes a presentation from a room" do
+      @request.session[:user_id] = @user.id
+
+      expect(@user.main_room.presentation.attached?).to be true
+
+      post :remove_presentation, params: { room_uid: @user.main_room }
+
+      @user.main_room.reload
+
+      expect(@user.main_room.presentation.attached?).to be false
+      expect(flash[:success]).to be_present
+      expect(response).to redirect_to @user.main_room
+    end
+
+    it "allows admins to remove a presentation from a room" do
+      allow_any_instance_of(User).to receive(:admin_of?).and_return(true)
+      @admin = create(:user)
+      @admin.set_role :admin
+      @request.session[:user_id] = @admin.id
+
+      expect(@user.main_room.presentation.attached?).to be true
+
+      post :remove_presentation, params: { room_uid: @user.main_room }
+
+      @user.main_room.reload
+
+      expect(@user.main_room.presentation.attached?).to be false
+      expect(flash[:success]).to be_present
+      expect(response).to redirect_to @user.main_room
+    end
+
+    it "redirects to root path if not admin of current user" do
+      allow_any_instance_of(User).to receive(:admin_of?).and_return(false)
+      @admin = create(:user)
+      @admin.set_role :admin
+      @request.session[:user_id] = @admin.id
+
+      post :preupload_presentation, params: { room_uid: @user.main_room, room: { presentation: @file } }
+
+      expect(response).to redirect_to(root_path)
     end
   end
 end
