@@ -90,7 +90,7 @@ en:
         title: Maintenance Banner
         display: Set
         clear: Clear
-        time: "Example: Update scheduled on December 13 @ 23:00 ET. Users may experience problems signing in."
+        time: "Example: Update scheduled on December 13 @ 23:00 ET. Users may experience problems signing in."        
       preupload:
         info: Users can preupload a presentation to be used as the default presentation for that specific room
         title: Allow Users to Preupload Presentations
@@ -168,12 +168,6 @@ en:
         info: Gives all users moderator privileges in BigBlueButton when they join the meeting.
       recordings:
         info: Allows room owners to specify whether they want the option to record a room or not. If enabled, the moderator must still click the "Record" button once the meeting has started.
-      webcam_for_moderator:
-        info: User's Webcams are visible to moderators only.
-      lock_webcam:
-        info: Do not allow viewers to use the webcam.
-      lock_mic:
-        info: Do not allow viewers to use the microphone.
       options:
         disabled: Disabled
         enabled: Always Enabled
@@ -376,6 +370,8 @@ en:
         verify_text: 'To verify your account, just follow this link: %{url}'
         verify_link: Verify Account
         thanks: Thanks for joining and have a great day!
+  maintenance:
+    window_alert: Maintenance window scheduled for %{date}
   max_concurrent: The maximum number of concurrent sessions allowed has been reached!
   merged: Merged
   modal:
@@ -436,9 +432,6 @@ en:
       mute: Mute users when they join
       require_approval: Require moderator approval before joining
       start: Allow any user to start this meeting
-      lock_mic_disable: Disable Microphone sharing
-      lock_webcam_disable: Disable Webcam sharing
-      webcams_for_moderator_only: Allow only moderators to see Webcams
       footer_text: Adjustment to your room can be done at anytime.
       recording: Allow room to be recorded
     rename_room:
@@ -545,9 +538,9 @@ en:
       fail: Failed to delete room (%{error})
     enter_the_access_code: Enter the room's access code
     invalid_provider: You have entered an invalid url. Please check the url and try again.
-    invitation_description: You have been invited to join %{name} using BigBlueButton. To join, click the link above and enter your name.
+    invitation_description: You have been invited to join %{name} using BigBlueButton. To join, click the link above and enter your name.  
     invited: You have been invited to join
-    recording_present: The session is going to be recorded. This may include voice and video from your side.
+    recording_present: I acknowledge that this session is going to be recorded. This may include my voice and video if enabled.
     invite_participants: Invite Participants
     join: Join
     last_session: Last session on %{session}
@@ -564,7 +557,6 @@ en:
       recent_rooms: Go To a Recently Joined Room
       title: Join a Room
     no_sessions: This room has no sessions, yet!
-    add_presentation: Add presentation
     preupload_success: Successfully added presentation
     preupload_error: There was an error updating the room presentation
     preupload_remove_success: Successfully removed presentation

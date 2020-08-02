@@ -324,6 +324,7 @@ function removePreuploadPresentation(path) {
 function validFileUpload(file) {
   return file.size/1024/1024 <= 30
 }
+
 // Automatically click the join button if this is an action cable reload
 function checkIfAutoJoin() {
   var url = new URL(window.location.href)

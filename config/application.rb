@@ -160,9 +160,6 @@ module Greenlight
     # Allow users to share rooms by default
     config.shared_access_default = "true"
 
-    # Don't allow users to preupload presentations by default
-    config.preupload_presentation_default = "false"
-
     # Don't require recording consent by default
     config.require_consent_default = "false"
 

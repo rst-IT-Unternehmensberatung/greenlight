@@ -1,4 +1,4 @@
-<%
+s<%
 # BigBlueButton open source conferencing system - http://www.bigbluebutton.org/.
 # Copyright (c) 2018 BigBlueButton Inc. and by respective authors (see below).
 # This program is free software; you can redistribute it and/or modify it under the
@@ -42,7 +42,7 @@
             class: "form-control join-form",
             placeholder: t("enter_your_name"),
             value: "#{@name}",
-            readonly: !current_user.nil?, 
+            readonly: !current_user.nil?,
             autofocus: true
             %>
         <span class="input-group-append">
@@ -51,7 +51,7 @@
           </button>
         </span>
       </div>
-      <% if recording_consent_required? && @room.recording_enabled? %>
+      <% if display_joiner_consent %>
         <label class="custom-control custom-checkbox">
           <input id="joiner-consent" type="checkbox" class="custom-control-input" required>
           <h4 class="text-left text-danger mt-4 custom-control-label"><%= t("room.recording_present") %></h4>
