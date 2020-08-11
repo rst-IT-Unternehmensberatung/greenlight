@@ -581,7 +581,7 @@ describe RoomsController, type: :controller do
 
     it "properly updates room name through the room settings modal and redirects to current page" do
       @request.session[:user_id] = @user.id
-      name = Faker::Games::Pokemon.name
+      name = Faker::Name.first_name
 
       room_params = { room_uid: @secondary_room.uid, room: { "name": name } }
 
@@ -832,7 +832,7 @@ describe RoomsController, type: :controller do
     before do
       @user = create(:user)
       @file = fixture_file_upload('files/sample.pdf', 'application/pdf')
-      @invalid_file = fixture_file_upload('files/invalid.jpg', 'image/jpg')
+      @invalid_file = fixture_file_upload('files/invalid.bmp', 'image/bmp')
       allow(Rails.configuration).to receive(:preupload_presentation_default).and_return("true")
     end
 

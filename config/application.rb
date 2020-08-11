@@ -129,7 +129,7 @@ module Greenlight
     config.help_url = ENV["HELP_URL"].nil? ? "https://docs.bigbluebutton.org/greenlight/gl-overview.html" : ENV["HELP_URL"]
 
     # File types allowed in preupload presentation
-    config.allowed_file_types = ".doc,.docx,.pptx,.pdf"
+    config.allowed_file_types = ".doc,.docx,.ppt,.pptx,.pdf,.xls,.xlsx,.txt,.rtf,.odt,.ods,.odp,.odg,.odc,.odi,.jpg,.jpeg,.png"
 
     # DEFAULTS
 
@@ -159,9 +159,6 @@ module Greenlight
 
     # Allow users to share rooms by default
     config.shared_access_default = "true"
-
-    # Don't allow users to preupload presentations by default
-    config.preupload_presentation_default = "false"
 
     # Don't require recording consent by default
     config.require_consent_default = "false"

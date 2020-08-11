@@ -123,6 +123,7 @@ ol,ul{
 }
 .p-max{
   max-width: 500px;
+  width: 100%;
 }
 .clearfix, .alert {
   clear:both;
@@ -141,5 +142,8 @@ ol,ul{
 @media (max-width:990px) {
   .p-left, .p-right {
     float: none !important;
+  }
+  #manual img {
+    margin: 1.5rem 0;
   }
 }
