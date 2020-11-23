@@ -35,25 +35,34 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-lg-8 col-sm-12">
+      <div class="col-lg-9 col-sm-12">
         <h4 class="text-left mb-3"><%= @room.sessions %> <%= t("room.sessions") %><% unless hide_recording_tables %> | <%= @recordings.length %> <%= t("room.recordings") %><% end %></h4>
         <% unless exceeds_limit %>
           <div class="row">
             <% if can_create %>
-            <div class="col-lg-8 col-md-12 mt-6">
+            <div class="col-lg-10 col-md-12 mt-6">
               <label for="invite-url" class="form-label"><%= t("room.invite_participants") %></label>
               <div class="input-group invite-link-input">
                 <input id="invite-url" type="text" class="form-control" value="<%= request.base_url + @room.invite_path %>" readonly>
                 <div class="input-group-append">
-                  <button type="button" class="btn btn-primary" id="copy">
+                  <button id="copy-invite" class="btn btn-primary btn-block" onclick="copyInvite()">
                     <i class="fas fa-copy mr-1"></i>
                     <%= t("copy") %>
                   </button>
                 </div>
+                <div class="input-group-append">
+                  <% if @room.access_code.present? %>
+                    <input id="copy-code" value="<%= @room.access_code %>" type="hidden">
+                    <button id="copy-access" class="btn btn-secondary btn-block" onclick="copyAccess()">
+                      <i class="fas fa-copy mr-1"></i>
+                      <%= t("room.copy_access") %>
+                    </button>
+                  <% end %>
+                </div>
               </div>
             </div>
             <% end %>
-            <div class="col-lg-4 col-md-12 mt-6">
+            <div class="col-lg-2 col-md-12 mt-6">
               <div class="row">
                 <div class="col pl-0">
                   <% if Rails.configuration.enable_google_calendar_button %>
@@ -68,7 +77,7 @@
           </div>
         <% end %>
       </div>
-      <div class="offset-lg-1 col-lg-3 col-sm-12 force-bottom mt-lg-0 mt-5">
+      <div class="col-lg-3 col-sm-12 force-bottom mt-5">
         <% if @room_running %>
           <%= button_to t("room.join"), room_path(@room), class: "btn btn-primary btn-block px-7 start-button float-right", "data-disable": "" %>
         <% elsif can_create %>
