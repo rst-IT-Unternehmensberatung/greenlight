@@ -17,6 +17,9 @@ vendor/bundle
 /public/assets/**
 /public/b/**
 
+# Ignore uploaded files
+/storage
+
 # Ignore production paths.
 /db/production
 /db/production-postgres
@@ -32,6 +35,7 @@ vendor/bundle
 # Ignore environment configuration.
 .env
 env
+docker-compose.yml
 
 # Ignore yarn configs
 /node_modules

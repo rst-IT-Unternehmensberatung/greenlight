@@ -48,16 +48,24 @@ class Setting < ApplicationRecord
     case name
     when "Branding Image"
       Rails.configuration.branding_image_default
+    when "Legal URL"
+      nil
+    when "Privacy Policy URL"
+      nil
     when "Primary Color"
       Rails.configuration.primary_color_default
     when "Registration Method"
       Rails.configuration.registration_method_default
     when "Room Authentication"
       false
+    when "Require Recording Consent"
+      Rails.configuration.require_consent_default
     when "Room Limit"
       Rails.configuration.number_of_rooms_default
     when "Shared Access"
       Rails.configuration.shared_access_default
+    when "Preupload Presentation"
+      Rails.configuration.preupload_presentation_default
     when "Room Configuration Mute On Join"
       room_config_setting("mute-on-join")
     when "Room Configuration Require Moderator"
@@ -66,6 +74,14 @@ class Setting < ApplicationRecord
       room_config_setting("anyone-can-start")
     when "Room Configuration All Join Moderator"
       room_config_setting("all-join-moderator")
+    when "Room Configuration Recording"
+      room_config_setting("recording")
+    when "Room Configuration Disable Microphone"
+      room_config_setting("locksettings-disable-microphone")
+    when "Room Configuration Disable Webcam"
+      room_config_setting("locksettings-disable-webcam")
+    when "Room Configuration Webcam for Moderator only"
+      room_config_setting("webcams-for-moderator-only")
     end
   end
 

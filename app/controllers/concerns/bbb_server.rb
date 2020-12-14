@@ -62,12 +62,15 @@ module BbbServer
   # Creates a meeting on the BigBlueButton server.
   def start_session(room, options = {})
     create_options = {
-      record: options[:meeting_recorded].to_s,
+      record: options[:record].to_s,
       logoutURL: options[:meeting_logout_url] || '',
       moderatorPW: room.moderator_pw,
       attendeePW: room.attendee_pw,
       moderatorOnlyMessage: options[:moderator_message],
       muteOnStart: options[:mute_on_start] || false,
+      lockSettingsDisableMic: options[:locksettings_disable_microphone] || false,
+      lockSettingsDisableCam: options[:locksettings_disable_webcam] || false,
+      webcamsOnlyForModerator: options[:webcams_for_moderator_only] || false,
       "meta_#{META_LISTED}": options[:recording_default_visibility] || false,
       "meta_bbb-origin-version": Greenlight::Application::VERSION,
       "meta_bbb-origin": "Greenlight",
@@ -78,11 +81,18 @@ module BbbServer
 
     # Send the create request.
     begin
-      meeting = bbb_server.create_meeting(room.name, room.bbb_id, create_options)
-      # Update session info.
+      meeting = if room.presentation.attached?
+        modules = BigBlueButton::BigBlueButtonModules.new
+        url = rails_blob_url(room.presentation).gsub("&", "%26")
+        logger.info("Support: Room #{room.uid} starting using presentation: #{url}")
+        modules.add_presentation(:url, url)
+        bbb_server.create_meeting(room.name, room.bbb_id, create_options, modules)
+      else
+        bbb_server.create_meeting(room.name, room.bbb_id, create_options)
+      end
+
       unless meeting[:messageKey] == 'duplicateWarning'
-       room.update_attributes(sessions: room.sessions + 1,
-          last_session: DateTime.now)
+        room.update_attributes(sessions: room.sessions + 1, last_session: DateTime.now)
       end
     rescue BigBlueButton::BigBlueButtonException => e
       puts "BigBlueButton failed on create: #{e.key}: #{e.message}"

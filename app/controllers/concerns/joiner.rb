@@ -54,15 +54,20 @@ module Joiner
 
       # Determine if the user needs to join as a moderator.
       opts[:user_is_moderator] = @room.owned_by?(current_user) || room_setting_with_config("joinModerator") || @shared_room
-
+      opts[:record] = record_meeting
       opts[:require_moderator_approval] = room_setting_with_config("requireModeratorApproval")
       opts[:mute_on_start] = room_setting_with_config("muteOnStart")
+      opts[:locksettings_disable_microphone] = room_setting_with_config("lockSettingsDisableMic")
+      opts[:locksettings_disable_webcam] = room_setting_with_config("lockSettingsDisableCam")
+      opts[:webcams_for_moderator_only] = room_setting_with_config("webcamsOnlyForModerator")
 
       if current_user
+        opts[:user_is_moderator] = @room.owned_by?(current_user) || room_setting_with_config("joinModerator") || current_user.role.get_permission("can_create_rooms")
         redirect_to join_path(@room, current_user.name, opts, current_user.uid)
       else
+        opts[:user_is_moderator] = @room.owned_by?(current_user) || room_setting_with_config("joinModerator")
         join_name = params[:join_name] || params[@room.invite_path][:join_name]
-
+        opts[:user_is_moderator] = @room.owned_by?(current_user) || room_setting_with_config("joinModerator")
         redirect_to join_path(@room, join_name, opts, fetch_guest_id)
       end
     else
@@ -87,34 +92,10 @@ module Joiner
     {
       user_is_moderator: false,
       meeting_logout_url: request.base_url + logout_room_path(@room),
-      meeting_recorded: true,
       moderator_message: "#{invite_msg}\n\n#{request.base_url + room_path(@room)}",
       host: request.host,
       recording_default_visibility: @settings.get_value("Default Recording Visibility") == "public"
     }
-  end
-
-  # Gets the room setting based on the option set in the room configuration
-  def room_setting_with_config(name)
-    config = case name
-    when "muteOnStart"
-      "Room Configuration Mute On Join"
-    when "requireModeratorApproval"
-      "Room Configuration Require Moderator"
-    when "joinModerator"
-      "Room Configuration All Join Moderator"
-    when "anyoneCanStart"
-      "Room Configuration Allow Any Start"
-    end
-
-    case @settings.get_value(config)
-    when "enabled"
-      true
-    when "optional"
-      @room_settings[name]
-    when "disabled"
-      false
-    end
   end
 
   private

@@ -13,16 +13,16 @@
 # with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
 %>
 
-<div data-room-uid="<%= room.uid %>" data-room-settings=<%= room.room_settings %> data-room-access-code="<%= room.access_code %>" class="card room-block">
+<div data-room-uid="<%= room.uid %>" data-room-settings="<%= room.room_settings %>" data-room-access-code="<%= room.access_code %>" class="card room-block">
   <div class="card-body p-1">
-    <table class="table table-hover table-vcenter text-wrap table-no-border">
+    <table class="table table-vcenter text-wrap table-no-border">
       <tbody class="no-border-top">
         <td>
           <span class="stamp stamp-md bg-primary">
             <i class="fas fa-share-alt"></i>
           </span>
         </td>
-        <td>
+        <td style="width: 100%;">
           <div id="room-name">
             <h4 contenteditable="false" class="m-0 force-text-normal" ><%= room.name %></h4>
           </div>
@@ -30,6 +30,7 @@
             <%= t("room.shared_by", email: room.owner.name) %>
           </div>
         </td>
+        <% if current_user.role.get_permission("can_create_rooms") %>
         <td class="text-right">
           <div class="item-action dropdown" data-display="static">
             <a href="javascript:void(0)" data-toggle="dropdown" data-display="static" class="icon">
@@ -42,6 +43,7 @@
             </div>
           </div>
         </td>
+        <% end %>
       </tbody>
     </table>
   </div>

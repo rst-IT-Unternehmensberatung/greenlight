@@ -24,6 +24,8 @@ module AuthValues
     case auth['provider']
     when :office365
       auth['info']['display_name']
+    when :ldap
+      auth['info']['first_name'] + " " + auth['info']['last_name']
     else
       auth['info']['name']
     end
@@ -63,7 +65,7 @@ module AuthValues
       role_provider = auth['provider'] == "bn_launcher" ? auth['info']['customer'] : "greenlight"
       roles.each do |role_name|
         role = Role.find_by(provider: role_provider, name: role_name)
-        user.roles << role if !role.nil? && !user.has_role?(role_name)
+        user.set_role(role_name) if !role.nil? && !user.has_role?(role_name)
       end
     end
   end

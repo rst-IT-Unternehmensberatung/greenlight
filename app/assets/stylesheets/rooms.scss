@@ -44,13 +44,24 @@
   width: 70% !important;
 }
 
-.edit_hover_class a{
-  visibility: hidden;
+#room-title {
+  a {
+    visibility: hidden;
+  }
+  h1 {
+    max-width: calc(100% - 3rem);
+  }
+  &:hover a {
+    visibility: visible;
+  }
+  a, .home-indicator {
+    align-self: start;
+  }
 }
 
-.edit_hover_class:hover a {
-  visibility: visible;
-}
+/*.current .stamp .fas:before {
+    content: "\f04b";
+}*/
 
 #room-settings-dropdown-label {
   vertical-align: middle;
@@ -58,24 +69,35 @@
 }
 
 .room-block {
+  &:hover {
+    background-color: #eeeef2;
+  }
   &:not(.current) {
     .stamp {
       opacity: 0.5;
     }
   }
+ .room-name-text {
+  word-break: break-word;
+  }
 }
 
 #create-room-block {
   border: 1px dashed lightgray;
+  border-radius: 3px;
 
   &:hover {
     cursor: pointer;
-    background-color: rgba(0, 0, 0, 0.04);
+    background-color: #eeeef2;
   }
 }
 
 .allow-icon-click{
   pointer-events: auto;
+}
+
+.cant-create-room-wrapper {
+  min-height: calc(100vh - 130px);
 }
 
 .cant-create-rooms-title{
@@ -96,6 +118,11 @@
   color: #9aa0ac !important
 }
 
+#recording-table .edit_hover_class {
+  word-break: break-all;
+  white-space: normal;
+}
+
 .not-saved {
   color: grey;
   background: rgba(0, 40, 100, 0.12);
@@ -112,4 +139,29 @@
 .enabled-setting {
   background: lightgray;
   pointer-events: none;
+}
+
+#recording-table .edit_hover_class {
+  word-break: break-all;
+  white-space: normal;
+}
+
+.custom-file-label::after {
+font-family: 'Font Awesome 5 Free';
+content: "\f574";
+font-weight: 900;
+}
+#room-owner-name {
+  line-height: 12px;
+}
+
+.create-room-button {
+  width: 49%;
+}
+
+#presentation-upload-label {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding-right: 75px;
 }

@@ -22,6 +22,9 @@
 # variable in order to build any other brnach, as it may be required for testing or reviewing work
 # as part of the development process.
 #
+docker-compose down
+git fetch origin
+git merge origin/schule
 
 display_usage() {
   echo "This script should be used as part of a CI strategy."
@@ -50,7 +53,7 @@ if [ -z $CD_REF_NAME ]; then
   export CD_REF_NAME=$(git branch | grep \* | cut -d ' ' -f2)
 fi
 
-if [ "$CD_REF_NAME" != "master" ] && [[ "$CD_REF_NAME" != *"release"* ]] && ( [ -z "$CD_BUILD_ALL" ] || [ "$CD_BUILD_ALL" != "true" ] ); then
+if [ "$CD_REF_NAME" != "master" ] && [[ "$CD_REF_NAME" != *"release"* ]] && [[ "$CD_REF_NAME" != *"alpha"* ]] && ( [ -z "$CD_BUILD_ALL" ] || [ "$CD_BUILD_ALL" != "true" ] ); then
   echo "#### Docker image for $CD_REF_SLUG:$CD_REF_NAME won't be built"
   exit 0
 fi
@@ -76,22 +79,6 @@ fi
 echo "#### Docker image $CD_DOCKER_REPO:$CD_REF_NAME is being built"
 docker build --build-arg version_code="${CD_VERSION_CODE}" -t $CD_DOCKER_REPO:$CD_REF_NAME .
 
-if [ -z "$CD_DOCKER_USERNAME" ] || [ -z "$CD_DOCKER_PASSWORD" ]; then
-  echo "#### Docker image for $CD_DOCKER_REPO can't be published because CD_DOCKER_USERNAME or CD_DOCKER_PASSWORD are missing (Ignore this warning if running outside a CD/CI environment)"
-  exit 0
-fi
+docker-compose up -d
 
-# Publish the image
-docker login -u="$CD_DOCKER_USERNAME" -p="$CD_DOCKER_PASSWORD"
-echo "#### Docker image $CD_DOCKER_REPO:$CD_REF_NAME is being published"
-docker push $CD_DOCKER_REPO
-
-# Publish image as latest and v2 if it is a release (excluding alpha and beta)
-if [[ "$CD_REF_NAME" == *"release"* ]] && [[ "$CD_REF_NAME" != *"alpha"* ]] && [[ "$CD_REF_NAME" != *"beta"* ]]; then
-  docker_image_id=$(docker images | grep -E "^$CD_DOCKER_REPO.*$CD_REF_NAME" | awk -e '{print $3}')
-  docker tag $docker_image_id $CD_DOCKER_REPO:latest
-  docker push $CD_DOCKER_REPO:latest
-  docker tag $docker_image_id $CD_DOCKER_REPO:v2
-  docker push $CD_DOCKER_REPO:v2
-fi
 exit 0
