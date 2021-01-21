@@ -34,7 +34,7 @@
         </div>
       </div>
     </div>
-    <div class="row">
+    <div class="row mb-7">
       <div class="col-lg-9 col-sm-12">
         <h4 class="text-left mb-3"><%= @room.sessions %> <%= t("room.sessions") %><% unless hide_recording_tables %> | <%= @recordings.length %> <%= t("room.recordings") %><% end %></h4>
         <% unless exceeds_limit %>
@@ -90,7 +90,19 @@
       </div>
     </div>
 
-    <div id="room_block_container" class="row pt-7 pb-5">
+    <% if current_user.ordered_rooms.length > 5 %>
+      <div class="input-icon invite-link-input mb-3">
+        <span class="input-icon-addon">
+          <i class="fas fa-search"></i>
+          </span>
+        <input id="room-search" type="text" placeholder="<%= t("room.search") %>" class="form-control w-100" onChange="filterRooms()" onKeyUp="filterRooms()">
+        <span id="clear-room-search" class="text-primary" onclick="clearRoomSearch()">
+          <i class="fas fa-times"></i>
+        </span>
+      </div>
+    <% end %>
+    
+    <div id="room_block_container" class="row pb-5">
       <% if can_create %>
         <% current_user.ordered_rooms.each do |room| %>
           <div class="col-lg-4 col-md-6 col-sm-12">

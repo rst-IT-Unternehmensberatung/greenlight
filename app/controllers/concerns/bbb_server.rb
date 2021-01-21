@@ -77,6 +77,7 @@ module BbbServer
       "meta_bbb-origin-server-name": options[:host]
     }
 
+    create_options[:muteOnStart] = options[:mute_on_start] if options[:mute_on_start]
     create_options[:guestPolicy] = "ASK_MODERATOR" if options[:require_moderator_approval]
 
     # Send the create request.
