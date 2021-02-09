@@ -64,6 +64,10 @@ module Joiner
 
       if current_user
         opts[:user_is_moderator] = @room.owned_by?(current_user) || room_setting_with_config("joinModerator") || current_user.role.get_permission("can_create_rooms")
+        join_settings = Rails.configuration.join_settings_features.split(",")
+        current_user.user_settings.each do |v|
+          opts[v.name] = v.value if join_settings.include? v.name
+        end
         redirect_to join_path(@room, current_user.name, opts, current_user.uid)
       else
         opts[:user_is_moderator] = @room.owned_by?(current_user) || room_setting_with_config("joinModerator")

@@ -181,6 +181,11 @@ class RoomsController < ApplicationController
     opts[:locksettings_disable_note] = room_setting_with_config("lockSettingsDisableNote")
     opts[:webcams_for_moderator_only] = room_setting_with_config("webcamsOnlyForModerator")
     opts[:record] = record_meeting
+    opts[:voice_bridge] = @room_settings["voiceBridgePin"]
+    join_settings = Rails.configuration.join_settings_features.split(",")
+    current_user.user_settings.each do |v|
+      opts[v.name] = v.value if join_settings.include? v.name
+    end
 
     begin
       redirect_to join_path(@room, current_user.name, opts, current_user.uid)

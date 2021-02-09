@@ -55,6 +55,9 @@ module BbbServer
     join_opts[:userID] = uid if uid
     join_opts[:join_via_html5] = true
     join_opts[:guest] = true if options[:require_moderator_approval] && !options[:user_is_moderator]
+    options.select { |a, _| a.to_s.starts_with?("userdata-bbb") }.each do |k, v|
+      join_opts[k] = v
+    end
     join_opts[:createTime] = room.last_session.to_datetime.strftime("%Q")
 
     bbb_server.join_meeting_url(room.bbb_id, name, password, join_opts)
