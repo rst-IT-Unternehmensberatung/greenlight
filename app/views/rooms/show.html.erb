@@ -90,7 +90,7 @@
       </div>
     </div>
 
-    <% if current_user.ordered_rooms.length > 5 %>
+    <% if total_room_count(current_user) > 5 %>
       <div class="input-icon invite-link-input mb-3">
         <span class="input-icon-addon">
           <i class="fas fa-search"></i>
@@ -101,7 +101,7 @@
         </span>
       </div>
     <% end %>
-    
+
     <div id="room_block_container" class="row pb-5">
       <% if can_create %>
         <% current_user.ordered_rooms.each do |room| %>
