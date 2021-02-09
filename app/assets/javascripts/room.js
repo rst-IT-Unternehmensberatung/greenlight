@@ -96,9 +96,9 @@ $(document).on('turbolinks:load', function(){
             })
             // Only refresh the select dropdown if there are results to show
             $('#share-room-select').selectpicker('refresh');
-          } 
+          }
           $(".bs-searchbox").siblings().show()
-        })     
+        })
       }
     })
 
@@ -212,6 +212,7 @@ function showCreateRoom(target) {
   $("#room_recording").prop("checked", $("#room_recording").data("default"))
   $("#room_locksettings_disable_microphone").prop("checked", $("#room_locksettings_disable_microphone").data("default"))
   $("#room_locksettings_disable_webcam").prop("checked", $("#room_locksettings_disable_webcam").data("default"))
+  $("#room_locksettings_disable_note").prop("checked", $("#room_locksettings_disable_note").data("default"))
   $("#room_webcams_for_moderator_only").prop("checked", $("#room_webcams_for_moderator_only").data("default"))
 
   //show all elements & their children with a create-only class
@@ -275,6 +276,7 @@ function updateCurrentSettings(settings_path){
     $("#room_recording").prop("checked", $("#room_recording").data("default") || Boolean(settings.recording))
     $("#room_locksettings_disable_microphone").prop("checked", $("#room_locksettings_disable_microphone").data("default") || settings.lockSettingsDisableMic)
     $("#room_locksettings_disable_webcam").prop("checked", $("#room_locksettings_disable_webcam").data("default") || settings.lockSettingsDisableCam)
+    $("#room_locksettings_disable_note").prop("checked", $("#room_locksettings_disable_note").data("default") || settings.lockSettingsDisableNote)
     $("#room_webcams_for_moderator_only").prop("checked", $("#room_webcams_for_moderator_only").data("default") || settings.webcamsOnlyForModerator)
   })
 }
@@ -401,6 +403,6 @@ function filterRooms() {
 }
 
 function clearRoomSearch() {
-  $('#room-search').val(''); 
+  $('#room-search').val('');
   filterRooms()
 }

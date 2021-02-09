@@ -70,6 +70,7 @@ module BbbServer
       muteOnStart: options[:mute_on_start] || false,
       lockSettingsDisableMic: options[:locksettings_disable_microphone] || false,
       lockSettingsDisableCam: options[:locksettings_disable_webcam] || false,
+      lockSettingsDisableNote: options[:locksettings_disable_note] || false,
       webcamsOnlyForModerator: options[:webcams_for_moderator_only] || false,
       "meta_#{META_LISTED}": options[:recording_default_visibility] || false,
       "meta_bbb-origin-version": Greenlight::Application::VERSION,

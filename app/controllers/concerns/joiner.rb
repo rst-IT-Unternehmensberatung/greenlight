@@ -59,6 +59,7 @@ module Joiner
       opts[:mute_on_start] = room_setting_with_config("muteOnStart")
       opts[:locksettings_disable_microphone] = room_setting_with_config("lockSettingsDisableMic")
       opts[:locksettings_disable_webcam] = room_setting_with_config("lockSettingsDisableCam")
+      opts[:locksettings_disable_note] = room_setting_with_config("lockSettingsDisableNote")
       opts[:webcams_for_moderator_only] = room_setting_with_config("webcamsOnlyForModerator")
 
       if current_user

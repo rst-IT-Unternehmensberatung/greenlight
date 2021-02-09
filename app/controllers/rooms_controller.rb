@@ -178,6 +178,7 @@ class RoomsController < ApplicationController
     opts[:require_moderator_approval] = room_setting_with_config("requireModeratorApproval")
     opts[:locksettings_disable_microphone] = room_setting_with_config("lockSettingsDisableMic")
     opts[:locksettings_disable_webcam] = room_setting_with_config("lockSettingsDisableCam")
+    opts[:locksettings_disable_note] = room_setting_with_config("lockSettingsDisableNote")
     opts[:webcams_for_moderator_only] = room_setting_with_config("webcamsOnlyForModerator")
     opts[:record] = record_meeting
 
@@ -342,6 +343,7 @@ class RoomsController < ApplicationController
       "recording": options[:recording] == "1",
       "lockSettingsDisableMic": options[:locksettings_disable_microphone] == "1",
       "lockSettingsDisableCam": options[:locksettings_disable_webcam] == "1",
+      "lockSettingsDisableNote": options[:locksettings_disable_note] == "1",
       "webcamsOnlyForModerator": options[:webcams_for_moderator_only] == "1",
     }
 
@@ -351,7 +353,8 @@ class RoomsController < ApplicationController
   def room_params
     params.require(:room).permit(:name, :auto_join, :mute_on_join, :access_code,
       :require_moderator_approval, :anyone_can_start, :all_join_moderator, :locksettings_disable_microphone,
-      :locksettings_disable_webcam, :webcams_for_moderator_only, :recording, :presentation)
+      :locksettings_disable_webcam, :locksettings_disable_note, :webcams_for_moderator_only,
+      :recording, :presentation)
   end
 
   # Find the room from the uid.
@@ -450,6 +453,8 @@ class RoomsController < ApplicationController
       "Room Configuration Disable Microphone"
     when "lockSettingsDisableCam"
       "Room Configuration Disable Webcam"
+    when "lockSettingsDisableNote"
+      "Room Configuration Disable Note"
     when "webcamsOnlyForModerator"
       "Room Configuration Webcam for Moderator only"
     end

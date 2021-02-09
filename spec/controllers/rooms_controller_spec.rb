@@ -186,10 +186,11 @@ describe RoomsController, type: :controller do
         "require_moderator_approval": "1", "anyone_can_start": "1", "all_join_moderator": "1",
         "locksettings_disable_microphone": "1",
         "locksettings_disable_webcam": "1",
+        "locksettings_disable_note": "1",
         "webcams_for_moderator_only": "1" }
       json_room_settings = "{\"muteOnStart\":true,\"requireModeratorApproval\":true," \
         "\"anyoneCanStart\":true,\"joinModerator\":true,\"recording\":false,\"lockSettingsDisableMic\":true," \
-	"\"lockSettingsDisableCam\":true,\"webcamsOnlyForModerator\":true}"
+        "\"lockSettingsDisableCam\":true,\"lockSettingsDisableNote\":true,\"webcamsOnlyForModerator\":true}"
 
       post :create, params: { room: room_params }
 
@@ -205,13 +206,14 @@ describe RoomsController, type: :controller do
 
       @owner.main_room.update_attribute(:room_settings, { "muteOnStart": true, "requireModeratorApproval": true,
       "anyoneCanStart": true, "joinModerator": true, "lockSettingsDisableMic": true, "lockSettingsDisableCam": true,
-      "webcamsOnlyForModerator": true }.to_json)
+      "lockSettingsDisableNote": true, "webcamsOnlyForModerator": true }.to_json)
 
       json_room_settings = { "anyoneCanStart" => true,
                              "joinModerator" => true,
                              "muteOnStart" => true,
                              "lockSettingsDisableMic" => true,
                              "lockSettingsDisableCam" => true,
+                             "lockSettingsDisableNote" => true,
                              "webcamsOnlyForModerator" => true,
                              "requireModeratorApproval" => true }
 
@@ -596,7 +598,8 @@ describe RoomsController, type: :controller do
       room_params = { "mute_on_join": "1", "name": @secondary_room.name, "recording": "1" }
       formatted_room_params = "{\"muteOnStart\":true,\"requireModeratorApproval\":false," \
         "\"anyoneCanStart\":false,\"joinModerator\":false,\"lockSettingsDisableMic\":false," \
-        "\"lockSettingsDisableCam\":false,\"recording\":true,\"webcamsOnlyForModerator\":false}" # JSON string format
+        "\"lockSettingsDisableCam\":false,\"lockSettingsDisableNote\":false,\"recording\":true," \
+        "\"webcamsOnlyForModerator\":false}" # JSON string format
 
       expect { post :update_settings, params: { room_uid: @secondary_room.uid, room: room_params } }
         .to change { @secondary_room.reload.room_settings }

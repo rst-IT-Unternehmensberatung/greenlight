@@ -80,6 +80,8 @@ class Setting < ApplicationRecord
       room_config_setting("locksettings-disable-microphone")
     when "Room Configuration Disable Webcam"
       room_config_setting("locksettings-disable-webcam")
+    when "Room Configuration Disable Note"
+      room_config_setting("locksettings-disable-note")
     when "Room Configuration Webcam for Moderator only"
       room_config_setting("webcams-for-moderator-only")
     end

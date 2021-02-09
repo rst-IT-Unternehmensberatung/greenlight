@@ -181,6 +181,8 @@ de_DE:
         info: Erlauben Sie den Zuschauern nicht, die Webcam zu benutzen.
       lock_mic:
         info: Erlauben Sie den Zuschauern nicht, das Mikrofon zu benutzen.
+      lock_note:
+        info: Erlauben Sie den Zuschauern nicht, die geteilten Notizen zu benutzen.
       options:
         disabled: Deaktiviert
         enabled: Immer aktiviert
@@ -453,6 +455,7 @@ de_DE:
       recording: Aufnahme des Raumes erlauben
       lock_mic_disable: Mikrofonfreigabe deaktivieren
       lock_webcam_disable: Webcamfreigabe deaktivieren
+      lock_note_disable: Notizen deaktivieren
       webcams_for_moderator_only: "Nur Moderatoren dürfen Webcams sehen"
     rename_room:
       name_placeholder: Neuen Raumnamen eingeben...
