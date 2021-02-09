@@ -55,6 +55,7 @@ module BbbServer
     join_opts[:userID] = uid if uid
     join_opts[:join_via_html5] = true
     join_opts[:guest] = true if options[:require_moderator_approval] && !options[:user_is_moderator]
+    join_opts[:createTime] = room.last_session.to_datetime.strftime("%Q")
 
     bbb_server.join_meeting_url(room.bbb_id, name, password, join_opts)
   end
@@ -94,7 +95,7 @@ module BbbServer
       end
 
       unless meeting[:messageKey] == 'duplicateWarning'
-        room.update_attributes(sessions: room.sessions + 1, last_session: DateTime.now)
+        room.update_attributes(sessions: room.sessions + 1, last_session: DateTime.strptime(meeting[:createTime].to_s, "%Q"))
       end
     rescue BigBlueButton::BigBlueButtonException => e
       puts "BigBlueButton failed on create: #{e.key}: #{e.message}"
