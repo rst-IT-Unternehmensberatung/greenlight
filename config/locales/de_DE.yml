@@ -616,7 +616,8 @@ de_DE:
       subtitle: Kontoinformationen aktualisieren
       title: Kontoinformationen
       reset_password: Nutzer-Passwort zurücksetzen
-      join_settings: Einstellung
+      join_settings: Beitrittseinstellungen
+      join_explain: Diese Einstellungen gelten in jeder Konferenz ausschließlich für Sie.
     delete:
       button: "Ja, ich möchte mein Konto löschen."
       disclaimer: "Wenn Sie Ihr Konto löschen, können Sie es <b>NICHT</b> wiederherstellen. Alle mit Ihrem Konto verbundenen Informationen - wie Einstellungen, Räume und Aufzeichnungen - werden gelöscht."
@@ -631,8 +632,8 @@ de_DE:
     user_settings:
       userdata-bbb_skip_check_audio: "Echotest überspringen"
       userdata-bbb_skip_video_preview: "Webcam Vorschau überspringen"
-      userdata-bbb_auto_share_webcam: "Webcam automatisch teilen"
-      userdata-bbb_listen_only_mode: "Aktivieren Sie den Modus \"Nur Zuhören\" (deaktivieren Sie dies, wenn Sie mit dem Mikrofon automatisch verbunden werden möchten)"
+      userdata-bbb_auto_share_webcam: "Webcam Vorschau automatisch anzeigen"
+      userdata-bbb_listen_only_mode: "Auswahl zwischen \"Nur Zuhören\" und \"Mit Mikrofon\" (deaktivieren, wenn Sie mit dem Mikrofon automatisch verbunden werden möchten)"
     title: Profil
     search: Suche
   signup:
