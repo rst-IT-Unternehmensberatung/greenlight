@@ -25,8 +25,10 @@
 docker-compose down
 git fetch origin
 cp docker-compose.yml docker-compose.bac
+cp app/views/main/index.html.erb app/views/main/index.bac
 git stash
 git merge origin/master
+cp app/views/main/index.bac app/views/main/index.html.erb
 
 display_usage() {
   echo "This script should be used as part of a CI strategy."
