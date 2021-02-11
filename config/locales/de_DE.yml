@@ -631,7 +631,7 @@ de_DE:
       title: Passwort
     user_settings:
       userdata-bbb_skip_check_audio: "Echotest überspringen"
-      userdata-bbb_skip_video_preview: "Webcam Vorschau überspringen"
+      userdata-bbb_skip_video_preview: "Webcam Vorschau überspringen (erst wirksam mit \"Vorschau automatisch anzeigen\")"
       userdata-bbb_auto_share_webcam: "Webcam Vorschau automatisch anzeigen"
       userdata-bbb_listen_only_mode: "Auswahl zwischen \"Nur Zuhören\" und \"Mit Mikrofon\" (deaktivieren, wenn Sie mit dem Mikrofon automatisch verbunden werden möchten)"
     title: Profil
