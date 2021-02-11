@@ -12,6 +12,7 @@
 # You should have received a copy of the GNU Lesser General Public License along
 # with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
 %>
+<p><%= t("settings.account.join_explain") %></p>
 
 <%= form_for @user, url: user_update_settings_path, method: :post do |f|  %>
   <%= hidden_field_tag :setting, "join_settings" %>
