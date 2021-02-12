@@ -24,9 +24,10 @@ module RoomsHelper
   end
 
   def room_authentication_required
-    @settings.get_value("Room Authentication") == "true" && current_user.nil?
-
-    return false if room_setting_with_config("ldapauth") && current_user.nil?
+    @settings.get_value("Room Authentication") == "true" &&
+      current_user.nil?
+    return false if room_setting_with_config("ldapauth") &&
+      current_user.nil?
   end
 
   def current_room_exceeds_limit(room)
