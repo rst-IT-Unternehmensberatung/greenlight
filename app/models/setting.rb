@@ -84,6 +84,8 @@ class Setting < ApplicationRecord
       room_config_setting("locksettings-disable-note")
     when "Room Configuration Webcam for Moderator only"
       room_config_setting("webcams-for-moderator-only")
+    when "Room Configuration LDAP Auth"
+      room_config_setting("ldapauth")
     end
   end
 

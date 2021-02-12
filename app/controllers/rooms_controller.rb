@@ -350,6 +350,7 @@ class RoomsController < ApplicationController
       "lockSettingsDisableCam": options[:locksettings_disable_webcam] == "1",
       "lockSettingsDisableNote": options[:locksettings_disable_note] == "1",
       "webcamsOnlyForModerator": options[:webcams_for_moderator_only] == "1",
+      "ldapauth": options[:ldapauth] == "1",
     }
 
     room_settings.to_json
@@ -359,7 +360,7 @@ class RoomsController < ApplicationController
     params.require(:room).permit(:name, :auto_join, :mute_on_join, :access_code,
       :require_moderator_approval, :anyone_can_start, :all_join_moderator, :locksettings_disable_microphone,
       :locksettings_disable_webcam, :locksettings_disable_note, :webcams_for_moderator_only,
-      :recording, :presentation)
+      :recording, :ldapauth, :presentation)
   end
 
   # Find the room from the uid.
@@ -462,6 +463,8 @@ class RoomsController < ApplicationController
       "Room Configuration Disable Note"
     when "webcamsOnlyForModerator"
       "Room Configuration Webcam for Moderator only"
+    when "ldapauth"
+      "Room Configuration LDAP Auth"
     end
 
     case @settings.get_value(config)
