@@ -214,7 +214,7 @@ function showCreateRoom(target) {
   $("#room_locksettings_disable_webcam").prop("checked", $("#room_locksettings_disable_webcam").data("default"))
   $("#room_locksettings_disable_note").prop("checked", $("#room_locksettings_disable_note").data("default"))
   $("#room_webcams_for_moderator_only").prop("checked", $("#room_webcams_for_moderator_only").data("default"))
-  $("#room_openroom").prop("checked", $("#room_openroom").data("true"))
+  $("#room_openroom").prop("checked", $("#room_openroom").data("default"))
 
   //show all elements & their children with a create-only class
   $(".create-only").each(function() {
@@ -279,7 +279,7 @@ function updateCurrentSettings(settings_path){
     $("#room_locksettings_disable_webcam").prop("checked", $("#room_locksettings_disable_webcam").data("default") || settings.lockSettingsDisableCam)
     $("#room_locksettings_disable_note").prop("checked", $("#room_locksettings_disable_note").data("default") || settings.lockSettingsDisableNote)
     $("#room_webcams_for_moderator_only").prop("checked", $("#room_webcams_for_moderator_only").data("default") || settings.webcamsOnlyForModerator)
-    $("#room_openroom").prop("checked", $("#room_openroom").data("true") || Boolean(settings.openroom))
+    $("#room_openroom").prop("checked", $("#room_openroom").data("default") || Boolean(settings.openroom))
   })
 }
 
