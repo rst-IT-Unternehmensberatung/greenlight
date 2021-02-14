@@ -24,12 +24,8 @@ module RoomsHelper
   end
 
   def room_authentication_required
-    if room_setting_with_config("openroom")
-      false
-    else
       @settings.get_value("Room Authentication") == "true" &&
-        current_user.nil?
-    end
+        current_user.nil? || room_setting_with_config("openroom") == "false"
   end
 
   def current_room_exceeds_limit(room)
