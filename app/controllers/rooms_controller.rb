@@ -350,7 +350,7 @@ class RoomsController < ApplicationController
       "lockSettingsDisableCam": options[:locksettings_disable_webcam] == "1",
       "lockSettingsDisableNote": options[:locksettings_disable_note] == "1",
       "webcamsOnlyForModerator": options[:webcams_for_moderator_only] == "1",
-      "ldapauth": options[:ldapauth] == "1",
+      "openroom": options[:openroom] == "1",
     }
 
     room_settings.to_json
@@ -360,7 +360,7 @@ class RoomsController < ApplicationController
     params.require(:room).permit(:name, :auto_join, :mute_on_join, :access_code,
       :require_moderator_approval, :anyone_can_start, :all_join_moderator, :locksettings_disable_microphone,
       :locksettings_disable_webcam, :locksettings_disable_note, :webcams_for_moderator_only,
-      :recording, :ldapauth, :presentation)
+      :recording, :openroom, :presentation)
   end
 
   # Find the room from the uid.
@@ -408,7 +408,7 @@ class RoomsController < ApplicationController
   end
 
   def auth_required
-    @settings.get_value("Room Authentication") == "true" && current_user.nil?
+    @settings.get_value("Room Authentication") == "true" && current_user.nil? || @room.get_value("Room Configuration Open Room") == "true"
   end
 
   # Checks if the room is shared with the user and room sharing is enabled
@@ -463,8 +463,8 @@ class RoomsController < ApplicationController
       "Room Configuration Disable Note"
     when "webcamsOnlyForModerator"
       "Room Configuration Webcam for Moderator only"
-    when "ldapauth"
-      "Room Configuration LDAP Auth"
+    when "openroom"
+      "Room Configuration Open Room"
     end
 
     case @settings.get_value(config)

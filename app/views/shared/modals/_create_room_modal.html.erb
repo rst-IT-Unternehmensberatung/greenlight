@@ -101,11 +101,11 @@
                 <span class="custom-switch-indicator not-running-only float-right cursor-pointer"></span>
             </label>
             <% end %>
-            <% ldapauth = room_configuration("Room Configuration LDAP Auth") %>
-            <% if ldapauth != "disabled" %>
-              <label class="custom-switch pl-0 mt-3 mb-3 w-100 text-left d-inline-block <%= "enabled-setting" if ldapauth == "enabled" %>">
-                <span class="custom-switch-description"><%= t("modal.room_settings.ldapauth")%></span>
-                <%= f.check_box :ldapauth, class: "custom-switch-input", data: { default: ldapauth == "enabled" }, checked: false %>
+            <% openroom = room_configuration("Room Configuration Open Room") %>
+            <% if openroom != "disabled" %>
+              <label class="custom-switch pl-0 mt-3 mb-3 w-100 text-left d-inline-block <%= "enabled-setting" if openroom == "enabled" %>">
+                <span class="custom-switch-description"><%= t("modal.room_settings.openroom")%></span>
+                <%= f.check_box :openroom, class: "custom-switch-input", data: { default: openroom == "enabled" }, checked: false %>
                 <span class="custom-switch-indicator float-right cursor-pointer"></span>
             </label>
             <% end %>

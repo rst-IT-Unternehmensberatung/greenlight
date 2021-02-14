@@ -183,6 +183,8 @@ de_DE:
         info: Erlauben Sie den Zuschauern nicht, das Mikrofon zu benutzen.
       lock_note:
         info: Erlauben Sie den Zuschauern nicht, die geteilten Notizen zu benutzen.
+      openroom:
+        info: Erlauben Sie die öffnung jedes Raumes für Gäste.
       options:
         disabled: Deaktiviert
         enabled: Immer aktiviert
@@ -457,6 +459,7 @@ de_DE:
       lock_webcam_disable: Webcamfreigabe deaktivieren
       lock_note_disable: Notizen deaktivieren
       webcams_for_moderator_only: "Nur Moderatoren dürfen Webcams sehen"
+      openroom: "Unregistrierte Nutzer"
     rename_room:
       name_placeholder: Neuen Raumnamen eingeben...
     share_access:

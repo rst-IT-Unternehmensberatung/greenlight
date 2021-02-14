@@ -24,7 +24,7 @@ module RoomsHelper
   end
 
   def room_authentication_required
-    if room_setting_with_config("ldapauth")
+    if room_setting_with_config("openroom")
       false
     else
       @settings.get_value("Room Authentication") == "true" &&
