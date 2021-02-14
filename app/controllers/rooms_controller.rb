@@ -408,7 +408,7 @@ class RoomsController < ApplicationController
   end
 
   def auth_required
-    if @room.get_value("Room Configuration Open Room") == "true"
+    if room_setting_with_config("openroom")
       false
     else
       @settings.get_value("Room Authentication") == "true" && current_user.nil?
