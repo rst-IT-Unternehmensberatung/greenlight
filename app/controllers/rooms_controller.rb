@@ -408,7 +408,11 @@ class RoomsController < ApplicationController
   end
 
   def auth_required
-    @settings.get_value("Room Authentication") == "true" && current_user.nil? || @room.get_value("Room Configuration Open Room") == "true"
+    if @room.get_value("Room Configuration Open Room") == "true"
+      false
+    else
+      @settings.get_value("Room Authentication") == "true" && current_user.nil?
+    end
   end
 
   # Checks if the room is shared with the user and room sharing is enabled
