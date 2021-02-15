@@ -459,7 +459,7 @@ de_DE:
       lock_webcam_disable: Webcamfreigabe deaktivieren
       lock_note_disable: Notizen deaktivieren
       webcams_for_moderator_only: "Nur Moderatoren dürfen Webcams sehen"
-      openroom: "Unregistrierte Nutzer erlauben"
+      openroom: "Unregistrierte Teilnehmer erlauben"
     rename_room:
       name_placeholder: Neuen Raumnamen eingeben...
     share_access:
