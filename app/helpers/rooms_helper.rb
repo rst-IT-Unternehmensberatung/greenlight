@@ -24,7 +24,11 @@ module RoomsHelper
   end
 
   def room_authentication_required
-    return false if room_setting_with_config("openroom")
+     if room_setting_with_config("openroom")
+       false
+     else
+       true
+     end
   end
 
   def current_room_exceeds_limit(room)
