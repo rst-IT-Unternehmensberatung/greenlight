@@ -199,20 +199,22 @@ function copyAccess() {
   }
 }
 function copy(element) {
-  var $temp = $("<input>");
-  $("body").append($temp);
-  $temp.val($(element).text()).select();
+  var aux = document.createElement("input");
+  aux.setAttribute("value", document.getElementById(elementId).innerHTML);
+  document.body.appendChild(aux);
+  aux.select();
   if (document.execCommand("copy")) {
-    var $inside = $(this).html();
+    var inside = $(this).html();
     $(this).html("<i class='fas fa-check'></i>");
-    $temp.remove();
+    document.body.removeChild(aux);
     setTimeout(function(){
-      $(this).html($inside);
+      $(this).html(inside);
     }, 1000);
   }
 }
 function shareAccess() {
-  var $inside = $(this).html();
+  var inside = $(this).html();
+  $(this).html("<i class='fas fa-check'></i>");
   if (navigator.share) {
   navigator.share({
     title: 'BigBlueButton Share',
@@ -221,7 +223,7 @@ function shareAccess() {
   });
   }
   setTimeout(function(){
-    $(this).html($inside);
+    $(this).html(inside);
   }, 1000);
 }
 function shareSuccess() {
