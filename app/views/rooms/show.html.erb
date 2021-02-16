@@ -49,9 +49,6 @@
                   <button type="button" class="btn btn-secondary" onclick="shareAccess()"><i class="fas fa-share-alt"></i></button>
                   <% if shared_access_allowed %>
                     <button type="button" class="btn btn-secondary share-room" data-toggle="modal" data-target="#shareRoomModal" class="share-room dropdown-item" data-path="<%= room_shared_access_path(@room) %>" data-users-path="<%= room_shared_users_path(@room) %>" data-owner="<%= @room.owner.uid %>"><i class="fas fa-users"></i></button>
-                    <a href="" data-toggle="modal" data-target="#shareRoomModal" class="share-room dropdown-item" data-path="<%= room_shared_access_path(@room) %>" data-users-path="<%= room_shared_users_path(@room) %>" data-owner="<%= @room.owner.uid %>">
-                      <i class="dropdown-icon fas fa-users"></i> <%= t("room.share") %>
-                    </a>
                   <% end %>
                   <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="sr-only">Toggle Dropdown</span>
