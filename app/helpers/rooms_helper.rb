@@ -24,7 +24,7 @@ module RoomsHelper
   end
 
   def room_authentication_required
-     if room_setting_with_config("openroom") || current_user
+     if room_setting_with_config("openroom") || current_user.present?
        false
      else
        true
