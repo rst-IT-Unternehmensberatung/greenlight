@@ -24,11 +24,13 @@
 #
 docker-compose down
 git fetch origin
-cp docker-compose.yml docker-compose.bac
-cp app/views/main/index.html.erb app/views/main/index.bac
+cp ./docker-compose.yml ./docker-compose.bac
+cp ./app/views/main/index.html.erb ./app/views/main/index.bac
 git stash
 git merge origin/master
-cp app/views/main/index.bac app/views/main/index.html.erb
+
+cp ./app/views/main/index.bac ./app/views/main/index.html.erb
+cp ./docker-compose.bac ./docker-compose.yml
 
 display_usage() {
   echo "This script should be used as part of a CI strategy."
@@ -83,7 +85,6 @@ fi
 echo "#### Docker image $CD_DOCKER_REPO:$CD_REF_NAME is being built"
 docker build --build-arg version_code="${CD_VERSION_CODE}" -t $CD_DOCKER_REPO:$CD_REF_NAME .
 
-cp docker-compose.bac docker-compose.yml
 docker-compose up -d
 
 exit 0
