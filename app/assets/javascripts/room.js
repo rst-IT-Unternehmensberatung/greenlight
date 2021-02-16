@@ -213,8 +213,6 @@ function copy(element) {
   }
 }
 function shareAccess() {
-  var inside = document.getElementById(element).innerHTML;
-  document.getElementById(element).innerHTML = "<i class='fas fa-check'></i>";
   if (navigator.share) {
   navigator.share({
     title: 'BigBlueButton Share',
@@ -222,9 +220,6 @@ function shareAccess() {
     url: 'https://web.dev/',
   });
   }
-  setTimeout(function(){
-    document.getElementById(element).innerHTML = inside;
-  }, 1000);
 }
 function shareSuccess() {
 
