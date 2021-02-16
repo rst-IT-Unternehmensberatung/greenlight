@@ -199,32 +199,30 @@ function copyAccess() {
   }
 }
 function copy(element) {
-  temp = $("<input>");
+  var $temp = $("<input>");
   $("body").append($temp);
-  temp.val($(element).text()).select();
+  $temp.val($(element).text()).select();
   if (document.execCommand("copy")) {
-    inside = $(This).html();
-    $(This).html("<i class='fas fa-check'></i>");
-    temp.remove();
+    var $inside = $(this).html();
+    $(this).html("<i class='fas fa-check'></i>");
+    $temp.remove();
     setTimeout(function(){
-      $(This).html(inside);
-    }, 1000)
+      $(this).html($inside);
+    }, 1000);
   }
 }
 function shareAccess() {
-  inside = $(This).html();
+  var $inside = $(this).html();
   if (navigator.share) {
   navigator.share({
     title: 'BigBlueButton Share',
     text: 'Ihr Zugang zur nächsten Konferenz:',
     url: 'https://web.dev/',
-  })
-    .then(() => console.log('Successful share'))
-    .catch((error) => console.log('Error sharing', error));
+  });
   }
   setTimeout(function(){
-    $(This).html(inside);
-  }, 1000)
+    $(this).html($inside);
+  }, 1000);
 }
 function shareSuccess() {
 
