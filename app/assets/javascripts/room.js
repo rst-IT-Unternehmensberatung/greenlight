@@ -200,7 +200,7 @@ function copyAccess() {
 }
 function copy(element) {
   var aux = document.createElement("input");
-  aux.setAttribute("value", document.getElementById(elementId).innerHTML);
+  aux.setAttribute("value", document.getElementById(element).innerHTML);
   document.body.appendChild(aux);
   aux.select();
   if (document.execCommand("copy")) {
