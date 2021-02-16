@@ -28,7 +28,7 @@
           <h1 contenteditable=false id="user-text" class="display-3 text-left mb-3 font-weight-400"><%= title(@room.name) %></h1>
           <% if current_user.main_room == @room %>
             <i class="fas fa-home align-top home-indicator ml-2"></i>
-          <% elsif @room.owner.name == current_user.name %>
+          <% elsif @room.owned_by?(current_user) %>
             <a><i id="edit-room" class="fa fa-edit align-top home-indicator ml-2" data-edit-room="<%= @room.uid %>"></i></a>
           <% end %>
         </div>
@@ -45,19 +45,21 @@
               <div class="input-group invite-link-input">
                 <input id="invite-url" type="text" class="form-control" value="<%= request.base_url + @room.invite_path %>" readonly>
                 <div class="input-group-append">
-                  <button id="copy-invite" class="btn btn-primary btn-block" onclick="copyInvite()">
-                    <i class="fas fa-copy mr-1"></i>
-                    <%= t("copy") %>
-                  </button>
-                </div>
-                <div class="input-group-append">
-                  <% if @room.access_code.present? %>
-                    <input id="copy-code" value="<%= @room.access_code %>" type="hidden">
-                    <button id="copy-access" class="btn btn-secondary btn-block" onclick="copyAccess()">
-                      <i class="fas fa-copy mr-1"></i>
-                      <%= t("room.copy_access") %>
-                    </button>
+                  <button type="button" class="btn btn-secondary"><i class="far fa-envelope"></i></button>
+                  <button type="button" class="btn btn-secondary" onclick="shareAccess()"><i class="fas fa-share-alt"></i></button>
+                  <% if shared_access_allowed %>
+                    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#shareRoomModal" class="share-room dropdown-item" data-path="<%= room_shared_access_path(room) %>" data-users-path="<%= room_shared_users_path(room) %>" data-owner="<%= room.owner.uid %>"><i class="fas fa-users"></i></button>
                   <% end %>
+                  <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="sr-only">Toggle Dropdown</span>
+                  </button>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" onclick="copy('#invite-url')">Link <%= t("copy") %></a>
+                    <% if @room.access_code.present? %>
+                      <a class="dropdown-item" onclick="copy('#access-code')"><%= t("room.copy_access") %></a>
+                      <input id="access-code" class="modal-scrollbar-measure" value="<%= @room.access_code %>" aria-hidden="true" type="text">
+                    <% end %>
+                  </div>
                 </div>
               </div>
             </div>
@@ -80,7 +82,7 @@
       <div class="col-lg-3 col-sm-12 force-bottom mt-5">
         <% if @room_running %>
           <%= button_to t("room.join"), room_path(@room), class: "btn btn-primary btn-block px-7 start-button float-right", "data-disable": "" %>
-        <% elsif can_create %>
+        <% elsif can_create || @anyone_can_start %>
           <% unless exceeds_limit %>
             <%= button_to t("room.start"), start_room_path(@room), class: "btn btn-primary btn-block px-7 start-button float-right", "data-disable": "" %>
           <% end %>
