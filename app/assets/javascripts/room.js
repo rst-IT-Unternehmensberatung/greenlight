@@ -203,13 +203,13 @@ function copy(element) {
   aux.setAttribute("value", document.getElementById(element).innerHTML);
   document.body.appendChild(aux);
   aux.select();
-  if (document.execCommand("copy")) {
-    var inside = document.getElementById(element).innerHTML;
-    document.getElementById(element).innerHTML = "<i class='fas fa-check'></i>";
-    document.body.removeChild(aux);
-    setTimeout(function(){
-      document.getElementById(element).innerHTML = inside;
-    }, 1000);
+  document.execCommand("copy");
+  var inside = document.getElementById(element).innerHTML;
+  document.getElementById(element).innerHTML = "<i class='fas fa-check'></i>";
+  document.body.removeChild(aux);
+  setTimeout(function(){
+    document.getElementById(element).innerHTML = inside;
+  }, 1000);
   }
 }
 function shareAccess() {

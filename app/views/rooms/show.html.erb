@@ -42,13 +42,16 @@
             <% if can_create %>
             <div class="col-lg-10 col-md-12 mt-6">
               <label for="invite-url" class="form-label"><%= t("room.invite_participants") %></label>
-              <div class="input-group invite-link-input">
+              <div class="input-group invite-link-input" data-path="<%= update_settings_path(@room) %>" data-room-access-code="<%= @room.access_code %>">
                 <input id="invite-url" type="text" class="form-control" value="<%= request.base_url + @room.invite_path %>" readonly>
                 <div class="input-group-append">
                   <button type="button" class="btn btn-secondary"><i class="far fa-envelope"></i></button>
                   <button type="button" class="btn btn-secondary" onclick="shareAccess()"><i class="fas fa-share-alt"></i></button>
                   <% if shared_access_allowed %>
-                    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#shareRoomModal" class="share-room dropdown-item" data-path="<%= room_shared_access_path(@room) %>" data-users-path="<%= room_shared_users_path(@room) %>" data-owner="<%= @room.owner.uid %>"><i class="fas fa-users"></i></button>
+                    <button type="button" class="btn btn-secondary share-room" data-toggle="modal" data-target="#shareRoomModal" class="share-room dropdown-item" data-path="<%= room_shared_access_path(@room) %>" data-users-path="<%= room_shared_users_path(@room) %>" data-owner="<%= @room.owner.uid %>"><i class="fas fa-users"></i></button>
+                    <a href="" data-toggle="modal" data-target="#shareRoomModal" class="share-room dropdown-item" data-path="<%= room_shared_access_path(@room) %>" data-users-path="<%= room_shared_users_path(@room) %>" data-owner="<%= @room.owner.uid %>">
+                      <i class="dropdown-icon fas fa-users"></i> <%= t("room.share") %>
+                    </a>
                   <% end %>
                   <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="sr-only">Toggle Dropdown</span>
