@@ -45,8 +45,8 @@
               <div class="input-group invite-link-input">
                 <input id="invite-url" type="text" class="form-control" value="<%= request.base_url + @room.invite_path %>" readonly>
                 <div class="input-group-append">
-                  <a href="mailto:?subject=BBB%20Link%20f%C3%BCr%20<%= title(@room.name).gsub!(' ', '%20') %>&body=<% if @room.access_code.present? %>Ihr%20Raumzugangscode%20lautet%3A%20<%= @room.access_code %><% end %>%0<%= request.base_url + @room.invite_path %>" class="btn btn-secondary"><i class="far fa-envelope"></i></a>
-                  <button type="button" class="btn btn-secondary" onclick="shareAccess()"><i class="fas fa-share-alt"></i></button>
+                  <a href="mailto:?subject=BBB%20Link%20f%C3%BCr%20<%= title(@room.name).gsub!(' ', '%20') %>&body=<% if @room.access_code.present? %>Ihr%20Raumzugangscode%20lautet%3A%20<%= @room.access_code %><% end %>%0A<%= request.base_url + @room.invite_path %>" class="btn btn-secondary"><i class="far fa-envelope"></i></a>
+                  <button type="button" class="btn btn-secondary d-none d-md-block" onclick="shareAccess()"><i class="fas fa-share-alt"></i></button>
                   <% if shared_access_allowed %>
                     <button type="button" class="btn btn-secondary share-room" data-toggle="modal" data-target="#shareRoomModal" class="share-room dropdown-item" data-path="<%= room_shared_access_path(@room) %>" data-users-path="<%= room_shared_users_path(@room) %>" data-owner="<%= @room.owner.uid %>"><i class="fas fa-users"></i></button>
                   <% end %>

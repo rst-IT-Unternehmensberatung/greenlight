@@ -193,11 +193,15 @@ function copyAccess() {
 }
 
 function shareAccess() {
+  $("#access-code").select();
+  ccode = document.execCommand("copy");
+  $("#invite-url").select()
+  curl = document.execCommand("copy");
   if (navigator.share) {
   navigator.share({
     title: 'BigBlueButton Share',
-    text: 'Ihr Zugang zur nächsten Konferenz:' + copyCode,
-    url: copyURL,
+    text: 'Ihr Zugangcode zur nächsten Konferenz:' + ccode,
+    url: curl,
   });
   }
 }
