@@ -170,16 +170,6 @@ $(document).on('turbolinks:load', function(){
   }
 });
 
-function copy(a) {
-  $(a).select();
-  document.execCommand("copy");
-  $(a).blur();
-  $("#invite-url").addClass('is-valid');
-  setTimeout(function(){
-    $("#invite-url").removeClass('is-valid');
-  }, 1000)
-}
-
 function copyAccess() {
   $('#copy-code').attr("type", "text")
   $('#copy-code').select()
@@ -195,16 +185,22 @@ function copyAccess() {
   }
 }
 
+function copy(a) {
+  $(a).select();
+  document.execCommand("copy");
+  $(a).blur();
+  $("#invite-url").addClass('is-valid');
+  setTimeout(function(){
+    $("#invite-url").removeClass('is-valid');
+  }, 1000)
+}
+
 function shareAccess() {
   if (navigator.share) {
-    $("#access-code").select();
-    var ccode = document.execCommand("copy");
-    $("#invite-url").select()
-    var curl = document.execCommand("copy");
   navigator.share({
     title: 'BigBlueButton Share',
-    text: 'Ihr Zugangcode zur nächsten Konferenz:' + ccode,
-    url: curl,
+    text: 'Ihr Zugangcode zur nächsten Konferenz:' + $("#access-code").val(),
+    url: $("#invite-url").val(),
   });
   }
 }
