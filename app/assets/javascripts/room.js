@@ -214,7 +214,7 @@ function shareAccess() {
   navigator.share({
     title: 'BigBlueButton Share',
     text: 'Ihr Zugang zur nächsten Konferenz:',
-    url: 'https://web.dev/',
+    url: new Clipboard('#invite-url');,
   });
   }
 }
