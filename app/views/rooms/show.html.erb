@@ -54,9 +54,9 @@
                     <span class="sr-only">Toggle Dropdown</span>
                   </button>
                   <div class="dropdown-menu">
-                    <a class="dropdown-item clipboard" data-clipboard-text="<%= request.base_url + @room.invite_path %>">Link <%= t("copy") %></a>
+                    <a class="dropdown-item clipboard" data-clipboard-action="copy" data-clipboard-text="<%= request.base_url + @room.invite_path %>">Link <%= t("copy") %></a>
                     <% if @room.access_code.present? %>
-                      <a class="dropdown-item clipboard" data-clipboard-text="<%= @room.access_code %>"><%= t("room.copy_access") %></a>
+                      <a class="dropdown-item clipboard" data-clipboard-action="copy" data-clipboard-text="<%= @room.access_code %>"><%= t("room.copy_access") %></a>
                     <% end %>
                   </div>
                 </div>
@@ -64,17 +64,19 @@
             </div>
             <% else %>
             <div class="col-lg-10 col-md-12 mt-6">
-              <label for="" class="form-label"><%= t("room.no_room.title") %></label>
+              <label for="room-url" class="form-label"><%= t("room.no_room.title") %></label>
               <%= form_for(:join_room, url: join_room_path) do |f| %>
-                  <div class="input-icon mb-2">
+              <div class="row">
+                  <div class="input-icon col">
                       <span class="input-icon-addon">
                           <i class="fas fa-link"></i>
                       </span>
-                      <%= f.text_field :url, class: "form-control", value: "", placeholder: t("room.no_room.placeholder"), required: "" %>
+                      <%= f.text_field :url, id: "room-url", class: "form-control", value: "", placeholder: t("room.no_room.placeholder"), required: "" %>
                   </div>
-                  <div class="mt-4">
+                  <div class="col-2">
                       <%= f.submit t("room.no_room.go_to"), class:"btn btn-primary btn-block" %>
                   </div>
+              </div>
               <% end %>
             </div>
             <% end %>
