@@ -188,9 +188,9 @@ function shareAccess() {
   code = $("#access-code").val();
   head = $('#user-text').text();
   if (code) {
-    text = 'Ihr Raumzugangcode für ' + head + ' lautet: ' + code;
+    text = 'Ihr Raumzugangcode für den Konferenzraum "' + head + '" lautet: ' + code;
   } else {
-    text = 'Der Link für ' + head + ' lautet: '
+    text = 'Der Link für den Konferenzraum "' + head + '" lautet: '
   }
   if (navigator.share) {
   navigator.share({
@@ -200,11 +200,6 @@ function shareAccess() {
   });
   }
 }
-
-var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-  return new bootstrap.Tooltip(tooltipTriggerEl)
-})
 
 function showCreateRoom(target) {
   $("#create-room-name").val("")
