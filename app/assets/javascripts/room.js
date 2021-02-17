@@ -179,17 +179,10 @@ $(document).on('turbolinks:load', function(){
   }
 });
 
-function copyInvite() {
-  $('#invite-url').select()
+function copy(a) {
+  $(a).select()
   if (document.execCommand("copy")) {
-    $('#invite-url').blur();
-    copy = $("#copy-invite")
-    copy.addClass('btn-success');
-    copy.html("<i class='fas fa-check mr-1'></i>" + getLocalizedString("copied"))
-    setTimeout(function(){
-      copy.removeClass('btn-success');
-      copy.html("<i class='fas fa-copy mr-1'></i>" + getLocalizedString("copy"))
-    }, 1000)
+    $(a).blur();
   }
 }
 

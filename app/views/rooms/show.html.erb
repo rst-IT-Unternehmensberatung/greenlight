@@ -54,9 +54,10 @@
                     <span class="sr-only">Toggle Dropdown</span>
                   </button>
                   <div class="dropdown-menu">
-                    <a class="dropdown-item clipboard" data-clipboard-action="copy" data-clipboard-text="<%= request.base_url + @room.invite_path %>">Link <%= t("copy") %></a>
+                    <a class="dropdown-item" onclick="copy('#invite-url')">Link <%= t("copy") %></a>
                     <% if @room.access_code.present? %>
-                      <a class="dropdown-item clipboard" data-clipboard-action="copy" data-clipboard-text="<%= @room.access_code %>"><%= t("room.copy_access") %></a>
+                      <input id="access-code" class="modal-scrollbar-measure" value="<%= @room.access_code %>" aria-hidden="true" type="text">
+                      <a class="dropdown-item" onclick="copy('#access-code')"><%= t("room.copy_access") %></a>
                     <% end %>
                   </div>
                 </div>
@@ -68,12 +69,12 @@
               <%= form_for(:join_room, url: join_room_path) do |f| %>
               <div class="row">
                   <div class="input-icon col">
-                      <span class="input-icon-addon">
+                      <span class="input-icon-addon ml-3">
                           <i class="fas fa-link"></i>
                       </span>
                       <%= f.text_field :url, id: "room-url", class: "form-control", value: "", placeholder: t("room.no_room.placeholder"), required: "" %>
                   </div>
-                  <div class="col-2">
+                  <div class="col-3">
                       <%= f.submit t("room.no_room.go_to"), class:"btn btn-primary btn-block" %>
                   </div>
               </div>
