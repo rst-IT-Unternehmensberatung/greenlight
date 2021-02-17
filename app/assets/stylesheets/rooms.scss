@@ -179,6 +179,9 @@ font-weight: 900;
 
 @media (max-width:770px) {
   .input-group.invite-link-input i {
-    font-size: 3em;
+    font-size: 2em;
+}
+.input-group.invite-link-input .form-control {
+    height: 42px;
 }
 }
