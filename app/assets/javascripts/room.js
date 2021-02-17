@@ -209,13 +209,13 @@ function copyAccess() {
 
 new Clipboard('.clipboard');
 var copyURL = new Clipboard('#invite-url');
-var copyCode = new Clipboard('#invite-url');
+var copyCode = new Clipboard('#copy-code');
 
 function shareAccess() {
   if (navigator.share) {
   navigator.share({
     title: 'BigBlueButton Share',
-    text: 'Ihr Zugang zur nächsten Konferenz:' copyCode,
+    text: 'Ihr Zugang zur nächsten Konferenz:' + copyCode,
     url: copyURL,
   });
   }
