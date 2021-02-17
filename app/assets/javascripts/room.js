@@ -208,13 +208,15 @@ function copyAccess() {
 }
 
 new Clipboard('.clipboard');
+var copyURL = new Clipboard('#invite-url');
+var copyCode = new Clipboard('#invite-url');
 
 function shareAccess() {
   if (navigator.share) {
   navigator.share({
     title: 'BigBlueButton Share',
-    text: 'Ihr Zugang zur nächsten Konferenz:',
-    url: new Clipboard('#invite-url');,
+    text: 'Ihr Zugang zur nächsten Konferenz:' copyCode,
+    url: copyURL,
   });
   }
 }
