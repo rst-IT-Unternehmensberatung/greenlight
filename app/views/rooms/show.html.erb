@@ -43,7 +43,7 @@
             <div class="col-lg-10 col-md-12 mt-6">
               <label for="invite-url" class="form-label"><%= t("room.invite_participants") %></label>
               <div class="input-group invite-link-input">
-                <input id="invite-url" type="text" class="form-control d-none d-md-block" value="<%= request.base_url + @room.invite_path %>" readonly>
+                <input id="invite-url" type="text" onclick="copy('#invite-url')" class="form-control" value="<%= request.base_url + @room.invite_path %>" readonly>
                 <div class="input-group-append">
                   <a href="mailto:?subject=BBB%20Link%20f%C3%BCr%20<%= title(@room.name).gsub!(' ', '%20') %>&body=<% if @room.access_code.present? %>Ihr%20Raumzugangscode%20lautet%3A%20<%= @room.access_code %><% end %>%0A%3Ca%20href%3D%22<%= request.base_url + @room.invite_path %>%22%3ELINK%3C%2Fa%3E" class="btn btn-secondary"><i class="far fa-envelope"></i></a>
                   <button type="button" class="btn btn-secondary d-md-none" onclick="shareAccess()"><i class="fas fa-share-alt"></i></button>
@@ -54,10 +54,10 @@
                     <span class="sr-only">Toggle Dropdown</span>
                   </button>
                   <div class="dropdown-menu">
-                    <a class="dropdown-item" onclick="copy('#invite-url')"><i class="fas fa-link"></i>Link <%= t("copy") %></a>
+                    <a class="dropdown-item" onclick="copy('#invite-url')"><i class="dropdown-icon fas fa-link"></i>Link <%= t("copy") %></a>
                     <% if @room.access_code.present? %>
                       <input id="access-code" class="modal-scrollbar-measure" value="<%= @room.access_code %>" aria-hidden="true" type="text">
-                      <a class="dropdown-item" onclick="copy('#access-code')"><i class="fas fa-key"></i><%= t("room.copy_access") %></a>
+                      <a class="dropdown-item" onclick="copy('#access-code')"><i class="dropdown-icon fas fa-key"></i><%= t("room.copy_access") %></a>
                     <% end %>
                   </div>
                 </div>

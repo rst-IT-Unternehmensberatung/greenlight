@@ -171,10 +171,9 @@ $(document).on('turbolinks:load', function(){
 });
 
 function copy(a) {
-  $(a).select()
-  if (document.execCommand("copy")) {
-    $(a).blur();
-  }
+  $(a).select();
+  document.execCommand("copy");
+  $(a).blur();
 }
 
 function copyAccess() {
@@ -193,11 +192,11 @@ function copyAccess() {
 }
 
 function shareAccess() {
-  $("#access-code").select();
-  ccode = document.execCommand("copy");
-  $("#invite-url").select()
-  curl = document.execCommand("copy");
   if (navigator.share) {
+    $("#access-code").select();
+    ccode = document.execCommand("copy");
+    $("#invite-url").select()
+    curl = document.execCommand("copy");
   navigator.share({
     title: 'BigBlueButton Share',
     text: 'Ihr Zugangcode zur nächsten Konferenz:' + ccode,
