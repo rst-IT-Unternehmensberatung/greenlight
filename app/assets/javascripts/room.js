@@ -170,43 +170,41 @@ $(document).on('turbolinks:load', function(){
   }
 });
 
-function copyAccess() {
-  $('#copy-code').attr("type", "text")
-  $('#copy-code').select()
-  if (document.execCommand("copy")) {
-    $('#copy-code').attr("type", "hidden")
-    copy = $("#copy-access")
-    copy.addClass('btn-success');
-    copy.html("<i class='fas fa-check mr-1'></i>" + getLocalizedString("copied"))
-    setTimeout(function(){
-      copy.removeClass('btn-success');
-      copy.html("<i class='fas fa-copy mr-1'></i>" + getLocalizedString("room.copy_access"))
-    }, 1000)
-  }
-}
-
 function copy(a) {
   $(a).select();
   document.execCommand("copy");
   $(a).blur();
-  $("#invite-url").addClass('is-valid');
+  temp = $("#invite-url");
+  tempval = $("#invite-url").val();
+  temp.addClass('is-valid');
+  temp.val(getLocalizedString("copied"));
   setTimeout(function(){
     $("#invite-url").removeClass('is-valid');
+    temp.val(tempval);
   }, 1000)
 }
 
 function shareAccess() {
+  code = $("#access-code").val();
+  head = $('#user-text').text();
+  if (code) {
+    text = 'Ihr Raumzugangcode für ' + head + ' lautet: ' + code;
+  } else {
+    text = 'Der Link für ' + head + ' lautet: '
+  }
   if (navigator.share) {
   navigator.share({
-    title: 'BigBlueButton Share',
-    text: 'Ihr Zugangcode zur nächsten Konferenz:' + $("#access-code").val(),
+    title: 'BigBlueButton Konferenz',
+    text: text,
     url: $("#invite-url").val(),
   });
   }
 }
-function shareSuccess() {
 
-}
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new bootstrap.Tooltip(tooltipTriggerEl)
+})
 
 function showCreateRoom(target) {
   $("#create-room-name").val("")
