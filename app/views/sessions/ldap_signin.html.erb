@@ -26,7 +26,7 @@
                         <div>
                             <% if privpolicy_url.present? %>
                             <p>
-                                Mit der Nutzung von BigBlueButton sowie dem Klick auf Anmelden erkläre ich mich mit der <%= link_to(Nutzungsbedingungen, privpolicy_url) %> einverstanden.
+                                Mit der Nutzung von BigBlueButton sowie dem Klick auf Anmelden erkläre ich mich mit der <%= link_to("Nutzungsbedingungen", privpolicy_url) %> einverstanden.
                             </p>
                             <% end %>
                             <%= f.submit t("login"), class: "btn btn-primary btn-block signin-button" %>
