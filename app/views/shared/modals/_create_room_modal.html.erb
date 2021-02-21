@@ -108,7 +108,7 @@
                 <%= f.check_box :openroom, class: "custom-switch-input", data: { default: openroom == "enabled" }, checked: false %>
                 <span class="custom-switch-indicator float-right cursor-pointer"></span>
             </label>
-            <% if room_setting_with_config("openroom") == true %><p style="color:red;font-weight: bold;">Wenn diese Option an ist, kann jeder an der Konferenz teilnehmen, der den Link besitzt.</p><% end %>
+            <p style="color:red;font-weight: bold;">Wenn "<%= t("modal.room_settings.openroom")%>" an ist, kann jeder an der Konferenz teilnehmen, der den Link besitzt.</p>
             <% end %>
             <label id="auto-join-label" class="create-only custom-switch pl-0 mt-3 mb-3 w-100 text-left d-inline-block">
               <span class="custom-switch-description"><%= t("modal.create_room.auto_join") %></span>

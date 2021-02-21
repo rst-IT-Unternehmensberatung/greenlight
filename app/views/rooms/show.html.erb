@@ -96,12 +96,12 @@
           </div>
         <% end %>
       </div>
-      <div class="col-lg-3 col-sm-12 force-bottom mt-5">
+      <div class="col-lg-3 col-sm-12 force-bottom">
         <% if @room_running %>
           <%= button_to t("room.join"), room_path(@room), class: "btn btn-primary btn-block px-7 start-button float-right", "data-disable": "" %>
         <% elsif can_create || @anyone_can_start %>
           <% unless exceeds_limit %>
-          <% if room_setting_with_config("openroom") == true %><p style="color:red;">Achtung: Dieser Raum ist öffentlich zugänglich!</p><% end %>
+          <% if room_setting_with_config("openroom") == true %><p style="color:red;font-weight: bold;">Raum ist öffentlich zugänglich!</p><% end %>
             <%= button_to t("room.start"), start_room_path(@room), class: "btn btn-primary btn-block px-7 start-button float-right", "data-disable": "" %>
           <% end %>
         <% else %>
