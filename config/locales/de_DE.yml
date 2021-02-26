@@ -463,7 +463,7 @@ de_DE:
     rename_room:
       name_placeholder: Neuen Raumnamen eingeben...
     share_access:
-      footer: "Wenn ein Raum mit einem Nutzer geteilt wird, erhält dieser Nutzer dadurch das Recht im Raum eine Konferenz zu starten und die Aufzeichnungen des Raums anzusehen."
+      footer: "Wenn ein Raum mit einem Nutzer geteilt wird, erhält dieser das Recht die Aufzeichnungen des Raums anzusehen. Andere Lehrer dürfen diesen Raum auch starten. Weitere Information dazu finden Sie in der <a href=\"./users/manual#23\">Anleitung</a>"
       list: Geteilt mit
       title: Raumzugang teilen
       save: Änderungen speichern
