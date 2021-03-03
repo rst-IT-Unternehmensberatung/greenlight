@@ -54,7 +54,7 @@
                     <span class="sr-only">Toggle Dropdown</span>
                   </button>
                   <div class="dropdown-menu">
-                    <a class="dropdown-item" onclick="copy('#invite-url')"><i class="dropdown-icon fas fa-link"></i>Link <%= t("copy") %></a>
+                    <a class="dropdown-item" onclick="copy('#invite-url')"><i class="dropdown-icon fas fa-link"></i>Link <%= t("copy").downcase %></a>
                     <% if @room.access_code.present? %>
                       <input id="access-code" class="modal-scrollbar-measure" value="<%= @room.access_code %>" aria-hidden="true" type="text">
                       <a class="dropdown-item" onclick="copy('#access-code')"><i class="dropdown-icon fas fa-key"></i><%= t("room.copy_access") %></a>
