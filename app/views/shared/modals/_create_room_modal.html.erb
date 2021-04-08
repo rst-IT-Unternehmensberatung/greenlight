@@ -88,38 +88,27 @@
 
           <div class="tab-pane fade" id="room_access">
             <div class="input-group my-2">
-              <div class="input-group-prepand">
-                <button type="button" class="btn btn-secondary d-lg-none" onclick="generateAccessCode()" title="Zugangscode generieren"><i class="fas fa-sync"></i></button>
+              <div class="input-group-prepend">
+                <button type="button" class="btn btn-secondary" onclick="generateAccessCode()" title="Zugangscode generieren"><i class="fas fa-sync"></i></button>
               </div>
               <%= f.label :access_code, t("modal.create_room.access_code_placeholder"), id: "create-room-access-code", class: "form-control" %>
               <%= f.hidden_field :access_code %>
               <div class="input-group-append">
-                <button type="button" class="btn btn-secondary d-lg-none" onclick="ResetAccessCode()" title="Zugangscode löschen"><i class="fas fa-trash-alt"></i></button>
+                <button type="button" class="btn btn-secondary" onclick="ResetAccessCode()" title="Zugangscode löschen"><i class="fas fa-trash-alt"></i></button>
               </div>
             </div>
 
-            <!--<div class="input-icon my-2">
-              <span onclick="generateAccessCode()" class="input-icon-addon allow-icon-click cursor-pointer">
-                <i class="fas fa-sync"></i>
-              </span>
-              <%= f.label :access_code, t("modal.create_room.access_code_placeholder"), id: "create-room-access-code", class: "form-control" %>
-              <%= f.hidden_field :access_code %>
-              <span onclick="ResetAccessCode()" class="input-icon-addon allow-icon-click cursor-pointer">
-                <i class="far fa-trash-alt"></i>
-              </span>
-            </div>-->
-
             <% if moderator_code_allowed? %>
-              <div class="input-icon mb-2">
-                <span onclick="generateModeratorAccessCode()" class="input-icon-addon allow-icon-click cursor-pointer">
-                  <i class="fas fa-sync"></i>
-                </span>
-                <%= f.label :moderator_access_code, t("modal.create_room.moderator_access_code_placeholder"), id: "create-room-moderator-access-code", class: "form-control" %>
-                <%= f.hidden_field :moderator_access_code %>
-                <span onclick="ResetModeratorAccessCode()" class="input-icon-addon allow-icon-click cursor-pointer">
-                  <i class="far fa-trash-alt"></i>
-                </span>
+            <div class="input-group my-2">
+              <div class="input-group-prepend">
+                <button type="button" class="btn btn-secondary" onclick="generateModeratorAccessCode()" title="Moderatorcode generieren"><i class="fas fa-sync"></i></button>
               </div>
+              <%= f.label :moderator_access_code, t("modal.create_room.moderator_access_code_placeholder"), id: "create-room-moderator-access-code", class: "form-control" %>
+              <%= f.hidden_field :moderator_access_code %>
+              <div class="input-group-append">
+                <button type="button" class="btn btn-secondary" onclick="ResetModeratorAccessCode()" title="Moderatorcode löschen"><i class="fas fa-trash-alt"></i></button>
+              </div>
+            </div>
             <% end %>
 
             <% require_approval = room_configuration("Room Configuration Require Moderator") %>

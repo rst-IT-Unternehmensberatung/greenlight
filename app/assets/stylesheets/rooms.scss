@@ -177,6 +177,10 @@ font-weight: 900;
   }
 }
 
+.form-control {
+    height: auto;
+}
+
 @media (max-width:770px) {
   .input-group.invite-link-input .input-group-append > * > i {
     font-size: 2em;
