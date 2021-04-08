@@ -560,6 +560,7 @@ de_DE:
     banned: Gesperrt
     deleted: "Gelöscht"
     pending: Wartend
+    invited: Eingeladen
     user: Nutzer
   room:
     access_code_required: "Bitte geben Sie einen gültigen Zugangscode ein, um den Raum zu betreten"
