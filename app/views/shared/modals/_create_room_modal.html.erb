@@ -32,7 +32,62 @@
               <div class="invalid-feedback text-left"><%= t("modal.create_room.not_blank") %></div>
             </div>
 
-            <div class="input-icon mb-2">
+            <nav class="row m-0">
+              <div class="nav col nav-tabs m-0 p-0 admin-tabs">
+                <a class="nav-item p-3 nav-link active show" data-toggle="tab" role="tab" href="#room_settings">
+                  <i class="fas mr-3 fa-cog"></i>
+                  Allgemein
+                </a>
+                <a class="nav-item p-3 nav-link" data-toggle="tab" role="tab" href="#room_access">
+                  <i class="fas mr-3 fa-key"></i>
+                  Zugriff
+                </a>
+                <a class="nav-item p-3 nav-link " data-toggle="tab" role="tab" href="#room_viewer">
+                  <i class="fas mr-3 fa-eye"></i>
+                  Zuschauer
+                </a>
+              </div>
+            </nav>
+
+            <div class="tab-content">
+            <div class="tab-pane fade active show" id="room_settings">
+
+            <% mute = room_configuration("Room Configuration Mute On Join") %>
+            <% if mute != "disabled" %>
+              <label class="custom-switch pl-0 mt-3 mb-3 w-100 text-left d-inline-block <%= "enabled-setting" if mute == "enabled" %>">
+                <span class="custom-switch-description"><%= t("modal.room_settings.mute")%></span>
+                <%= f.check_box :mute_on_join, class: "custom-switch-input", data: { default: mute == "enabled" }, checked: false %>
+                <span class="custom-switch-indicator float-right cursor-pointer"></span>
+              </label>
+            <% end %>
+            <% moderator = room_configuration("Room Configuration All Join Moderator") %>
+            <% if moderator != "disabled" %>
+              <label class="custom-switch pl-0 mt-3 mb-3 w-100 text-left d-inline-block <%= "enabled-setting" if moderator == "enabled" %>">
+                <span class="custom-switch-description"><%= t("modal.room_settings.join_moderator")%></span>
+                <%= f.check_box :all_join_moderator, class: "custom-switch-input", data: { default: moderator == "enabled" }, checked: false %>
+                <span class="custom-switch-indicator float-right cursor-pointer"></span>
+              </label>
+            <% end %>
+            <% recording = room_configuration("Room Configuration Recording") %>
+            <% if recording_consent_required? && recording != "disabled" %>
+              <label class="custom-switch pl-0 mt-3 mb-3 w-100 text-left d-inline-block <%= "enabled-setting" if recording == "enabled" %>">
+                <span class="custom-switch-description"><%= t("modal.room_settings.recording")%></span>
+                <%= f.check_box :recording, class: "not-running-only custom-switch-input", data: { default: recording == "enabled" }, checked: false %>
+                <span class="custom-switch-indicator not-running-only float-right cursor-pointer"></span>
+            </label>
+            <% end %>
+            <% openroom = room_configuration("Room Configuration Open Room") %>
+
+            <label id="auto-join-label" class="create-only custom-switch pl-0 mt-3 mb-3 w-100 text-left d-inline-block">
+              <span class="custom-switch-description"><%= t("modal.create_room.auto_join") %></span>
+              <%= f.check_box :auto_join, class: "custom-switch-input", checked: false %>
+              <span class="custom-switch-indicator float-right cursor-pointer"></span>
+            </label>
+
+          </div>
+
+          <div class="tab-pane fade" id="room_access">
+            <div class="input-icon my-2">
               <span onclick="generateAccessCode()" class="input-icon-addon allow-icon-click cursor-pointer">
                 <i class="fas fa-dice"></i>
               </span>
@@ -55,30 +110,6 @@
                 </span>
               </div>
             <% end %>
-            <nav class="row m-0">
-              <div class="nav col nav-tabs m-0 p-0 admin-tabs">
-                <a class="nav-item p-3 nav-link active show" data-toggle="tab" role="tab" href="#room_settings">
-                  <i class="fas mr-3 fa-cog"></i>
-                  Allgemein
-                </a>
-                <a class="nav-item p-3 nav-link " data-toggle="tab" role="tab" href="#room_viewer">
-                  <i class="fas mr-3 fa-eye"></i>
-                  Zuschauer
-                </a>
-              </div>
-            </nav>
-
-            <div class="tab-content">
-            <div class="tab-pane fade active show" id="room_settings">
-
-            <% mute = room_configuration("Room Configuration Mute On Join") %>
-            <% if mute != "disabled" %>
-              <label class="custom-switch pl-0 mt-3 mb-3 w-100 text-left d-inline-block <%= "enabled-setting" if mute == "enabled" %>">
-                <span class="custom-switch-description"><%= t("modal.room_settings.mute")%></span>
-                <%= f.check_box :mute_on_join, class: "custom-switch-input", data: { default: mute == "enabled" }, checked: false %>
-                <span class="custom-switch-indicator float-right cursor-pointer"></span>
-              </label>
-            <% end %>
 
             <% require_approval = room_configuration("Room Configuration Require Moderator") %>
             <% if require_approval != "disabled" %>
@@ -97,23 +128,7 @@
                 <span class="custom-switch-indicator float-right cursor-pointer"></span>
               </label>
             <% end %>
-            <% moderator = room_configuration("Room Configuration All Join Moderator") %>
-            <% if moderator != "disabled" %>
-              <label class="custom-switch pl-0 mt-3 mb-3 w-100 text-left d-inline-block <%= "enabled-setting" if moderator == "enabled" %>">
-                <span class="custom-switch-description"><%= t("modal.room_settings.join_moderator")%></span>
-                <%= f.check_box :all_join_moderator, class: "custom-switch-input", data: { default: moderator == "enabled" }, checked: false %>
-                <span class="custom-switch-indicator float-right cursor-pointer"></span>
-              </label>
-            <% end %>
-            <% recording = room_configuration("Room Configuration Recording") %>
-            <% if recording_consent_required? && recording != "disabled" %>
-              <label class="custom-switch pl-0 mt-3 mb-3 w-100 text-left d-inline-block <%= "enabled-setting" if recording == "enabled" %>">
-                <span class="custom-switch-description"><%= t("modal.room_settings.recording")%></span>
-                <%= f.check_box :recording, class: "not-running-only custom-switch-input", data: { default: recording == "enabled" }, checked: false %>
-                <span class="custom-switch-indicator not-running-only float-right cursor-pointer"></span>
-            </label>
-            <% end %>
-            <% openroom = room_configuration("Room Configuration Open Room") %>
+
             <% if openroom != "disabled" %>
               <label class="custom-switch pl-0 mt-3 mb-3 w-100 text-left d-inline-block <%= "enabled-setting" if openroom == "enabled" %>">
                 <span class="custom-switch-description"><%= t("modal.room_settings.openroom")%></span>
@@ -122,13 +137,8 @@
             </label>
             <p style="text-align: left;" class="custom-switch-description">Wenn "<%= t("modal.room_settings.openroom")%>" an ist, kann jeder an der Konferenz teilnehmen, der den Link besitzt.</p>
             <% end %>
-            <label id="auto-join-label" class="create-only custom-switch pl-0 mt-3 mb-3 w-100 text-left d-inline-block">
-              <span class="custom-switch-description"><%= t("modal.create_room.auto_join") %></span>
-              <%= f.check_box :auto_join, class: "custom-switch-input", checked: false %>
-              <span class="custom-switch-indicator float-right cursor-pointer"></span>
-            </label>
-
           </div>
+
 
           <div class="tab-pane fade" id="room_viewer">
             <p>Steuert die Zuschauerrechte innerhalb eines Raums.</p>
