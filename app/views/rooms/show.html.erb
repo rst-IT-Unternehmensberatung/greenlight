@@ -59,6 +59,10 @@
                       <input id="access-code" class="modal-scrollbar-measure" value="<%= @room.access_code %>" aria-hidden="true" type="text">
                       <a class="dropdown-item" onclick="copy('#access-code')"><i class="dropdown-icon fas fa-key"></i><%= t("room.copy_access") %></a>
                     <% end %>
+                    <% if moderator_code_allowed? && @room.moderator_access_code.present? %>
+                      <input id="copy-moderator-code" value="<%= @room.moderator_access_code %>" type="hidden">
+                      <a class="dropdown-item" onclick="copy('#copy-moderator-code')"><i class="dropdown-icon fas fa-key"></i><%= t("room.copy_moderator_access") %></a>
+                    <% end %>
                   </div>
                 </div>
               </div>

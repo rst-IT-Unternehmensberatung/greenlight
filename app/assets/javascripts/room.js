@@ -204,7 +204,9 @@ function shareAccess() {
 function showCreateRoom(target) {
   $("#create-room-name").val("")
   $("#create-room-access-code").text(getLocalizedString("modal.create_room.access_code_placeholder"))
+  $("#create-room-moderator-access-code").text(getLocalizedString("modal.create_room.moderator_access_code_placeholder"))
   $("#room_access_code").val(null)
+  $("#room_moderator_access_code").val(null)
 
   $("#createRoomModal form").attr("action", $("body").data('relative-root'))
   $("#room_mute_on_join").prop("checked", $("#room_mute_on_join").data("default"))
@@ -261,6 +263,16 @@ function showUpdateRoom(target) {
     $("#create-room-access-code").text(getLocalizedString("modal.create_room.access_code_placeholder"))
     $("#room_access_code").val(null)
   }
+
+  var moderatorAccessCode = modal.closest(".room-block").data("room-moderator-access-code")
+
+  if(moderatorAccessCode){
+    $("#create-room-moderator-access-code").text(getLocalizedString("modal.create_room.moderator_access_code") + ": " + moderatorAccessCode)
+    $("#room_moderator_access_code").val(moderatorAccessCode)
+  } else {
+    $("#create-room-moderator-access-code").text(getLocalizedString("modal.create_room.moderator_access_code_placeholder"))
+    $("#room_moderator_access_code").val(null)
+  }
 }
 
 function showDeleteRoom(target) {
@@ -301,6 +313,24 @@ function generateAccessCode(){
 function ResetAccessCode(){
   $("#create-room-access-code").text(getLocalizedString("modal.create_room.access_code_placeholder"))
   $("#room_access_code").val(null)
+}
+
+function generateModeratorAccessCode(){
+  const accessCodeLength = 6
+  var validCharacters = "abcdefghijklmopqrstuvwxyz"
+  var accessCode = ""
+
+  for( var i = 0; i < accessCodeLength; i++){
+    accessCode += validCharacters.charAt(Math.floor(Math.random() * validCharacters.length));
+  }
+
+  $("#create-room-moderator-access-code").text(getLocalizedString("modal.create_room.moderator_access_code") + ": " + accessCode)
+  $("#room_moderator_access_code").val(accessCode)
+}
+
+function ResetModeratorAccessCode(){
+  $("#create-room-moderator-access-code").text(getLocalizedString("modal.create_room.moderator_access_code_placeholder"))
+  $("#room_moderator_access_code").val(null)
 }
 
 function saveAccessChanges() {

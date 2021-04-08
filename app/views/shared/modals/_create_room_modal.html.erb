@@ -43,6 +43,18 @@
               </span>
             </div>
 
+            <% if moderator_code_allowed? %>
+              <div class="input-icon mb-2">
+                <span onclick="generateModeratorAccessCode()" class="input-icon-addon allow-icon-click cursor-pointer">
+                  <i class="fas fa-dice"></i>
+                </span>
+                <%= f.label :moderator_access_code, t("modal.create_room.moderator_access_code_placeholder"), id: "create-room-moderator-access-code", class: "form-control" %>
+                <%= f.hidden_field :moderator_access_code %>
+                <span onclick="ResetModeratorAccessCode()" class="input-icon-addon allow-icon-click cursor-pointer">
+                  <i class="far fa-trash-alt"></i>
+                </span>
+              </div>
+            <% end %>
             <nav class="row m-0">
               <div class="nav col nav-tabs m-0 p-0 admin-tabs">
                 <a class="nav-item p-3 nav-link active show" data-toggle="tab" role="tab" href="#room_settings">
