@@ -64,7 +64,7 @@ module Joiner
       opts[:webcams_for_moderator_only] = room_setting_with_config("webcamsOnlyForModerator")
 
       if current_user
-        opts[:user_is_moderator] = @room.owned_by?(current_user) || room_setting_with_config("joinModerator") || current_user.role.get_permission("can_create_rooms")
+        opts[:user_is_moderator] = moderator_privileges || room_setting_with_config("joinModerator") || current_user.role.get_permission("can_create_rooms")
         join_settings = Rails.configuration.join_settings_features.split(",")
         current_user.user_settings.each do |v|
           opts[v.name] = v.value if join_settings.include? v.name
