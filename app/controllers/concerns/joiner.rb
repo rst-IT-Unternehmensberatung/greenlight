@@ -71,9 +71,8 @@ module Joiner
         end
         redirect_to join_path(@room, current_user.name, opts, current_user.uid)
       else
-        opts[:user_is_moderator] = @room.owned_by?(current_user) || room_setting_with_config("joinModerator")
+        opts[:user_is_moderator] = moderator_privileges || room_setting_with_config("joinModerator")
         join_name = params[:join_name] || params[@room.invite_path][:join_name]
-        opts[:user_is_moderator] = @room.owned_by?(current_user) || room_setting_with_config("joinModerator")
         redirect_to join_path(@room, join_name, opts, fetch_guest_id)
       end
     else
