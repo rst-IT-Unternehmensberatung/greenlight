@@ -181,6 +181,10 @@ font-weight: 900;
     height: auto;
 }
 
+#room_access_code[value=""] + .input-group-append, #room_moderator_access_code[value=""] + .input-group-append {
+    display: none;
+}
+
 @media (max-width:770px) {
   .input-group.invite-link-input .input-group-append > * > i {
     font-size: 2em;

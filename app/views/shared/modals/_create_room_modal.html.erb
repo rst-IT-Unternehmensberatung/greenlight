@@ -34,11 +34,11 @@
 
             <nav class="row m-0">
               <div class="nav col nav-tabs m-0 p-0 admin-tabs">
-                <a class="nav-item p-3 nav-link active show" data-toggle="tab" role="tab" href="#room_settings">
+                <a class="nav-item p-3 nav-link" data-toggle="tab" role="tab" href="#room_settings">
                   <i class="fas mr-3 fa-cog"></i>
                   Allgemein
                 </a>
-                <a class="nav-item p-3 nav-link" data-toggle="tab" role="tab" href="#room_access">
+                <a class="nav-item p-3 nav-link active show" data-toggle="tab" role="tab" href="#room_access">
                   <i class="fas mr-3 fa-key"></i>
                   Zugriff
                 </a>
@@ -50,7 +50,7 @@
             </nav>
 
             <div class="tab-content">
-            <div class="tab-pane fade active show" id="room_settings">
+            <div class="tab-pane fade" id="room_settings">
 
             <% mute = room_configuration("Room Configuration Mute On Join") %>
             <% if mute != "disabled" %>
@@ -86,7 +86,7 @@
 
           </div>
 
-          <div class="tab-pane fade" id="room_access">
+          <div class="tab-pane fade active show" id="room_access">
             <div class="input-group my-2">
               <div class="input-group-prepend">
                 <button type="button" class="btn btn-secondary" onclick="generateAccessCode()" title="Zugangscode generieren"><i class="fas fa-sync"></i></button>
@@ -94,7 +94,7 @@
               <%= f.label :access_code, t("modal.create_room.access_code_placeholder"), id: "create-room-access-code", class: "form-control" %>
               <%= f.hidden_field :access_code %>
               <div class="input-group-append">
-                <button type="button" class="btn btn-secondary" onclick="ResetAccessCode()" title="Zugangscode löschen"><i class="fas fa-trash-alt"></i></button>
+                <button type="button" class="btn btn-secondary" onclick="ResetAccessCode()" title="Zugangscode löschen"><i class="fas fa-backspace"></i></button>
               </div>
             </div>
 
@@ -106,7 +106,7 @@
               <%= f.label :moderator_access_code, t("modal.create_room.moderator_access_code_placeholder"), id: "create-room-moderator-access-code", class: "form-control" %>
               <%= f.hidden_field :moderator_access_code %>
               <div class="input-group-append">
-                <button type="button" class="btn btn-secondary" onclick="ResetModeratorAccessCode()" title="Moderatorcode löschen"><i class="fas fa-trash-alt"></i></button>
+                <button type="button" class="btn btn-secondary" onclick="ResetModeratorAccessCode()" title="Moderatorcode löschen"><i class="fas fa-backspace"></i></button>
               </div>
             </div>
             <% end %>
