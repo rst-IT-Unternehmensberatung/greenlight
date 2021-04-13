@@ -178,6 +178,14 @@ input:focus {
   }
 }
 
+.nav-tabs .nav-item {
+  margin-bottom: -1px;
+}
+
+.btn-secondary {
+    box-shadow: none;
+}
+
 table {
   thead {
     th[data-order]:hover {
